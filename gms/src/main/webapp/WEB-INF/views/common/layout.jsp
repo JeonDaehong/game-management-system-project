@@ -40,6 +40,25 @@
 <!-- END: Styles -->
 <!-- jQuery -->
 <script src="${contextPath }/resources/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script>
+	function loginCheck() {
+		
+		
+		if (document.getElementById('memberId').value == '') {
+			alert('ID를 입력해주세요.');
+			document.getElementById('memberId').focus();
+			return false;
+		}
+		
+		if (document.getElementById('memberPw').value == '') {
+			alert('패스워드를 입력해주세요.');
+			document.getElementById('memberPw').focus();
+			return false;
+		}
+		
+		return true;
+	}
+</script>
 </head>
 <body>
 	<div>
@@ -103,12 +122,12 @@
                 </button>
                 <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
                 <div class="nk-gap-1"></div>
-                <form action="#" class="nk-form text-white">
+                <form action="${contextPath }/members/login" class="nk-form text-white"  method="post" onsubmit="return loginCheck()">
                     <div class="row vertical-gap">
                         <div class="col-md-6"> Use your ID & Password <div class="nk-gap"></div>
-                            <input type="email" value="" name="email" class=" form-control" placeholder="ID">
+                            <input type="text" id="memberId" name="memberId" class="required form-control" placeholder="ID">
                             <div class="nk-gap"></div>
-                            <input type="password" value="" name="password" class="required form-control" placeholder="Password">
+                            <input type="password" id="memberPw" name="memberPw" class="required form-control" placeholder="Password">
                         </div>
                         <div class="col-md-6"> Or social account: <div class="nk-gap"></div>
                             <ul class="nk-social-links-2">
@@ -121,7 +140,7 @@
                     <div class="nk-gap-1"></div>
                     <div class="row vertical-gap">
                         <div class="col-md-6">
-                            <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">로그인</a>
+                            <input type="submit" value="로그인">
                         </div>
                         <div class="col-md-6">
                             <div class="mnt-5">

@@ -13,4 +13,19 @@
  		<put-attribute name="title" value="Game Management System 1.0" />
  	</definition>
  	
+ 	<definition name="members/join" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/join.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+ 	<definition name="members/joinSuccess" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/joinSuccess.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0 Join" />
+ 	</definition>
+ 	
+ 	<definition name="members/login" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0 Join" />
+ 	</definition>
+ 	
  </tiles-definitions>
