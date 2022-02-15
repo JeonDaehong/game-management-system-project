@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="noticeMapper">
+
+	<!-- 게시글의 개수를 반환하는 쿼리 -->
+	<select id="getAllNoticeCount" resultType="int">
+		SELECT 
+				COUNT(*) 
+		FROM 
+				T_ADMIN_NOTICE
+	</select>
+
+	<select id="noticeList" resultType="AdminNoticeDto">
+		SELECT
+				*
+		FROM
+				T_ADMIN_NOTICE
+		ORDER BY
+				NUM DESC;
+	</select>
+	
+	<insert id="noticeInsert" parameterType="AdminNoticeDto">
+		INSERT INTO
+				T_ADMIN_NOTICE
+		VALUES (
+				NULL,
+				#{writer},
+				#{subject},
+				NOW(),
+				0,
+				#{content},
+				NULL
+			)
+	</insert>
+
+</mapper>

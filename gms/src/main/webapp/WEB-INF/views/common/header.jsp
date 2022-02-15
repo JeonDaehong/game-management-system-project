@@ -65,7 +65,7 @@
                     <li>
                     	<c:choose>
                     		<c:when test="${isLogOn eq true }">
-                    			<a href="${contextPath }/members/memberInfo?memberId=${sessionScope.loginId}">회원정보</a>
+                    			<a href="${contextPath }/members/memberInfo">회원정보</a>
                     		</c:when>
                     		<c:otherwise>
                         		<a href="${contextPath }/members/join" >회원가입</a>
@@ -139,7 +139,7 @@
                         <a href="gallery.html"> Gallery </a>
                     </li>
                     <li>
-                        <a href="tournaments.html"> Notice </a>
+                        <a href="${contextPath }/adminNotice/noticeList"> Notice </a>
                     </li>
                     	<c:if test="${isLogOn eq true }">
 		                    <li class=" nk-drop-item">
@@ -152,7 +152,7 @@
 		                                <a href="store-product.html"> 장바구니  </a>
 		                            </li>
 		                            <li>
-		                                <a href="${contextPath }/members/memberInfo?memberId=${sessionScope.loginId}"> 내 회원정보 </a>
+		                                <a href="${contextPath }/members/memberInfo"> 내 회원정보 </a>
 		                            </li>
 		                            <li>
 		                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>

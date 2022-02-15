@@ -106,9 +106,11 @@ public class MemberController {
 	
 	// 회원정보로 이동
 	@RequestMapping(value="/memberInfo", method=RequestMethod.GET)
-	public ModelAndView memberInfo(@RequestParam("memberId") String memberId) throws Exception {
+	public ModelAndView memberInfo(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("members/memberInfo");
-		mv.addObject("memberInfo", memberService.getInfo(memberId));
+		HttpSession session = request.getSession();
+		String myId = (String)session.getAttribute("loginId");
+		mv.addObject("memberInfo", memberService.getInfo(myId));
 		return mv;
 	}
 	
@@ -170,7 +172,7 @@ public class MemberController {
 		
 		String body  = "<script>";
 			   body += "alert('수정이 완료되었습니다.');";
-			   body += "location.href='" + request.getContextPath() + "/members/memberInfo?memberId=" + memberDto.getMemberId() + "';";
+			   body += "location.href='" + request.getContextPath() + "/members/memberInfo';";
 			   body += "</script>";
 		
 		HttpHeaders header = new HttpHeaders();
