@@ -11,6 +11,7 @@
 			alert("해당 계정은 현재 삭제중인 계정이므로, 접근하실 수 없습니다. (완전 삭제까지 최대 5일)");
 		});
 	</script>
+	${deleteIdCheck = false }
 </c:if>
 <title>Game Managememt System 1.0</title>
 </head>

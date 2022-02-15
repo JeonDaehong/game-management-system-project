@@ -34,6 +34,7 @@ public class MemberDto {
 	private String consentOrNot;
 	private int attendance;
 	private Date deleteAccount;
+	private int attendanceCheck;
 	
 	// Getter && Setter
 	public String getMemberId() {
@@ -191,6 +192,12 @@ public class MemberDto {
 	}
 	public void setDeleteAccount(Date deleteAccount) {
 		this.deleteAccount = deleteAccount;
+	}
+	public int getAttendanceCheck() {
+		return attendanceCheck;
+	}
+	public void setAttendanceCheck(int attendanceCheck) {
+		this.attendanceCheck = attendanceCheck;
 	}
 	
 }

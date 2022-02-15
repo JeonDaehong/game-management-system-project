@@ -151,6 +151,10 @@
 				   </p>
 				</td>
 			</tr>
+			<tr>
+				<td align="center">보유 포인트</td> 
+				<td> ${memberInfo.attendance } 포인트 </td>
+			</tr>
 		</table>
 		<div align="right">
 			<input type="button" value="수정하기" class="btn btn-outline-primary btn-sm" onClick="location.href='${contextPath}/members/pwdCheck?updateAndDeleteCheck=update'" /> 

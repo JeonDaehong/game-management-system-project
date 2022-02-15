@@ -1,5 +1,9 @@
 package com.portfolio.gms.member.service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -65,9 +69,31 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.deleteCheckUpdate(memberId);
 	}
 
+	// 5일 지난 계정정보 DB에서 삭제
 	@Override
 	public void deleteMember(String dateString) throws Exception {
 		memberDao.deleteMember(dateString);
+	}
+
+	// 출석체크
+	@Override
+	public int attendanceCheckOn(String memberId) throws Exception {
+		
+		Random random = new Random();
+		int addPoint = random.nextInt(200)+1;
+		
+		Map<String, Object> checkMap = new HashMap<String, Object>();
+		checkMap.put("memberId", memberId);
+		checkMap.put("addPoint", addPoint);
+		memberDao.attendanceCheckOn(checkMap);
+		
+		return addPoint;
+	}
+
+	// 출석체크 자정에 초기화
+	@Override
+	public void attendanceCheckOff() throws Exception {
+		memberDao.attendanceCheckOff();
 	}
 
 }

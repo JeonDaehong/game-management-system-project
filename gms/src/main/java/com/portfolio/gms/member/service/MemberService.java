@@ -17,4 +17,8 @@ public interface MemberService {
 	public void deleteCheckUpdate(String memberId) throws Exception;
 	
 	public void deleteMember(String dateString) throws Exception;
+	
+	public int attendanceCheckOn(String memberId) throws Exception;
+	
+	public void attendanceCheckOff() throws Exception;
 }

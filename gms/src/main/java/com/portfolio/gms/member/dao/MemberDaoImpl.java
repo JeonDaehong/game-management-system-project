@@ -1,5 +1,7 @@
 package com.portfolio.gms.member.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +37,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void deleteMember(String dateString) throws Exception {
 		sqlSession.delete("memberMapper.deleteMember", dateString);
+	}
+
+	@Override
+	public void attendanceCheckOn(Map<String, Object> checkMap) throws Exception {
+		sqlSession.update("memberMapper.attendanceCheckOn", checkMap);
+	}
+
+	@Override
+	public void attendanceCheckOff() throws Exception {
+		sqlSession.update("memberMapper.attendanceCheckOff");
 	}
 }

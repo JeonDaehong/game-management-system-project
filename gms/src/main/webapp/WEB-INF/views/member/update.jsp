@@ -316,6 +316,7 @@
 			<div align="right">
 				<input type="hidden" name="attendance" id="attendance" value="${memberInfo.attendance }">
 				<input type="hidden" name="memberPw" id="memberPw" value="${memberInfo.memberPw }">
+				<input type="hidden" name="attendanceCheck" id="attendanceCheck" value="${memberInfo.attendanceCheck }">
 				<input type="hidden" name="consentOrNot" id="consentOrNot" value="${memberInfo.consentOrNot }">
 				<input type="submit" value="수정하기" class="btn btn-outline-primary btn-sm">
 				<input type="button" value="취소하기" class="btn btn-outline-primary btn-sm" onClick="location.href='${contextPath}/main/main'"/>

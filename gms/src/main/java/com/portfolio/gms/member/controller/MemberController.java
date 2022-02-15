@@ -199,6 +199,33 @@ public class MemberController {
 		return new ResponseEntity<Object>(body, header, HttpStatus.OK);
 	}
 	
+	// 출석체크
+	@RequestMapping(value="/attendanceCheck", method=RequestMethod.GET)
+	public ResponseEntity<Object> attendanceCheck(@RequestParam("memberId") String memberId, HttpServletRequest request) throws Exception {
+		
+		MemberDto dbmemberDto = memberService.getInfo(memberId);
+		String body = "";
+		
+		if (dbmemberDto.getAttendanceCheck() == 1) {
+			body  = "<script>";
+		    body += "alert('이미 오늘 출석체크가 완료되었습니다. (자정에 초기화됩니다.)');";
+		    body += "location.href='" + request.getContextPath() + "/main/main';";
+		    body += "</script>";
+		} else {
+			int addPoint = memberService.attendanceCheckOn(memberId);
+			body  = "<script>";
+		    body += "alert('출석체크 완료 !!! " + addPoint + " 포인트가 적입되었습니다 :D');";
+		    body += "location.href='" + request.getContextPath() + "/main/main';";
+		    body += "</script>";
+		}
+				
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(body, header, HttpStatus.OK);
+	}
+	
+	
 	// 삭제 등록이 된 지 5일 후에 삭제되는 메서드 : 하루에 한 번 매일 자정에 실행
 	@Scheduled(cron = "0 0 0 * * *")
 	public void deleteAccount() throws Exception {
@@ -212,5 +239,8 @@ public class MemberController {
 		
 		memberService.deleteMember(dateString);
 		
+		memberService.attendanceCheckOff(); // 추가로 출석체크도 초기화
+		
 	}
+	
 }

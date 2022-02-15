@@ -65,6 +65,16 @@
                     <li>
                     	<c:choose>
                     		<c:when test="${isLogOn eq true }">
+                    			<a href="${contextPath }/members/memberInfo?memberId=${sessionScope.loginId}">회원정보</a>
+                    		</c:when>
+                    		<c:otherwise>
+                        		<a href="${contextPath }/members/join" >회원가입</a>
+                    		</c:otherwise>
+                    	</c:choose>
+                    </li>
+                    <li>
+                    	<c:choose>
+                    		<c:when test="${isLogOn eq true }">
                     			<p>현재 접속자 : ${sessionScope.loginId } 님</p>
                     		</c:when>
                     		<c:otherwise>
@@ -145,7 +155,7 @@
 		                                <a href="${contextPath }/members/memberInfo?memberId=${sessionScope.loginId}"> 내 회원정보 </a>
 		                            </li>
 		                            <li>
-		                                <a href="store-catalog-alt.html"> 출석체크 이벤트 </a>
+		                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>
 		                            </li>
                         		</ul>
                     		</li>

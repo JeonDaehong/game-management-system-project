@@ -41,7 +41,8 @@
 				NOW(),
 				#{consentOrNot},
 				0,
-				NULL
+				NULL,
+				0
 			)
 	</insert>
 	
@@ -74,7 +75,8 @@
 				JOIN_DATE = NOW(),
 				CONSENT_OR_NOT = #{consentOrNot},
 				ATTENDANCE = #{attendance},
-				DELETE_ACCOUNT = NULL				
+				DELETE_ACCOUNT = NULL,
+				ATTENDANCE_CHECK = #{attendanceCheck}				
 		WHERE
 				MEMBER_ID = #{memberId}
 	</update>
@@ -94,5 +96,22 @@
 		WHERE
 				DELETE_ACCOUNT = #{dateString}
 	</delete>
+	
+	<update id="attendanceCheckOn" parameterType="map">
+		UPDATE
+				T_SHOPPING_MEMBER
+		SET
+				ATTENDANCE_CHECK = 1,
+				ATTENDANCE = ATTENDANCE + #{addPoint}
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+	
+	<update id="attendanceCheckOff" parameterType="String">
+		UPDATE
+				T_SHOPPING_MEMBER
+		SET
+				ATTENDANCE_CHECK = 0
+	</update>
 
 </mapper>
