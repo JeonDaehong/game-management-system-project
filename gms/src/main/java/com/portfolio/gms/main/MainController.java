@@ -16,7 +16,7 @@ public class MainController {
 	// 메인 화면으로 이동
 	@RequestMapping(value="/main/main", method=RequestMethod.GET)
 	public ModelAndView memberMain() throws Exception {
-		return new ModelAndView("member/main");
+		return new ModelAndView("main/main");
 	}
 	
 }
