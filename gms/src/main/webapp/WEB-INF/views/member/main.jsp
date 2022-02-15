@@ -307,38 +307,43 @@
                 <!-- START: Image Slider -->
                 <div class="nk-image-slider" data-autoplay="8000">
                     <div class="nk-image-slider-item">
-                        <img src="${contextPath }/resources/assets/images/slide-1.jpg" alt="" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/slide-1-thumb.jpg">
+                        <img src="${contextPath }/resources/assets/images/LostArkImg.png" alt="LostArkImg.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/LostArkImg.png">
                         <div class="nk-image-slider-content">
-                            <h3 class="h4">As we Passed, I remarked</h3>
-                            <p class="text-white">As we passed, I remarked a beautiful church-spire rising above some old elms in the park; and before them, in the midst of a lawn, chimneys covered with ivy, and the windows shining in the sun.</p>
+                            <h3 class="h4">로스트 아크</h3>
+                            <p class="text-white">스마일게이트에서 만든 신작 쿼터뷰 MMORPG로 총 6개의 클래스와 클래스별로 전직 가능한 직업군이 별도로 존재하며 레이드, 채집, 생활 등 다양한 콘텐츠를 가지고 있다...</p>
                             <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
                         </div>
                     </div>
                     <div class="nk-image-slider-item">
-                        <img src="${contextPath }/resources/assets/images/slide-2.jpg" alt="" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/slide-2-thumb.jpg">
+                        <img src="${contextPath }/resources/assets/images/NiaGame.png" alt="NiaGame.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/NiaGame.png">
                         <div class="nk-image-slider-content">
-                            <h3 class="h4">He made his passenger captain of one</h3>
-                            <p class="text-white">Now the races of these two have been for some ages utterly extinct, and besides to discourse any further of them would not be at all to my purpose. But the concern I have most at heart is for our Corporation of Poets, from whom I am preparing a petition to your Highness, to be subscribed with the names of one...</p>
+                            <h3 class="h4">니어: 오토마타</h3>
+                            <p class="text-white">무대는 우주인이 조종하는 '기계생명체'의 압도적인 전력 앞에 인류가 달로 쫓겨난 먼 미래. 플레이어는 안드로이드 부대 「요르하」 소속의 「2B」가 되어 지구탈환을 위한 싸움에 몸을 던지게 됩니다...</p>
                             <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
                         </div>
                     </div>
                     <div class="nk-image-slider-item">
-                        <img src="${contextPath }/resources/assets/images/slide-3.jpg" alt="" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/slide-3-thumb.jpg">
-                    </div>
-                    <div class="nk-image-slider-item">
-                        <img src="${contextPath }/resources/assets/images/slide-4.jpg" alt="" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/slide-4-thumb.jpg">
-                        <div class="nk-image-slider-content">
-                            <h3 class="h4">At length one of them called out in a clear</h3>
-                            <p class="text-white">TJust then her head struck against the roof of the hall: in fact she was now more than nine feet high...</p>
+                        <img src="${contextPath }/resources/assets/images/BattleGround.png" alt="BattleGround.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/BattleGround.png">
+                    	<div class="nk-image-slider-content">
+                            <h3 class="h4">배틀그라운드</h3>
+                            <p class="text-white">배틀그라운드는 PUBG 주식회사(前 블루홀 지노게임즈)에서 개발하고 크래프톤에서 발행한 서바이벌 슈터 게임이다.</p>
                             <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
                         </div>
                     </div>
                     <div class="nk-image-slider-item">
-                        <img src="${contextPath }/resources/assets/images/slide-5.jpg" alt="" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/slide-5-thumb.jpg">
+                        <img src="${contextPath }/resources/assets/images/GTA5.png" alt="GTA5.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/GTA5.png">
                         <div class="nk-image-slider-content">
-                            <h3 class="h4">For good, too though, in consequence</h3>
-                            <p class="text-white">She gave my mother such a turn, that I have always been convinced I am indebted to Miss Betsey for having been born on a Friday. The word was appropriate to the moment.</p>
-                            <p class="text-white">My mother was so much worse that Peggotty, coming in with the teaboard and candles, and seeing at a glance how ill she was, - as Miss Betsey might have done sooner if there had been light enough, - conveyed her upstairs to her own room with all speed; and immediately dispatched Ham Peggotty, her nephew, who had been for some days past secreted in the house...</p>
+                            <h3 class="h4">GTA5</h3>
+                            <p class="text-white">로스 산토스는 찬란한 햇빛을 받으며 거대하게 뻗은 대도시입니다. 이곳에는 감동적인 인간 승리를 이뤄낸 사람들과 수많은 아이돌 스타, 퇴물이 되어가는 유명인사 등, 한때는 서구 세계의 부러움을 한몸에 받았던 사람들이 경제 불황과 싸구려 리얼리티 TV 시대에 살아남으려 발버둥치고 있습니다.</p>
+                            <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
+                        </div>
+                    </div>
+                    <div class="nk-image-slider-item">
+                        <img src="${contextPath }/resources/assets/images/HerosStorm.png" alt="HerosStorm.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/HerosStorm.png">
+                        <div class="nk-image-slider-content">
+                            <h3 class="h4">히어로즈 오브 더 스톰</h3>
+                            <p class="text-white">히어로즈 오브 더 스톰(Heroes of the Storm,히오스)는 블리자드 엔터테인먼트가 개발한 RTS ( Real - Time Strategy, 실시간 전략 게임 )이다.</p>
+                            <p class="text-white">블리자드 엔터테인먼트 게임들인 워크래프트, 디아블로, 스타크래프트, 오버워치, 블리자드 고전 게임에 등장하는 영웅들이 함께 나오는 게임이다...</p>
                             <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
                         </div>
                     </div>
