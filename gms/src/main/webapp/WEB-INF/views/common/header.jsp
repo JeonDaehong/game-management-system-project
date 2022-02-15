@@ -131,23 +131,25 @@
                     <li>
                         <a href="tournaments.html"> Notice </a>
                     </li>
-                    <li class=" nk-drop-item">
-                        <a href="store.html"> My Information </a>
-                        <ul class="dropdown">
-                            <li>
-                                <a href="store.html"> 내가 구매한 게임 </a>
-                            </li>
-                            <li>
-                                <a href="store-product.html"> 장바구니  </a>
-                            </li>
-                            <li>
-                                <a href="store-catalog.html"> 내 회원정보 </a>
-                            </li>
-                            <li>
-                                <a href="store-catalog-alt.html"> 출석체크 이벤트 </a>
-                            </li>
-                        </ul>
-                    </li>
+                    	<c:if test="${isLogOn eq true }">
+		                    <li class=" nk-drop-item">
+		                        <a href="store.html"> My Information </a>
+		                        <ul class="dropdown">
+		                            <li>
+		                                <a href="store.html"> 내가 구매한 게임 </a>
+		                            </li>
+		                            <li>
+		                                <a href="store-product.html"> 장바구니  </a>
+		                            </li>
+		                            <li>
+		                                <a href="${contextPath }/members/memberInfo?memberId=${sessionScope.loginId}"> 내 회원정보 </a>
+		                            </li>
+		                            <li>
+		                                <a href="store-catalog-alt.html"> 출석체크 이벤트 </a>
+		                            </li>
+                        		</ul>
+                    		</li>
+                    </c:if>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
                     <li class="single-icon d-lg-none">

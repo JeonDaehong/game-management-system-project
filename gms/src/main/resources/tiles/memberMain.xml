@@ -28,4 +28,24 @@
  		<put-attribute name="title" value="Game Management System 1.0 Join" />
  	</definition>
  	
+ 	<definition name="members/memberInfo" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/memberInfo.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0 Join" />
+ 	</definition>
+ 	
+ 	<definition name="members/update" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/update.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0 Join" />
+ 	</definition>
+ 	
+  	<definition name="members/pwdCheck" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/passwordCheck.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0 Join" />
+ 	</definition>
+ 	
+ 	<definition name="members/delete" extends="memberMainLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/member/delete.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0 Join" />
+ 	</definition>
+ 	
  </tiles-definitions>
