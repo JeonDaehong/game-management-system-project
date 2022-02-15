@@ -112,48 +112,6 @@
     </div>
 </div>
 <!-- END: Search Modal -->
-<!-- START: Login Modal -->
-<div class="nk-modal modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="ion-android-close"></span>
-                </button>
-                <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
-                <div class="nk-gap-1"></div>
-                <form action="${contextPath }/members/login" class="nk-form text-white"  method="post" onsubmit="return loginCheck()">
-                    <div class="row vertical-gap">
-                        <div class="col-md-6"> Use your ID & Password <div class="nk-gap"></div>
-                            <input type="text" id="memberId" name="memberId" class="required form-control" placeholder="ID">
-                            <div class="nk-gap"></div>
-                            <input type="password" id="memberPw" name="memberPw" class="required form-control" placeholder="Password">
-                        </div>
-                        <div class="col-md-6"> Or social account: <div class="nk-gap"></div>
-                            <ul class="nk-social-links-2">
-                                <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
-                                <li><a class="nk-social-google-plus" href="#"><span class="fab fa-google-plus"></span></a></li>
-                                <li><a class="nk-social-twitter" href="#"><span class="fab fa-twitter"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="nk-gap-1"></div>
-                    <div class="row vertical-gap">
-                        <div class="col-md-6">
-                            <input type="submit" value="로그인">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mnt-5">
-                                <small><a href="${contextPath }/members/join"><strong>회원가입을 아직 안하셨나요?</strong></a></small>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END: Login Modal -->
 <!-- START: Scripts -->
 <!-- Object Fit Polyfill -->
 <script src="${contextPath }/resources/assets/vendor/object-fit-images/dist/ofi.min.js"></script>

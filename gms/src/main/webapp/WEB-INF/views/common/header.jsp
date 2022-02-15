@@ -53,9 +53,24 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#modalLogin">
-                            <span class="fa fa-user"></span>
-                        </a>
+                    	<c:choose>
+                    		<c:when test="${isLogOn eq true }">
+                    			<a href="${contextPath }/members/logout" >로그아웃</a>
+                    		</c:when>
+                    		<c:otherwise>
+                        		<a href="${contextPath }/members/login" >로그인</a>
+                    		</c:otherwise>
+                    	</c:choose>
+                    </li>
+                    <li>
+                    	<c:choose>
+                    		<c:when test="${isLogOn eq true }">
+                    			<p>현재 접속자 : ${sessionScope.loginId } 님</p>
+                    		</c:when>
+                    		<c:otherwise>
+                        		<p>로그인을 해주시기 바랍니다.</p>
+                    		</c:otherwise>
+                    	</c:choose>
                     </li>
                 </ul>
             </div>
