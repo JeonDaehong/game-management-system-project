@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMapper">
+
+	<select id="overlapped" parameterType="String" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				T_SHOPPING_MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+
+	<insert id="addMember" parameterType="MemberDto">
+		INSERT INTO
+				T_SHOPPING_MEMBER
+		VALUES (
+				#{memberId},
+				#{memberPw},
+				#{memberName},
+				#{memberGender},
+				#{memberBirthY},
+				#{memberBirthM},
+				#{memberBirthD},
+				#{memberBirthGn},
+				#{tel1},
+				#{tel2},
+				#{tel3},
+				#{hp1},
+				#{hp2},
+				#{hp3},
+				#{smsstsYn},
+				#{email1},
+				#{email2},
+				#{emailstsYn},
+				#{zipcode},
+				#{roadAddress},
+				#{jibunAddress},
+				#{namujiAddress},
+				NOW(),
+				#{consentOrNot},
+				0,
+				NULL
+			)
+	</insert>
+	
+	<update id="memberUpdate" parameterType="MemberDto" >
+		UPDATE
+				T_SHOPPING_MEMBER
+		SET
+				MEMBER_ID = #{memberId},
+				MEMBER_PW = #{memberPw},
+				MEMBER_NAME = #{memberName},
+				MEMBER_GENDER = #{memberGender},
+				MEMBER_BIRTH_Y = #{memberBirthY},
+				MEMBER_BIRTH_M = #{memberBirthM},
+				MEMBER_BIRTH_D = #{memberBirthD},
+				MEMBER_BIRTH_GN = #{memberBirthGn},
+				TEL1 = #{tel1},								
+				TEL2 = #{tel2},								
+				TEL3 = #{tel3},
+				HP1 = #{hp1},
+				HP2 = #{hp2},
+				HP3 = #{hp3},
+				SMSSTS_YN = #{smsstsYn},
+				EMAIL1 = #{email1},
+				EMAIL2 = #{email2},
+				EMAILSTS_YN = #{emailstsYn},
+				ZIPCODE = #{zipcode},
+				ROADADDRESS = #{roadAddress},
+				JIBUNADDRESS = #{jibunAddress},
+				NAMUJIADDRESS = #{namujiAddress},
+				JOIN_DATE = NOW(),
+				CONSENT_OR_NOT = #{consentOrNot},
+				ATTENDANCE = #{attendance},
+				DELETE_ACCOUNT = NULL				
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+
+	<update id="deleteCheckUpdate" parameterType="String">
+		UPDATE
+				T_SHOPPING_MEMBER
+		SET
+				DELETE_ACCOUNT = NOW()
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM
+				T_SHOPPING_MEMBER
+		WHERE
+				DELETE_ACCOUNT = #{dateString}
+	</delete>
+
+</mapper>
