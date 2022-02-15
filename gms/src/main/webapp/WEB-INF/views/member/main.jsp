@@ -16,7 +16,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>GoodGames | Community and Store HTML Game Template</title>
+        <title>Game Managememt System 1.0</title>
         <meta name="description" content="GoodGames - Bootstrap template for communities and games store">
         <meta name="keywords" content="game, gaming, template, HTML template, responsive, Bootstrap, premium">
         <meta name="author" content="_nK">
