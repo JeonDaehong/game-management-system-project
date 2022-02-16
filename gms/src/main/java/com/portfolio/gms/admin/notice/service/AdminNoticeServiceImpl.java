@@ -1,5 +1,6 @@
 package com.portfolio.gms.admin.notice.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	private AdminNoticeDao adminNoticeDao;
 	
 	@Override
-	public List<AdminNoticeDto> noticeList() throws Exception {
-		return adminNoticeDao.noticeList();
+	public List<AdminNoticeDto> noticeList(HashMap<String, Object> hashMap) throws Exception {
+		return adminNoticeDao.noticeList(hashMap);
 	}
 
 	@Override

@@ -30,13 +30,14 @@ public class AdminNoticeController {
 		
 		
 		// 페이지의 시작 게시글 인덱스
-		int startBoardIdx =  (currentPageNumber -1) * onePageViewCount + 1;
-		if (currentPageNumber == 1) startBoardIdx = 1;
+		int startBoardIdx = (currentPageNumber -1) * onePageViewCount;
 		
 		// 관련 정보 Map 생성 ( 한페이지에 보여줄 게시글 숫자 , 시작페이지의 인덱스 ) 
-		Map<String, Object> searchInfo = new HashMap<String, Object>();
+		HashMap<String, Object> searchInfo = new HashMap<String, Object>();
 		searchInfo.put("onePageViewCount", onePageViewCount);
 		searchInfo.put("startBoardIdx", startBoardIdx);
+		
+		List<AdminNoticeDto> noticeList = adminNoticeService.noticeList(searchInfo);
 		
 		// 전체페이지 개수 = 전체게시글 수 / 한페이지에서 보여지는 글수
 		int totalBoardCount = adminNoticeService.getAllNoticeCount();
@@ -70,7 +71,6 @@ public class AdminNoticeController {
 		mv.addObject("currentPageNumber" , currentPageNumber);
 		
 		// 게시글 목록에 보여지는 글 내용
-		List<AdminNoticeDto> noticeList = adminNoticeService.noticeList();
 		
 		for (AdminNoticeDto noticeDto : noticeList) {
 			String cutContent = "";

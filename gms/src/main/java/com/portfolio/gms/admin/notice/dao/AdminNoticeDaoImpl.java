@@ -1,5 +1,6 @@
 package com.portfolio.gms.admin.notice.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,8 +16,8 @@ public class AdminNoticeDaoImpl implements AdminNoticeDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<AdminNoticeDto> noticeList() throws Exception {
-		return sqlSession.selectList("noticeMapper.noticeList");
+	public List<AdminNoticeDto> noticeList(HashMap<String, Object> hashMap) throws Exception {
+		return sqlSession.selectList("noticeMapper.noticeList", hashMap);
 	}
 
 	@Override
