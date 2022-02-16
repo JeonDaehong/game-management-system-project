@@ -11,7 +11,7 @@ public class AdminNoticeDto {
 		private int num;
 		private String writer;
 		private String subject;
-		private Date date;
+		private Date regDate;
 		private int readCount;
 		private String content;
 		private String cutContent;
@@ -35,11 +35,11 @@ public class AdminNoticeDto {
 		public void setSubject(String subject) {
 			this.subject = subject;
 		}
-		public Date getDate() {
-			return date;
+		public Date getRegDate() {
+			return regDate;
 		}
-		public void setDate(Date date) {
-			this.date = date;
+		public void setRegDate(Date regDate) {
+			this.regDate = regDate;
 		}
 		public int getReadCount() {
 			return readCount;

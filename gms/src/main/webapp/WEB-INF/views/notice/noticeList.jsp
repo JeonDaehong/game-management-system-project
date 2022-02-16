@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 <!DOCTYPE html >
 <html>
@@ -15,11 +16,6 @@
             <li><span> &nbsp; NOTICE </span></li>
         </ul>
         <br>
-        <c:if test="${sessionScope.loginId eq 'admin' }">
-	        <div class="container" align="left">
-	        <a href="${contextPath }/adminNotice/noticeWriter" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-info"><span class="icon ion-paper-airplane"></span>Admin : 공지사항 작성 </a> &nbsp;&nbsp;
-	        </div>
-        </c:if>
         <br>
     </div>
     <div class="nk-gap-1"></div>
@@ -51,7 +47,7 @@
 			                                    <p>${notice.cutContent }</p>
 			                                </div>
 			                                <div class="nk-post-by">
-			                                    <img src="${contextPath }/resources/assets/images/admin.png" alt="admin.png" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Hitman</a> in Sep 18, 2018
+			                                    <img src="${contextPath }/resources/assets/images/admin.png" alt="admin.png" class="rounded-circle" width="35"> by <span style="color: pink;">Admin</span> in <span style="color: yellow;"><fmt:formatDate value="${notice.regDate }" pattern="yyyy-MM-dd"/></span>
 			                                </div>
 			                            </div>
 			                        </div>
@@ -60,29 +56,32 @@
                     		</c:forEach>
                     	</c:otherwise>
                     </c:choose>
+                    <c:if test="${sessionScope.loginId eq 'admin' }">
+	                    <div class="nk-blog-post" align="center">
+	                   		<div class="row vertical-gap">
+	                       		<div class="col-md-3 col-lg-12" >
+	                           		<a href="${contextPath }/adminNotice/noticeWriter" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-info"><span class="icon ion-paper-airplane"></span>Admin : 공지사항 작성 </a> &nbsp;&nbsp;
+	                       			<br><br><br>
+	                       		</div>
+	                   		</div>
+	               		</div>
+               		</c:if>
                     <!-- START: Pagination -->
                     <div class="nk-pagination nk-pagination-center">
-                        <a href="#" class="nk-pagination-prev">
-                            <span class="ion-ios-arrow-back"></span>
-                        </a>
                         <nav>
                         	<c:if test="${totalBoardCount gt 0 }">
                        			<c:if test="${startPage gt 10 }">
-                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}" >Previous</a>
+                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}" > &lt; &nbsp; Previous</a>
                        			</c:if>
                        			<c:forEach var="i" begin="${startPage}" end="${endPage }" >
-                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${i}&onePageViewCount=${onePageViewCount}" >${i}</a>
+                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${i}&onePageViewCount=${onePageViewCount}" <c:if test="${currentPageNumber eq i }">class="nk-pagination-current"</c:if> >${i}</a>
                          		</c:forEach>
                        			<c:if test="${endPage le totalBoardCount && endPage ge 10}"> 
-                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}" >Next</a>
+                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}" >Next &nbsp; &gt;</a>
                        			</c:if>
-                        </c:if>
+                        	</c:if>
                         </nav>
-                        <a href="#" class="nk-pagination-next">
-                            <span class="ion-ios-arrow-forward"></span>
-                        </a>
                     </div>
-                    
                     <!-- END: Pagination -->
                 </div>
                 <!-- END: Posts List -->

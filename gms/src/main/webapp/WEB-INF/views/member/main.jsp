@@ -319,7 +319,7 @@
             <div class="row vertical-gap">
                 <div class="col-lg-8">
                     <!-- START: Latest Posts -->
-                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">공지</span> 사항</span></h3>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">자유</span> 게시판</span></h3>
                     <div class="nk-gap"></div>
                     <div class="nk-blog-grid">
                         <div class="row">
@@ -370,7 +370,7 @@
                     <!-- END: Latest Posts -->
                     <!-- START: Tabbed News  -->
                     <div class="nk-gap-3"></div>
-                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">자유</span> 게시판</span></h3>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">공지</span> 사항</span></h3>
                     <div class="nk-gap"></div>
                     <div class="nk-tabs">
                         <!--

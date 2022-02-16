@@ -52,7 +52,7 @@ public class AdminNoticeController {
 		
 		// 끝페이지
 		int endPage = startPage + 9;
-			
+		
 		// 끝페이지가 전체 페이지 개수보다 크다면 
 		if (endPage > totalPageCount) {
 			endPage = totalPageCount;
@@ -62,6 +62,10 @@ public class AdminNoticeController {
 		if (onePageViewCount > totalBoardCount) {
 			startPage = 1;
 			endPage = 0;
+		}
+		
+		if (totalBoardCount < 10 && totalBoardCount > 0) {
+			endPage = 1;
 		}
 		
 		mv.addObject("startPage"         , startPage);
