@@ -13,9 +13,10 @@
     <div class="nk-gap-1"></div>
     <div class="container">
         <ul class="nk-breadcrumbs">
+	        <li><a href="${contextPath }/main/main">Home</a></li>
+	        <li><span class="fa fa-angle-right"></span></li>
             <li><span> &nbsp; NOTICE </span></li>
         </ul>
-        <br>
         <br>
     </div>
     <div class="nk-gap-1"></div>
@@ -38,11 +39,12 @@
                     		</div>
                     	</c:when>
                     	<c:otherwise>
+                    		<br>
                     		<c:forEach var="notice" items="${noticeList }">
-                    			<div class="nk-blog-post">
+                    			<div class="nk-blog-post" >
 			                        <div class="row vertical-gap">
 			                            <div class="col-md-3 col-lg-12">
-			                                <h2 class="nk-post-title h4"><a href="blog-article.html">${notice.subject }</a></h2>
+			                                <h2 class="nk-post-title h4"><a href="${contextPath }/adminNotice/noticeInfo?num=${notice.num}"><span class="ion-ios-game-controller-b"></span> ${notice.subject }</a></h2>
 			                                <div class="nk-post-text">
 			                                    <p>${notice.cutContent }</p>
 			                                </div>
@@ -52,11 +54,12 @@
 			                            </div>
 			                        </div>
 			                    </div>
-			                    <br><br><br>
+			                    <hr style="background-color: gray;"> 
+			                    <br>
                     		</c:forEach>
                     	</c:otherwise>
                     </c:choose>
-                    <c:if test="${sessionScope.loginId eq 'admin' }">
+                    <c:if test="${sessionScope.loginId eq 'admin' }"> 
 	                    <div class="nk-blog-post" align="center">
 	                   		<div class="row vertical-gap">
 	                       		<div class="col-md-3 col-lg-12" >

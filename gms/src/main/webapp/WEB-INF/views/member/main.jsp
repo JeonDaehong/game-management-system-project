@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -370,7 +371,7 @@
                     <!-- END: Latest Posts -->
                     <!-- START: Tabbed News  -->
                     <div class="nk-gap-3"></div>
-                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">공지</span> 사항</span></h3>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">New</span> 공지사항</span></h3>
                     <div class="nk-gap"></div>
                     <div class="nk-tabs">
                         <!--
@@ -378,87 +379,43 @@
                     .nav-tabs-fill
             -->
                         <ul class="nav nav-tabs nav-tabs-fill" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">Action</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab">MMO</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tabs-1-3" role="tab" data-toggle="tab">Strategy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab">Adventure</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tabs-1-5" role="tab" data-toggle="tab">Racing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tabs-1-6" role="tab" data-toggle="tab">Indie</a>
+                        	<li class="nav-item">
+                            	<a class="nav-link active" href="${contextPath }/adminNotice/noticeList">공지사항 더보기 +</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
                                 <div class="nk-gap"></div>
                                 <!-- START: Action Tab -->
-                                <div class="nk-blog-post">
-                                    <a href="blog-article.html" class="nk-post-img">
-                                        <img src="${contextPath }/resources/assets/images/post-2-fw.jpg" alt="Grab your sword and fight the Horde">
-                                        <span class="nk-post-categories">
-                                            <span class="bg-main-1">Action</span>
-                                        </span>
-                                    </a>
-                                    <div class="nk-gap-1"></div>
-                                    <h2 class="nk-post-title h4"><a href="blog-article.html">Grab your sword and fight the Horde</a></h2>
-                                    <div class="nk-post-date mt-10 mb-10">
-                                        <span class="fa fa-calendar"></span> Sep 5, 2018 <span class="fa fa-comments"></span> <a href="#">7 comments</a>
-                                    </div>
-                                    <div class="nk-post-text">
-                                        <p>For good, too; though, in consequence of my previous emotions, I was still occasionally seized with a stormy sob . After we had jogged on for some little time, I asked the carrier...</p>
-                                    </div>
-                                </div>
-                                <div class="nk-blog-post">
-                                    <div class="row vertical-gap">
-                                        <div class="col-lg-3 col-md-5">
-                                            <a href="blog-article.html" class="nk-post-img">
-                                                <img src="${contextPath }/resources/assets/images/post-7-mid-square.jpg" alt="At length one of them called out in a clear">
-                                                <span class="nk-post-categories">
-                                                    <span class="bg-main-1">Action</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-9 col-md-7">
-                                            <h2 class="nk-post-title h4"><a href="blog-article.html">At length one of them called out in a clear</a></h2>
-                                            <div class="nk-post-date mt-10 mb-10">
-                                                <span class="fa fa-calendar"></span> Jul 3, 2018 <span class="fa fa-comments"></span> <a href="#">0 comments</a>
-                                            </div>
-                                            <div class="nk-post-text">
-                                                <p>TJust then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door...</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="nk-blog-post">
-                                    <div class="row vertical-gap">
-                                        <div class="col-lg-3 col-md-5">
-                                            <a href="blog-article.html" class="nk-post-img">
-                                                <img src="${contextPath }/resources/assets/images/post-9-mid-square.jpg" alt="He made his passenger captain of one">
-                                                <span class="nk-post-categories">
-                                                    <span class="bg-main-1">Action</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-9 col-md-7">
-                                            <h2 class="nk-post-title h4"><a href="blog-article.html">He made his passenger captain of one</a></h2>
-                                            <div class="nk-post-date mt-10 mb-10">
-                                                <span class="fa fa-calendar"></span> Jul 3, 2018 <span class="fa fa-comments"></span> <a href="#">0 comments</a>
-                                            </div>
-                                            <div class="nk-post-text">
-                                                <p>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door...</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <c:choose>
+                                	<c:when test="${empty noticeList }">
+		                                <div class="nk-blog-post">
+		                                    <div class="nk-gap-1"></div>
+		                                    <h2 class="nk-post-title h4"><a href="blog-article.html">공지사항이 없습니다.</a></h2>
+		                                    <div class="nk-post-date mt-10 mb-10">
+		                                        <span class="fa fa-calendar"></span> Sep 5, 2018 <span class="fa fa-comments"></span> <a href="#">7 comments</a>
+		                                    </div>
+		                                    <div class="nk-post-text">
+		                                        <p>현재 공지사항이 없습니다. 공지사항이 없는 경우, Front 비율을 유지하기 위해 임시로 생성된 공지사항입니다.</p>
+		                                    </div>
+		                                </div>
+	                                </c:when>
+	                                <c:otherwise>
+	                                	<c:forEach var="noticeDto" items="${noticeList }" begin="0" end="${end }">
+		                                    <div class="nk-blog-post">
+			                                    <div class="nk-gap-1"></div>
+			                                    <h2 class="nk-post-title h4"><a href="${contextPath }/adminNotice/noticeInfo?num=${noticeDto.num }"><span class="ion-ios-game-controller-b"></span>&nbsp; ${noticeDto.subject }</a></h2>
+			                                    <div class="nk-post-date mt-10 mb-10">
+			                                        <span class="fa fa-calendar"></span> <fmt:formatDate value="${noticeDto.regDate }" pattern="yyyy-MM-dd"/> / 조회수 : ${noticeDto.readCount }
+			                                    </div>
+			                                    <div class="nk-post-text">
+			                                        <p>${noticeDto.cutContent }</p>
+			                                    </div>
+			                                    <hr style="background-color: gray;">
+			                                </div>
+		                                </c:forEach>
+	                                </c:otherwise>
+                                </c:choose>
                                 <!-- END: Action Tab -->
                                 <div class="nk-gap"></div>
                             </div>

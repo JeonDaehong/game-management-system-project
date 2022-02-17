@@ -15,6 +15,8 @@ public class AdminNoticeDto {
 		private int readCount;
 		private String content;
 		private String cutContent;
+		private int suggestion;
+		private int suggestionCheck;
 		
 		// Getter & Setter
 		public int getNum() {
@@ -59,5 +61,17 @@ public class AdminNoticeDto {
 		public void setCutContent(String cutContent) {
 			this.cutContent = cutContent;
 		}
-	
+		public int getSuggestion() {
+			return suggestion;
+		}
+		public void setSuggestion(int suggestion) {
+			this.suggestion = suggestion;
+		}
+		public int getSuggestionCheck() {
+			return suggestionCheck;
+		}
+		public void setSuggestionCheck(int suggestionCheck) {
+			this.suggestionCheck = suggestionCheck;
+		}
+		
 }

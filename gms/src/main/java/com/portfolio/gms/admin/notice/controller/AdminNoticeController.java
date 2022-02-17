@@ -4,14 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.gms.admin.notice.dto.AdminNoticeDto;
+import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
 
 @Controller
@@ -92,11 +99,120 @@ public class AdminNoticeController {
 		return mv;
 	}
 
-	
+	// 공지사항 업로드 페이지로 이동
 	@RequestMapping(value="/noticeWriter", method=RequestMethod.GET)
-	public ModelAndView noticeWriter() {
+	public ModelAndView noticeWriter() throws Exception {
 		return new ModelAndView("adminNotice/noticeWriter");
 	}
 	
-
+	// 공지사항 업로드
+	@RequestMapping(value="/noticeWriter", method=RequestMethod.POST)
+	public ResponseEntity<Object> noticeWriter(@ModelAttribute AdminNoticeDto adminNoticeDto, HttpServletRequest request) throws Exception {
+	
+		adminNoticeService.noticeInsert(adminNoticeDto);
+		
+		String body  = "<script>";
+			   body += "alert('공지사항 작성이 완료되었습니다.');";
+			   body += "location.href='" + request.getContextPath() + "/adminNotice/noticeList';";
+			   body += "</script>";
+	
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(body, header, HttpStatus.OK);
+	}
+	
+	// 공지사항 한 개씩 누를 시 내용공개
+	@RequestMapping(value="/noticeInfo", method=RequestMethod.GET)
+	public ModelAndView noticeInfo(@RequestParam("num") int num) throws Exception {
+		ModelAndView mv = new ModelAndView("notice/noticeInfo");
+		adminNoticeService.readCountUp(num);
+		mv.addObject("noticeDto", adminNoticeService.getNoticeInfo(num));
+		return mv;
+	}
+	
+	// 공지사항 수정 페이지로 이동
+	@RequestMapping(value="/noticeUpdate", method=RequestMethod.GET)
+	public ModelAndView noticeUpdate(@RequestParam("num") int num) throws Exception {
+		ModelAndView mv = new ModelAndView("adminNotice/noticeUpdate");
+		mv.addObject("noticeDto", adminNoticeService.getNoticeInfo(num));
+		return mv;
+	}
+	// 공지사항 수정
+	@RequestMapping(value="/noticeUpdate", method=RequestMethod.POST)
+	public ResponseEntity<Object> noticeUpdate(@ModelAttribute AdminNoticeDto adminNoticeDto, HttpServletRequest request) throws Exception {
+	
+		adminNoticeService.noticeUpdate(adminNoticeDto);
+		
+		String body  = "<script>";
+			   body += "alert('공지사항 수정이 완료되었습니다.');";
+			   body += "location.href='" + request.getContextPath() + "/adminNotice/noticeInfo?num=" + adminNoticeDto.getNum() + "';";
+			   body += "</script>";
+	
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(body, header, HttpStatus.OK);
+	}
+	
+	// 공지사항 삭제 확인 페이지로 이동
+	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)
+	public ModelAndView noticeDelete(@RequestParam("num") int num) throws Exception {
+		ModelAndView mv = new ModelAndView("adminNotice/noticeDelete");
+		mv.addObject("noticeDto", adminNoticeService.getNoticeInfo(num));
+		return mv;
+	}
+	
+	// 공지사항 삭제
+	@RequestMapping(value="/noticeDelete", method=RequestMethod.POST)
+	public ResponseEntity<Object> noticeDelete(@RequestParam("num") int num, HttpServletRequest request) throws Exception {
+	
+		adminNoticeService.noticeDelete(num);
+		
+		NoticeSuggestionDto noticeSuggestionDto = new NoticeSuggestionDto();
+		noticeSuggestionDto.setNoticeNum(num);
+		noticeSuggestionDto.setMemberId("a");
+		adminNoticeService.deleteSuggestionCheck(noticeSuggestionDto);
+		
+		String body  = "<script>";
+			   body += "alert('공지사항 삭제가 완료되었습니다.');";
+			   body += "location.href='" + request.getContextPath() + "/adminNotice/noticeList';";
+			   body += "</script>";
+	
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(body, header, HttpStatus.OK);
+	}
+	
+	// 게시물 추천
+	@RequestMapping(value="/noticeSuggestion", method=RequestMethod.POST)
+	public ResponseEntity<Object> noticeSuggestion(@RequestParam("noticeNum") int noticeNum, @RequestParam("memberId") String memberId, HttpServletRequest request) throws Exception {
+		
+		NoticeSuggestionDto noticeSuggestionDto = new NoticeSuggestionDto();
+		noticeSuggestionDto.setMemberId(memberId);
+		noticeSuggestionDto.setNoticeNum(noticeNum);
+		
+		boolean result = adminNoticeService.suggestionCheck(noticeSuggestionDto);
+		
+		String body = "";
+		
+		if (result) {
+			body  = "<script>";
+			body += "alert('추천 완료 :D');";
+			body += "location.href='" + request.getContextPath() + "/adminNotice/noticeInfo?num=" + noticeNum  + "';";
+			body += "</script>";
+		} else {
+			body  = "<script>";
+			body += "alert('이미 추천을 누른 게시물입니다.');";
+			body += "location.href='" + request.getContextPath() + "/adminNotice/noticeInfo?num=" + noticeNum  + "';";
+			body += "</script>";
+		}
+		
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(body, header, HttpStatus.OK);
+	}
+	
 }

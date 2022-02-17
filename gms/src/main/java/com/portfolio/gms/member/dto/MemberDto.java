@@ -35,6 +35,7 @@ public class MemberDto {
 	private int attendance;
 	private Date deleteAccount;
 	private int attendanceCheck;
+	private int suggestionCheck;	
 	
 	// Getter && Setter
 	public String getMemberId() {
@@ -199,5 +200,10 @@ public class MemberDto {
 	public void setAttendanceCheck(int attendanceCheck) {
 		this.attendanceCheck = attendanceCheck;
 	}
-	
+	public int getSuggestionCheck() {
+		return suggestionCheck;
+	}
+	public void setSuggestionCheck(int suggestionCheck) {
+		this.suggestionCheck = suggestionCheck;
+	}
 }

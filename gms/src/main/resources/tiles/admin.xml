@@ -13,5 +13,14 @@
  		<put-attribute name="title" value="Game Management System 1.0" />
  	</definition>
  	
+ 	<definition name="adminNotice/noticeUpdate" extends="adminLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/admin/adminNoticeUpdate.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+ 	<definition name="adminNotice/noticeDelete" extends="adminLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/admin/adminNoticeDelete.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
  	
  </tiles-definitions>

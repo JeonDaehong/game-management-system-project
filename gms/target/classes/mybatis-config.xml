@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.portfolio.gms.member.dto.MemberDto" alias="MemberDto"/>          
 		<typeAlias type="com.portfolio.gms.admin.notice.dto.AdminNoticeDto" alias="AdminNoticeDto"/>          
+		<typeAlias type="com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto" alias="NoticeSuggestionDto"/>          
     </typeAliases>
 
 </configuration>

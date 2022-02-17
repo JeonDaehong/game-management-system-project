@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
+import com.portfolio.gms.admin.notice.service.AdminNoticeService;
 import com.portfolio.gms.member.dto.MemberDto;
 import com.portfolio.gms.member.service.MemberService;
 
@@ -28,6 +30,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private AdminNoticeService adminNoticeService;
 	
 	// 회원가입 화면으로 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
@@ -186,6 +191,11 @@ public class MemberController {
 	public ResponseEntity<Object> delete(@RequestParam("memberId") String memberId, HttpServletRequest request) throws Exception {
 		
 		memberService.deleteCheckUpdate(memberId);
+		
+		NoticeSuggestionDto noticeSuggestionDto = new NoticeSuggestionDto();
+		noticeSuggestionDto.setNoticeNum(0);
+		noticeSuggestionDto.setMemberId(memberId);
+		adminNoticeService.deleteSuggestionCheck(noticeSuggestionDto);
 		
 		HttpSession session = request.getSession();
 		session.invalidate();

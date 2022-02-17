@@ -22,6 +22,15 @@
 	            #{startBoardIdx}, #{onePageViewCount}
 	</select>
 	
+	<select id="mainPageNoticeList" resultType="AdminNoticeDto">
+		SELECT
+				*
+		FROM
+				T_ADMIN_NOTICE
+		ORDER BY
+				NUM DESC
+	</select>
+	
 	<insert id="noticeInsert" parameterType="AdminNoticeDto">
 		INSERT INTO
 				T_ADMIN_NOTICE
@@ -32,8 +41,88 @@
 				NOW(),
 				0,
 				#{content},
-				NULL
+				NULL,
+				0
 			)
 	</insert>
+	
+	<update id="readCountUp" parameterType="int">
+		UPDATE
+				T_ADMIN_NOTICE
+		SET
+				READ_COUNT = READ_COUNT + 1
+		WHERE
+				NUM = #{num}
+	</update>
+	
+	<select id="getNoticeInfo" parameterType="int" resultType="AdminNoticeDto">
+		SELECT
+				*
+		FROM
+				T_ADMIN_NOTICE
+		WHERE
+				NUM = #{num}
+	</select>
+	
+	
+	<update id="noticeUpdate" parameterType="AdminNoticeDto">
+		UPDATE
+				T_ADMIN_NOTICE
+		SET
+				NUM = #{num},
+				WRITER = #{writer},
+				SUBJECT = #{subject},
+				READ_COUNT = #{readCount},
+				CONTENT = #{content},
+				CUT_CONTENT = #{cutContent},
+				SUGGESTION = #{suggestion}
+		WHERE
+				NUM = #{num}
+	</update>
+	
+	<delete id="noticeDelete" parameterType="int">
+	
+		DELETE FROM
+				T_ADMIN_NOTICE
+		WHERE
+				NUM = #{num}
+	
+	</delete>
+	
+	
+	<!-- Notice 추천 기능 -->
+	<update id="suggestionCountUp" parameterType="int">
+		UPDATE
+				T_ADMIN_NOTICE
+		SET
+				SUGGESTION = SUGGESTION + 1
+		WHERE
+				NUM = #{num}
+	</update>
+	
+	<select id="suggestionCheck" parameterType="NoticeSuggestionDto" resultType="NoticeSuggestionDto">
+		SELECT
+				*
+		FROM
+				T_NOTICE_SUGGESTION
+		WHERE
+				MEMBER_ID = #{memberId} AND NOTICE_NUM = #{noticeNum}
+	</select>
+	
+	<insert id="insertSuggestionCheck" parameterType="NoticeSuggestionDto">
+		INSERT INTO
+				T_NOTICE_SUGGESTION
+		VALUES (
+				#{memberId},
+				#{noticeNum}
+			)
+	</insert>
+	
+	<delete id="deleteSuggestionCheck" parameterType="NoticeSuggestionDto">
+		DELETE FROM
+				T_NOTICE_SUGGESTION
+		WHERE
+				MEMBER_ID = #{memberId} OR NOTICE_NUM = #{noticeNum}
+	</delete>
 
 </mapper>

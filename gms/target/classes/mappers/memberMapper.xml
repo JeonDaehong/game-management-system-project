@@ -76,7 +76,7 @@
 				CONSENT_OR_NOT = #{consentOrNot},
 				ATTENDANCE = #{attendance},
 				DELETE_ACCOUNT = NULL,
-				ATTENDANCE_CHECK = #{attendanceCheck}				
+				ATTENDANCE_CHECK = #{attendanceCheck}
 		WHERE
 				MEMBER_ID = #{memberId}
 	</update>
