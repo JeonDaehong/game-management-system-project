@@ -124,19 +124,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class=" nk-drop-item">
+                    <li>
                         <a href="blog-list.html"> BOARD </a>
-                        <ul class="dropdown">
-                            <li>
-                                <a href="blog-fullwidth.html"> 자주묻는 질문 </a>
-                            </li>
-                            <li>
-                                <a href="blog-article.html"> 자유 게시판 </a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
-                        <a href="gallery.html"> Gallery </a>
+                        <a href="${contextPath }/imageBoard/imageBoardList"> Gallery </a>
                     </li>
                     <li>
                         <a href="${contextPath }/adminNotice/noticeList"> Notice </a>
@@ -157,6 +149,17 @@
 		                            <li>
 		                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>
 		                            </li>
+		                            <c:if test="${sessionScope.loginId eq 'admin' }">
+		                            	<li>
+		                            		<a href="#"> Admin : 회원 명단 조회  </a>
+		                            	</li>
+		                            	<li>
+		                            		<a href="#"> Admin : 공지사항 작성  </a>
+		                            	</li>
+		                            	<li>
+		                            		<a href="#"> Admin : 상품 등록  </a>
+		                            	</li>
+		                            </c:if>
                         		</ul>
                     		</li>
                     </c:if>

@@ -862,7 +862,7 @@
                             </div>
                         </div>
                         <div class="nk-widget nk-widget-highlighted">
-                            <h4 class="nk-widget-title"><span><span class="text-main-1">RECENT</span> IMAGE</span></h4>
+                            <h4 class="nk-widget-title"><span><span class="text-main-1">POPULAR</span> IMAGE</span></h4>
                             <div class="nk-widget-content">
                                 <div class="nk-popup-gallery">
                                     <div class="row sm-gap vertical-gap">

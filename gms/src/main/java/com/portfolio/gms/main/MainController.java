@@ -30,28 +30,30 @@ public class MainController {
 		// 공지사항
 		List<AdminNoticeDto> noticeList = adminNoticeService.mainPageNoticeList();
 		
-		for (AdminNoticeDto noticeDto : noticeList) {
-			String cutContent = "";
-			if (noticeDto.getContent().length() > 150) {
-				cutContent = noticeDto.getContent().substring(0, 150);
-				cutContent += ". . .";
-				noticeDto.setCutContent(cutContent);
-			} else {
-				cutContent = noticeDto.getContent().substring(0, noticeDto.getContent().length());
-				noticeDto.setCutContent(cutContent);
+		if (noticeList.size() > 0) {
+			for (AdminNoticeDto noticeDto : noticeList) {
+				String cutContent = "";
+				if (noticeDto.getContent().length() > 150) {
+					cutContent = noticeDto.getContent().substring(0, 150);
+					cutContent += ". . .";
+					noticeDto.setCutContent(cutContent);
+				} else {
+					cutContent = noticeDto.getContent().substring(0, noticeDto.getContent().length());
+					noticeDto.setCutContent(cutContent);
+				}
 			}
+			
+			int end = 0;
+			
+			if (noticeList.size() > 2) {
+				end = 2;
+			} else {
+				end = noticeList.size();
+			}
+			
+			mv.addObject("end", end);
+			mv.addObject("noticeList", noticeList);
 		}
-		
-		int end = 0;
-		
-		if (noticeList.size() > 2) {
-			end = 2;
-		} else {
-			end = noticeList.size();
-		}
-		
-		mv.addObject("end", end);
-		mv.addObject("noticeList", noticeList);
 		return mv;
 	}
 	

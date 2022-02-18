@@ -6,6 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<c:if test="${isLogOn ne true }">
+	<script>
+		alert('로그인 후에 열람하실 수 있습니다.');
+		history.go(-1);
+	</script>
+</c:if>
 <title>Insert title here</title>
 </head>
 <body>
@@ -109,7 +115,7 @@
                         </div>
                     </div>
                     <div class="nk-widget nk-widget-highlighted">
-                        <h4 class="nk-widget-title"><span><span class="text-main-1">RECENT</span> IMAGE</span></h4>
+                        <h4 class="nk-widget-title"><span><span class="text-main-1">POPULAR</span> IMAGE</span></h4>
                         <div class="nk-widget-content">
                             <div class="nk-popup-gallery">
                                 <div class="row sm-gap vertical-gap">

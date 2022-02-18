@@ -35,6 +35,13 @@
     <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <beans:property name="definitions" value="classpath:tiles/*.xml" />
     </beans:bean>
+    
+    <!-- File -->
+    <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize"   value="52428800" />
+		<beans:property name="maxInMemorySize" value="52428800" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+    </beans:bean>
 	
 	<!-- AOP -->
 	<aop:aspectj-autoproxy/>
