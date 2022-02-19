@@ -8,17 +8,24 @@
 
 	function formValidationCheck(){
 		
-		var smallImageFileName = document.getElementById('smallImageFileName');
-		if (smallImageFileName.value == ""){
-			alert("상품 이미지는 반드시 첨부해야 합니다.");
-			smallImageFileName.focus();
+		var fileName = document.getElementById('fileName');
+		if (fileName.value == ""){
+			alert("이미지는 반드시 첨부해야 합니다.");
+			fileName.focus();
 			return false;
 		}
 		
-		var bigImageFileName = document.getElementById('bigImageFileName');
-		if (bigImageFileName.value == ""){
-			alert("상품 이미지는 반드시 첨부해야 합니다.");
-			bigImageFileName.focus();
+		var pngCheck = fileName.value.slice(-3);
+		if (pngCheck != "png" && pngCheck != "PNG" && pngCheck != "jpg" && pngCheck != "JPG"){
+			alert("이미지는 png, PNG, jpg, JPG 파일만 업로드가 가능합니다.");
+			fileName.focus();
+			return false;
+		}
+		
+		var subject = document.getElementById('subject');	
+		if (subject.value == ""){
+			alert("이름은 반드시 작성해야 합니다.");
+			subject.focus();
 			return false;
 		}
 		
@@ -64,30 +71,34 @@
 		<form action="${contextPath }/imageBoard/imageBoardWrite" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
 			<table class="table nk-table" style="border-color: red;">
 				<tr style="border-color: red;">
-					<td style="border-color: red;"> 이미지 1 : (300 x 265 / .png 파일만)</td>
+					<td style="border-color: red;"> 이미지 </td>
 					<td style="border-color: red;" align="center">
-						<input id="smallImageFileName" name="smallImageFileName" type="file" />
+						<input id="fileName" name="fileName" type="file" />
 					</td>
 				</tr>
-				<tr>
-					<td style="border-color: red;"> 이미지 2 : (1015 x 572 / .png 파일만) </td>
+				<tr style="border-color: red;">
+					<td style="border-color: red;"> 제목 </td>
+					<td style="border-color: red;" align="center" >
+						<input id="subject" name="subject" type="text" maxlength="20" placeholder="최대 20자" class="form-control" style="border-color: white;"/>
+					</td>
+				</tr>
+				<tr style="border-color: red;">
+					<td style="border-color: red;"> 설명 </td>
 					<td style="border-color: red;" align="center">
-						<input id="bigImageFileName" name="bigImageFileName" type="file" /> 
+						<textarea maxlength="200" rows="10" cols="100" name="content" id="content" class="form-control" style="border-color: white;" placeholder="최대200자"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="border-color: red;" align="center">
-						<span style="color: red;"> * 같은 이미지를 크기에 맞게 수정 후 업로드 해주시기 바랍니다. </span>
-						<br><br>
-						이미지 1 : 썸네일용 작은 이미지
+						<span style="color: red;"> * 이미지를 업로드 해주시기 바랍니다. </span>
 						<br>
-						이미지 2 : 클릭 시 보이는 큰 이미지
+						<span style="color: red;"> * 이미지는 png / PNG / jpg / JPG 파일만 업로드가 가능합니다. </span>
 					</td>
 				</tr>
 			</table>
 			<p align="center">
 				<br>
-				<input type="hidden" name="writer" value="admin">
+				<input type="hidden" name="memberId" value="${sessionScope.loginId }">
 				<input type="submit" value="등록하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;&nbsp;
 				<input type="button" value="뒤로가기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath }/imageBoard/imageBoardList'">
 			</p>

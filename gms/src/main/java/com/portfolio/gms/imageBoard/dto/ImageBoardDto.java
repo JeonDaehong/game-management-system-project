@@ -8,23 +8,32 @@ import org.springframework.stereotype.Component;
 public class ImageBoardDto {
 
 	// Field
-	private String smallFileName;
-	private String bigFileName;
+	private int num;
+	private String memberId;
+	private String subject;
+	private String fileName;
+	private String content;
 	private int readCount;
 	private Date regDate;
-	
+
 	// Getter & Setter
-	public String getSmallFileName() {
-		return smallFileName;
+	public int getNum() {
+		return num;
 	}
-	public void setSmallFileName(String smallFileName) {
-		this.smallFileName = smallFileName;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public String getBigFileName() {
-		return bigFileName;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setBigFileName(String bigFileName) {
-		this.bigFileName = bigFileName;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	public int getReadCount() {
 		return readCount;
@@ -38,4 +47,17 @@ public class ImageBoardDto {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 }

@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
+import com.portfolio.gms.imageBoard.dto.ImageSuggestionDto;
+import com.portfolio.gms.imageBoard.service.ImageBoardService;
 import com.portfolio.gms.member.dto.MemberDto;
 import com.portfolio.gms.member.service.MemberService;
 
@@ -33,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private AdminNoticeService adminNoticeService;
+	
+	@Autowired
+	private ImageBoardService imageBoardService;
 	
 	// 회원가입 화면으로 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
@@ -196,6 +201,11 @@ public class MemberController {
 		noticeSuggestionDto.setNoticeNum(0);
 		noticeSuggestionDto.setMemberId(memberId);
 		adminNoticeService.deleteSuggestionCheck(noticeSuggestionDto);
+		
+		ImageSuggestionDto imageSuggestionDto = new ImageSuggestionDto();
+		imageSuggestionDto.setFileName("a");
+		imageSuggestionDto.setMemberId(memberId);
+		imageBoardService.imgSuggestionDelete(imageSuggestionDto);
 		
 		HttpSession session = request.getSession();
 		session.invalidate();

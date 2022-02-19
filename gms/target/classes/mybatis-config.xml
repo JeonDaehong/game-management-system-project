@@ -12,6 +12,7 @@
 		<typeAlias type="com.portfolio.gms.admin.notice.dto.AdminNoticeDto" alias="AdminNoticeDto"/>          
 		<typeAlias type="com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto" alias="NoticeSuggestionDto"/>          
 		<typeAlias type="com.portfolio.gms.imageBoard.dto.ImageBoardDto" alias="ImageBoardDto"/>          
+		<typeAlias type="com.portfolio.gms.imageBoard.dto.ImageSuggestionDto" alias="ImageSuggestionDto"/>          
     </typeAliases>
 
 </configuration>

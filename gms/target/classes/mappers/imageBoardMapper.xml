@@ -1,17 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="iamgeMapper">
+<mapper namespace="imageMapper">
 
 	<insert id="insertImage" parameterType="ImageBoardDto">
 			INSERT INTO
 					T_IMG_BOARD
 			VALUES (
-					#{smallFileName},
-					#{bigFileName},
+					NULL,
+					#{memberId},
+					#{subject},
+					#{fileName},
+					#{content},
 					0,
 					NOW()
 				)
 	</insert>
+	
+	<select id="imgCount" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM
+				T_IMG_BOARD
+	</select>
+	
+	<select id="imgList" resultType="ImageBoardDto">
+		SELECT
+				*
+		FROM
+				T_IMG_BOARD
+		ORDER BY
+				NUM DESC
+	</select>
+	
+	<select id="imgMemberCheck" resultType="ImageBoardDto" parameterType="hashmap">
+		SELECT
+				*
+		FROM
+				T_IMG_BOARD
+		WHERE
+				MEMBER_ID = #{memberId} AND FILE_NAME = #{fileName}
+	</select>
+	
+	<delete id="imgDelete" parameterType="string">
+		DELETE FROM
+				T_IMG_BOARD
+		WHERE
+				FILE_NAME = #{fileName}
+	</delete>
+	
+	<update id="readCountUpdate" parameterType="string">
+		UPDATE
+				T_IMG_BOARD
+		SET
+				READ_COUNT = READ_COUNT + 1
+		WHERE
+				FILE_NAME = #{fileName}
+	</update>
+
+	<select id="imgPopularList" resultType="ImageBoardDto">
+		SELECT
+				*
+		FROM
+				T_IMG_BOARD
+		ORDER BY
+				READ_COUNT DESC
+	</select>
+	
+	<select id="imgSuggestionCheck" resultType="ImageSuggestionDto" parameterType="ImageSuggestionDto">
+		SELECT
+				*
+		FROM
+				T_IMG_SUGGESTION
+		WHERE
+				MEMBER_ID = #{memberId} AND FILE_NAME = #{fileName}
+	</select>
+	
+	<insert id="imgSuggestion" parameterType="ImageSuggestionDto">
+		INSERT INTO
+				T_IMG_SUGGESTION
+		VALUES (
+				#{memberId},
+				#{fileName}
+			)
+	</insert>
+	
+	<delete id="imgSuggestionDelete" parameterType="ImageSuggestionDto">
+		DELETE FROM
+				T_IMG_SUGGESTION
+		WHERE
+				MEMBER_ID = #{memberId} OR FILE_NAME = #{fileName}
+	</delete>
 
 </mapper>

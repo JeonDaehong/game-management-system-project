@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.portfolio.gms.admin.notice.dto.AdminNoticeDto;
 import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
+import com.portfolio.gms.imageBoard.dto.ImageBoardDto;
+import com.portfolio.gms.imageBoard.service.ImageBoardService;
 
 @Controller
 @RequestMapping("adminNotice")
@@ -27,6 +29,9 @@ public class AdminNoticeController {
 	
 	@Autowired
 	private AdminNoticeService adminNoticeService;
+	
+	@Autowired
+	private ImageBoardService imageBoardService;
 	
 	// 공지사항 게시판 불러오기
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
@@ -95,6 +100,24 @@ public class AdminNoticeController {
 			}
 		}
 		
+		// Side Bar - 인기 이미지
+		List<ImageBoardDto> popularImgList =  imageBoardService.popularImgList();
+		
+		int endPopularImg = 0;
+		
+		if (popularImgList != null) {
+			
+			if (popularImgList.size() > 5) {
+				endPopularImg = 5;
+			} else {
+				endPopularImg = popularImgList.size();
+			}
+			
+		}
+				
+		mv.addObject("endPopularImg", endPopularImg);
+		mv.addObject("popularImgList", popularImgList);
+		
 		mv.addObject("noticeList", noticeList);
 		return mv;
 	}
@@ -128,6 +151,25 @@ public class AdminNoticeController {
 		ModelAndView mv = new ModelAndView("notice/noticeInfo");
 		adminNoticeService.readCountUp(num);
 		mv.addObject("noticeDto", adminNoticeService.getNoticeInfo(num));
+		
+		// Side Bar - 인기 이미지
+		List<ImageBoardDto> popularImgList =  imageBoardService.popularImgList();
+		
+		int endPopularImg = 0;
+		
+		if (popularImgList != null) {
+			
+			if (popularImgList.size() > 5) {
+				endPopularImg = 5;
+			} else {
+				endPopularImg = popularImgList.size();
+			}
+			
+		}
+				
+		mv.addObject("endPopularImg", endPopularImg);
+		mv.addObject("popularImgList", popularImgList);
+		
 		return mv;
 	}
 	
