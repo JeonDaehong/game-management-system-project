@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
+import com.portfolio.gms.board.service.BoardService;
 import com.portfolio.gms.imageBoard.dto.ImageSuggestionDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
 import com.portfolio.gms.member.dto.MemberDto;
@@ -38,6 +39,9 @@ public class MemberController {
 	
 	@Autowired
 	private ImageBoardService imageBoardService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	// 회원가입 화면으로 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
@@ -195,23 +199,49 @@ public class MemberController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public ResponseEntity<Object> delete(@RequestParam("memberId") String memberId, HttpServletRequest request) throws Exception {
 		
+		// Admin은 삭제 불가능
+		if (memberId.equals("admin")) {
+			
+			String body  = "<script>";
+				   body += "alert('Admin 계정은 삭제가 불가능합니다.');";
+				   body += "location.href='" + request.getContextPath() + "/main/main';";
+				   body += "</script>";
+		
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/html; charset=utf-8");
+			
+				return new ResponseEntity<Object>(body, header, HttpStatus.OK);
+		}
+		
+		// 삭제 예약
 		memberService.deleteCheckUpdate(memberId);
 		
+		// 게시글 추천 DB에서 해당 계정이 들어가 있는 부분 삭제
 		NoticeSuggestionDto noticeSuggestionDto = new NoticeSuggestionDto();
 		noticeSuggestionDto.setNoticeNum(0);
 		noticeSuggestionDto.setMemberId(memberId);
 		adminNoticeService.deleteSuggestionCheck(noticeSuggestionDto);
 		
+		// 이미지 추천 DB에서 해당 계정이 들어가 있는 부분 삭제
 		ImageSuggestionDto imageSuggestionDto = new ImageSuggestionDto();
 		imageSuggestionDto.setFileName("a");
 		imageSuggestionDto.setMemberId(memberId);
 		imageBoardService.imgSuggestionDelete(imageSuggestionDto);
 		
+		// 해당 아이디로 올린 이미지들 삭제
+		boardService.boardImageDeleteFromMember(memberId);
+		imageBoardService.imageDeleteFromMember(memberId);
+		
+		// 해당 아이디의 게시글들 삭제
+		boardService.boardDeletefromMember(memberId);
+		imageBoardService.imgDeleteFromMember(memberId);
+		
+		// 자동 로그아웃
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
 		String body  = "<script>";
-			   body += "alert('삭제가 완료되었습니다.');";
+			   body += "alert('삭제가 완료되었습니다. 개인 정보의 온전한 삭제는 5일 후에 이루어집니다. - 약관 참조');";
 			   body += "location.href='" + request.getContextPath() + "/main/main';";
 			   body += "</script>";
 	

@@ -6,6 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<c:if test="${isLogOn ne true }">
+	<script>
+		alert('로그인 후에 열람하실 수 있습니다.');
+		location.href = '${contextPath}/members/login';
+	</script>
+</c:if>
 </head>
 <body>
 <div class="nk-main">
@@ -49,7 +55,7 @@
 			                                    <p>${notice.cutContent }</p>
 			                                </div>
 			                                <div class="nk-post-by">
-			                                    <img src="${contextPath }/resources/assets/images/admin.png" alt="admin.png" class="rounded-circle" width="35"> by <span style="color: pink;">Admin</span> in <span style="color: yellow;"><fmt:formatDate value="${notice.regDate }" pattern="yyyy-MM-dd"/></span>
+			                                    <img src="${contextPath }/resources/assets/images/admin.png" alt="admin.png" class="rounded-circle" width="35"> by <span style="color: pink;">Admin</span> in <span style="color: yellow;"><fmt:formatDate value="${notice.regDate }" pattern="yyyy-MM-dd"/></span> / 조회수 : ${notice.readCount }
 			                                </div>
 			                            </div>
 			                        </div>

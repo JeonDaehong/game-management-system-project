@@ -15,14 +15,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-        <div class="nk-main">
+<div class="nk-main">
             <!-- START: Breadcrumbs -->
+            <div class="nk-gap-1"></div>
             <div class="container">
-            	<br>
                 <ul class="nk-breadcrumbs">
                     <li><a href="${contextPath }/main/main">Home</a></li>
                     <li><span class="fa fa-angle-right"></span></li>
-                    <li><span>Gallery</span></li>
+                    <li><a href="${contextPath }/boards/boardList">Board</a></li>
+                    <li><span class="fa fa-angle-right"></span></li>
+                    <li><span>${boardDto.subject }</span></li>
                 </ul>
             </div>
             <div class="nk-gap-1"></div>
@@ -30,79 +32,89 @@
             <div class="container">
                 <div class="row vertical-gap">
                     <div class="col-lg-8">
-                        <!-- START: Latest Pictures -->
-                        <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">New 15</span> IMG GALLERY</span></h2>
-                        <div class="nk-gap"></div>
-                        <div class="nk-popup-gallery">
-                            <div class="row vertical-gap">
-                            	<c:choose>
-                            		<c:when test="${empty imgList }">
-                            			<div class="col-lg-4 col-md-6">
-		                                    <div class="nk-gallery-item-box">
-		                                        <a href="${contextPath }/resources/assets/images/gallery-1.jpg" class="nk-gallery-item" data-size="1016x572">
-		                                            <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-		                                            <img src="${contextPath }/resources/assets/images/gallery-1-thumb.jpg" alt="">
-		                                        </a>
-		                                        <div class="nk-gallery-item-description">
-		                                            <h4>이미지가 없을경우 나오는 예시 이미지입니다.</h4> 이미지가 없을경우 나오는 예시 이미지입니다. 이미지가 없을경우 나오는 예시 이미지입니다. 이미지가 없을경우 나오는 예시 이미지입니다.
-		                                        </div>
-		                                    </div>
-		                                </div>
-                            		</c:when>
-                            		<c:otherwise>
-                            			<c:forEach var="imgDto" items="${imgList }" end="${end }">
-                            				<div class="col-lg-4 col-md-6">
-			                                    <div class="nk-gallery-item-box">
-			                                        <a href="${contextPath }/bigThumbnails?goodsFileName=${imgDto.fileName}" class="nk-gallery-item" data-size="1016x572">
-			                                            <div class="nk-gallery-item-overlay"><span class="ion-eye"></span></div>
-			                                            <img src="${contextPath }/smaillThumbnails?goodsFileName=${imgDto.fileName}" alt="IMG">
-			                                        </a>
-			                                        <div class="nk-gallery-item-description">
-			                                            <h4>${imgDto.subject }</h4> ${imgDto.content }
-			                                            <br><br>
-			                                            <form action="${contextPath }/imageBoard/imageDelete" method="post" enctype="multipart/form-data">
-				                                            <p>
-				                                            	<input type="hidden" name="memberId" value="${sessionScope.loginId }">
-				                                            	<input type="hidden" name="fileName" value="${imgDto.fileName }">
-				                                            	<input type="submit" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;
-				                                            	<input type="button" value="추천하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageSuggestion?memberId=${sessionScope.loginId }&fileName=${imgDto.fileName }'">
-				                                            </p>
-			                                        	</form>
-			                                        </div>
-			                                    </div>
-			                                </div>
-                            			</c:forEach>
-                            		</c:otherwise>
-                            	</c:choose>
-                                <div class="col-lg-12 col-md-10" align="center">
-                                	<input type="button" value="이미지 등록하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageBoardWrite'">
-                            	</div>
+                        <!-- START: Post -->
+                        <div class="nk-blog-post nk-blog-post-single">
+                            <!-- START: Post Text -->
+                            <div class="nk-post-text mt-0">
+                                <div class="nk-post-img">
+                                    <img src="${contextPath }/bigThumbnails?goodsFileName=${boardDto.fileName}" alt="Image">
+                                </div>
+                                <div class="nk-gap-1"></div>
+                                <h1 class="nk-post-title h4">${boardDto.subject }</h1>
+                                <div class="nk-post-by">
+                                    by <span style="color: pink;">${boardDto.writer}</span> in <span style="color: yellow;"><fmt:formatDate value="${boardDto.regDate }" pattern="yyyy-MM-dd"/></span><div class="nk-post-categories">
+                                        <span class="bg-main-1">조회수 : ${boardDto.readCount}</span>
+                                        <c:if test="${boardDto.writer eq sessionScope.loginId or sessionScope.loginId eq 'admin'}"> &nbsp;
+                                        	<input type="button" value="수정하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/boards/boardUpdate?num=${boardDto.num }'">
+                                        	<input type="button" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/boards/boardDelete?num=${boardDto.num }&fileName=${boardDto.fileName }'">
+                                        </c:if>
+                                    </div>
+                                </div>
+                                <br>
+                                <blockquote class="nk-blockquote">
+                                    <div class="nk-blockquote-icon"><span>"</span></div>
+                                    <div class="nk-blockquote-content"> ${boardDto.content } </div>
+                                    <div class="nk-blockquote-author"><span>Game Management System 1.0</span></div>
+                                </blockquote>
+                                <div class="nk-gap"></div>
+                                <img class="float-left mt-0" src="assets/images/post-inner-img.jpg" alt="">
+                                <div class="nk-gap"></div>
+                                <div class="nk-gap"></div>
                             </div>
+                            <!-- END: Post Text -->
+                            <!-- START: Comments -->
+                            <div id="comments"></div>
+                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">${boardDto.commentCount }</span> Comments</span></h3>
+                            <div class="nk-gap"></div>
+                            <div class="nk-comments">
+                                <!-- START: Comment -->
+                                <div class="nk-comment">
+                                    <div class="nk-comment-meta">
+                                        <img src="assets/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Witch Murder</a> in 20 September, 2018 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
+                                    </div>
+                                    <div class="nk-comment-text">
+                                        <p>This sounded nonsense to Alice, so she said nothing, but set off at once toward the Red Queen. To her surprise, she lost sight of her in a moment, and found herself walking in at the front-door again.</p>
+                                    </div>
+                                    <!-- START: Comment -->
+                                    <div class="nk-comment">
+                                        <div class="nk-comment-meta">
+                                            <img src="assets/images/avatar-1.jpg" alt="Hitman" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Hitman</a> in 20 September, 2018 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
+                                        </div>
+                                        <div class="nk-comment-text">
+                                            <p>To her surprise, she lost sight of her in a moment, and found herself walking in at the front-door again.</p>
+                                        </div>
+                                    </div>
+                                    <!-- END: Comment -->
+                                </div>
+                                <!-- END: Comment -->
+                                <!-- START: Comment -->
+                                <div class="nk-comment">
+                                    <div class="nk-comment-meta">
+                                        <img src="assets/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Wolfenstein</a> in 21 September, 2018 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
+                                    </div>
+                                    <div class="nk-comment-text">
+                                        <p>The sight of the tumblers restored Bob Sawyer to a degree of equanimity which he had not possessed since his interview with his landlady. His face brightened up, and he began to feel quite convivial.</p>
+                                    </div>
+                                </div>
+                                <!-- END: Comment -->
+                            </div>
+                            <!-- END: Comments -->
+                            <!-- START: Reply -->
+                            <div class="nk-gap-2"></div>
+                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Leave</span> a Reply</span></h3>
+                            <div class="nk-reply">
+                                <form action="#" class="nk-form" novalidate="novalidate">
+                                    <div class="nk-gap-1"></div>
+                                    <textarea class="form-control required" name="message" rows="5" placeholder="Message *" aria-required="true"></textarea>
+                                    <div class="nk-gap-1"></div>
+                                    <div class="nk-form-response-success"></div>
+                                    <div class="nk-form-response-error"></div>
+                                    <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
+                                </form>
+                            </div>
+                            <!-- END: Reply -->
                         </div>
-                        <!-- END: Latest Pictures -->
-                        <!-- START: Video Galleries-->
-                        <div class="nk-gap-2"></div>
-                        <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">Recommend</span> Video</span></h2>
-                        <div class="nk-gap"></div>
-                        <div class="row vertical-gap">
-                            <div class="col-md-6">
-                                <h4>[리그오브레전드] 요릭 1위가 알려주는 요릭 한 눈에 보기｜League of legend</h4>
-                                <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=NnyXF0R0KCk&t=16s"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>[로스트아크] LOA ON WINTER – 사운드 트랙 Rock ver. 공연｜LOST ARK</h4>
-                                <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=18pEJzUCxpU"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>[로스트아크] 신규 클래스 '도화가🎨' 미리보기｜LOST ARK</h4>
-                                <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=kGWy3crwLGM"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>[리그오브레전드] 레나타 글라스크 챔피언 집중탐구｜League of legend </h4>
-                                <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=cIFWo9ZRN-w"></div>
-                            </div>
-                        </div>
-                        <!-- END: Video Galleries -->
+                        <!-- END: Post -->
                     </div>
                     <div class="col-lg-4">
                         <!--
@@ -113,7 +125,7 @@
                     .nk-sidebar-right
                     .nk-sidebar-sticky
             -->
-                        <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+                    <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
                         <div class="nk-widget">
                             <div class="nk-widget-content">
                                 <form action="#" class="nk-form nk-form-style-1" novalidate="novalidate">
@@ -196,11 +208,10 @@
                             </div>
                         </div>
                     </aside>
-                    <!-- END: Sidebar -->
+                        <!-- END: Sidebar -->
                     </div>
                 </div>
             </div>
             <div class="nk-gap-2"></div>
-         </div>
 </body>
 </html>

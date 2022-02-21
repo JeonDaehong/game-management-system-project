@@ -26,4 +26,7 @@ public interface ImageBoardService {
 
 	public List<ImageBoardDto> popularImgList() throws Exception;
 	
+	public void imageDeleteFromMember(String memberId) throws Exception;
+	
+	public void imgDeleteFromMember(String memberId) throws Exception;
 }

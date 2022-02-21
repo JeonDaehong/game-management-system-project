@@ -5,12 +5,9 @@ import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.portfolio.gms.imageBoard.service.ImageBoardService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -23,9 +20,6 @@ public class FileController {
 
 	//private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat8/file_repo";
 	//String seperatorPath = "/";		// linux
-	
-	@Autowired
-	private ImageBoardService imageBoardService;
 	
 	@RequestMapping("/smaillThumbnails")
 	public void samllThumbnails(@RequestParam("goodsFileName") String goodsFileName , HttpServletResponse response) throws Exception {
@@ -52,6 +46,22 @@ public class FileController {
 		File image = new File(filePath);
 		if (image.exists()) { 
 			Thumbnails.of(image).size(1015,572).outputFormat("png").toOutputStream(out);
+		}
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
+		
+	}
+	
+	@RequestMapping("/boardThumbnails")
+	public void boardThumbnails(@RequestParam("goodsFileName") String goodsFileName , HttpServletResponse response) throws Exception {
+	
+		OutputStream out = response.getOutputStream();
+		String filePath = CURR_IMAGE_REPO_PATH + seperatorPath + goodsFileName;
+		
+		File image = new File(filePath);
+		if (image.exists()) { 
+			Thumbnails.of(image).size(600,338).outputFormat("png").toOutputStream(out);
 		}
 		byte[] buffer = new byte[1024 * 8];
 		out.write(buffer);

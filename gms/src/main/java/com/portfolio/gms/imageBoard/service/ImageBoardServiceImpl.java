@@ -1,5 +1,6 @@
 package com.portfolio.gms.imageBoard.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,12 @@ import com.portfolio.gms.imageBoard.dto.ImageSuggestionDto;
 @Service
 public class ImageBoardServiceImpl implements ImageBoardService {
 
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\file_repo";
+	String seperatorPath = "\\";	// window
+
+	//private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat8/file_repo";
+	//String seperatorPath = "/";		// linux
+	
 	@Autowired
 	private ImageBoardDao imageBoardDao;
 
@@ -70,5 +77,24 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	@Override
 	public List<ImageBoardDto> popularImgList() throws Exception {
 		return imageBoardDao.popularImgList();
+	}
+
+	@Override
+	public void imageDeleteFromMember(String memberId) throws Exception {
+		
+		List<String> fileList = imageBoardDao.imageListFormMember(memberId);
+		
+		if (fileList.size() > 0) {
+			for (String filename : fileList) {
+				File f = new File(CURR_IMAGE_REPO_PATH + seperatorPath + filename);
+				f.delete();
+			}
+		}
+		
+	}
+
+	@Override
+	public void imgDeleteFromMember(String memberId) throws Exception {
+		imageBoardDao.imgDeleteFromMember(memberId);
 	}
 }

@@ -18,7 +18,7 @@
 	}
 </script>
 <style>
-	label, h1, p, h4, th {
+	label, h1, p, h4, th, td {
 		color: white;
 	}
 </style>
@@ -28,18 +28,14 @@
 		<br>
 		<h1>계정 삭제</h1>
 		<br>
-		<form action="${contextPath}/members/delete" method="post" onsubmit="return loginCheck()">
+		<form action="${contextPath}/boards/boardDelete" method="post" enctype="multipart/form-data" onsubmit="return loginCheck()">
 			<table class="table" border="1" style="background-color: black;">
 				<tr align="center">
-					<th>
+					<th style="border-color: red;">
 						<br>
-						<h4>정말로 계정을 삭제하시겠습니까?</h4>
+						<h4>정말로 해당 게시글을 삭제하시겠습니까?</h4>
 						<br>
-						<span style="color: red;">* 삭제 후, 5일동안은 DB에 보관됩니다. (약관 내용 참조)</span>
-						<br>
-						<span style="color: red;">* 해당 계정으로 작성한 게시글, 장바구니 등은 삭제됩니다.</span>
-						<br>
-						<span style="color: red;">* 삭제 후, 다시 복구는 불가능합니다. (적립 포인트 손실)</span>
+						<span style="color: red;">* 삭제 후, 해당 게시글은 복구가 불가능합니다.</span>
 						<br><br>
 						"삭제합니다."
 						<br>
@@ -48,15 +44,16 @@
 					</th>
 				</tr>
 				<tr>
-					<td>
-						<input type="text" id="deleteChcek" class="form-control" placeholder="삭제합니다.">
+					<td style="border-color: red;">
+						<input type="text" id="deleteChcek" style="border-color: white;" class="form-control" placeholder="삭제합니다.">
 					</td>
 				</tr>
 			</table>
 			<div align="right">
-				<input type="hidden" name="memberId" value="${memberInfo.memberId }">
+				<input type="hidden" name="fileName" value="${fileName }">
+				<input type="hidden" name="num" value="${num }">
 				<input type="submit" value="삭제하기" class="btn btn-primary btn-sm">
-				<input type="button" value="취소하기" class="btn btn-primary btn-sm" onClick="location.href='${contextPath}/main/main'"/>
+				<input type="button" value="취소하기" class="btn btn-primary btn-sm" onClick="location.href='${contextPath}/boards/boardInfo?num=${num }'"/>
 			</div>
 		</form>
 		<p align="center">

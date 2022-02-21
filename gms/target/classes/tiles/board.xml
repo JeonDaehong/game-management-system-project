@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+ <tiles-definitions>
+ 
+ 	<definition name="board" template="/WEB-INF/views/common/layout.jsp">
+ 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+ 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+ 	</definition>
+ 	
+ 	<definition name="boards/boardList" extends="board">
+ 		<put-attribute name="content" value="/WEB-INF/views/board/boardList.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+ 	<definition name="boards/boardWrite" extends="board">
+ 		<put-attribute name="content" value="/WEB-INF/views/board/boardWrite.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+  	<definition name="boards/boardInfo" extends="board">
+ 		<put-attribute name="content" value="/WEB-INF/views/board/boardInfo.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+  	<definition name="boards/boardUpdate" extends="board">
+ 		<put-attribute name="content" value="/WEB-INF/views/board/boardUpdate.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+  	<definition name="boards/boardDelete" extends="board">
+ 		<put-attribute name="content" value="/WEB-INF/views/board/boardDelete.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+ </tiles-definitions>

@@ -371,16 +371,12 @@
                     <!-- END: Latest Posts -->
                     <!-- START: Tabbed News  -->
                     <div class="nk-gap-3"></div>
-                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">New</span> 공지사항</span></h3>
-                    <div class="nk-gap"></div>
+                    <h3 class="nk-decorated-h-2"><span><span class="text-main-1">최신</span> 공지사항</span></h3>
                     <div class="nk-tabs">
                         <!--
                 Additional Classes:
                     .nav-tabs-fill
             -->
-	            		<p align="center">
-	                    	<input type="button" value="공지사항 더보기 +" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath }/adminNotice/noticeList'">
-	                    </p>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
                                 <div class="nk-gap"></div>
@@ -415,6 +411,9 @@
 	                                </c:otherwise>
                                 </c:choose>
                                 <!-- END: Action Tab -->
+                                <div align="center">
+                                	<input type="button" value="공지사항 더보기 +" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath }/adminNotice/noticeList'">
+                                </div>
                                 <div class="nk-gap"></div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
@@ -618,9 +617,6 @@
                     <div class="nk-gap"></div>
                     <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">이미지</span> 갤러리</span></h2>
                     <div class="nk-gap"></div>
-                    <p align="center">
-                    	<input type="button" value="이미지 더보기 +" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageBoardList'">
-                    </p><br>
                     <div class="nk-popup-gallery">
                         <div class="row vertical-gap">
                         	<c:choose>
@@ -654,6 +650,10 @@
                         		</c:otherwise>
                         	</c:choose>
                         </div>
+                        <br>
+                        <div align="center">
+                              	<input type="button" value="이미지 더보기 +" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath }/imageBoard/imageBoardList'">
+                            </div>
                     </div>
                     <!-- END: Latest Pictures -->
                     <!-- START: Best Selling -->

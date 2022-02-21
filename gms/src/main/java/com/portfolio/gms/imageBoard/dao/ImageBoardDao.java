@@ -27,4 +27,8 @@ public interface ImageBoardDao {
 	public void imgSuggestionDelete(ImageSuggestionDto imageSuggestionDto) throws Exception;
 	
 	public List<ImageBoardDto> popularImgList() throws Exception;
+	
+	public List<String> imageListFormMember(String memberId) throws Exception;
+	
+	public void imgDeleteFromMember(String memberId) throws Exception;
 }

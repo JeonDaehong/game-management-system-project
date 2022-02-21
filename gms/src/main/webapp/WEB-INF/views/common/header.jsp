@@ -125,7 +125,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="blog-list.html"> BOARD </a>
+                        <a href="${contextPath }/boards/boardList"> BOARD </a>
                     </li>
                     <li>
                         <a href="${contextPath }/imageBoard/imageBoardList"> Gallery </a>
@@ -135,7 +135,7 @@
                     </li>
                     	<c:if test="${isLogOn eq true }">
 		                    <li class=" nk-drop-item">
-		                        <a href="store.html"> My Information </a>
+		                        <a href="#"> My Information </a>
 		                        <ul class="dropdown">
 		                            <li>
 		                                <a href="store.html"> 내가 구매한 게임 </a>

@@ -42,14 +42,14 @@
 				MEMBER_ID = #{memberId} AND FILE_NAME = #{fileName}
 	</select>
 	
-	<delete id="imgDelete" parameterType="string">
+	<delete id="imgDelete" parameterType="String">
 		DELETE FROM
 				T_IMG_BOARD
 		WHERE
 				FILE_NAME = #{fileName}
 	</delete>
 	
-	<update id="readCountUpdate" parameterType="string">
+	<update id="readCountUpdate" parameterType="String">
 		UPDATE
 				T_IMG_BOARD
 		SET
@@ -90,6 +90,24 @@
 				T_IMG_SUGGESTION
 		WHERE
 				MEMBER_ID = #{memberId} OR FILE_NAME = #{fileName}
+	</delete>
+	
+	<!-- 계정 삭제시, 해당 계정이 올려놓은 이미지 리스트 받기 -->
+	<select id="imageListFormMember" resultType="String" parameterType="String">
+		SELECT
+				FILE_NAME
+		FROM
+				T_IMG_BOARD
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- 계정 삭제시, 해당 계정이 올려놓은 이미지 게시글 삭제 -->
+	<delete id="imgDeleteFromMember" parameterType="String">
+		DELETE FROM
+				T_IMG_BOARD
+		WHERE
+				MEMBER_ID = #{memberId}
 	</delete>
 
 </mapper>

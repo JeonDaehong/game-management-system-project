@@ -9,7 +9,7 @@
 <c:if test="${isLogOn ne true }">
 	<script>
 		alert('로그인 후에 열람하실 수 있습니다.');
-		history.go(-1);
+		location.href = '${contextPath}/members/login';
 	</script>
 </c:if>
 <title>Insert title here</title>

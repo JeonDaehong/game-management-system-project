@@ -65,6 +65,16 @@ public class ImageBoardDaoImpl implements ImageBoardDao {
 	public List<ImageBoardDto> popularImgList() throws Exception {
 		return sqlSession.selectList("imageMapper.imgPopularList");
 	}
+
+	@Override
+	public List<String> imageListFormMember(String memberId) throws Exception {
+		return sqlSession.selectList("imageMapper.imageListFormMember", memberId);
+	}
+
+	@Override
+	public void imgDeleteFromMember(String memberId) throws Exception {
+		sqlSession.delete("imageMapper.imgDeleteFromMember", memberId);
+	}
 	
 	
 }

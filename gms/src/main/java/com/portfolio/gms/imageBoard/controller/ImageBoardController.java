@@ -43,6 +43,11 @@ public class ImageBoardController {
 	public ModelAndView imageBoardList() throws Exception {
 		ModelAndView mv = new ModelAndView("imageBoard/imageBoardList");
 		
+		/*
+		 	최신 이미지로 최대 15개만 보여주기.
+		 	end를 이미지 최대갯수, 혹은 14로 두어
+		 	jsp파일로 넘기기
+		*/
 		int end = imageBoardService.imgCount();
 		
 		if (imageBoardService.imgCount() > 14) {
@@ -51,6 +56,7 @@ public class ImageBoardController {
 		
 		mv.addObject("imgList", imageBoardService.imgList());
 		mv.addObject("end", end);
+		
 		
 		// Side Bar - 인기 이미지
 		List<ImageBoardDto> popularImgList =  imageBoardService.popularImgList();

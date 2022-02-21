@@ -42,8 +42,8 @@ public class MainController {
 			if (noticeList.size() > 0) {
 				for (AdminNoticeDto noticeDto : noticeList) {
 					String cutContent = "";
-					if (noticeDto.getContent().length() > 150) {
-						cutContent = noticeDto.getContent().substring(0, 150);
+					if (noticeDto.getContent().length() > 30) {
+						cutContent = noticeDto.getContent().substring(0, 30);
 						cutContent += ". . .";
 						noticeDto.setCutContent(cutContent);
 					} else {
