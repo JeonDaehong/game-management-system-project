@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.portfolio.gms.board.dao.BoardDao;
 import com.portfolio.gms.board.dto.BoardDto;
+import com.portfolio.gms.board.dto.BoardReplyDto;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -20,6 +21,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDao boardDao;
+	
 	
 	@Override
 	public List<BoardDto> boardList() throws Exception {
@@ -56,7 +58,7 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.boardDeletefromMember(writer);
 	}
 
-	// 계정 삭제시, 해당 계정으로 올린 이미지들 전부 삭제
+	/* 계정 삭제시, 해당 계정으로 올린 자유게시판 내의 이미지 파일들을 폴더에서 전부 삭제 */
 	@Override
 	public void boardImageDeleteFromMember(String writer) throws Exception {
 		
@@ -68,6 +70,24 @@ public class BoardServiceImpl implements BoardService {
 				f.delete();
 			}
 		}
+	}
+
+	/* 댓글 입력 */
+	@Override
+	public void addReply(BoardReplyDto boardReplyDto) throws Exception {
+		boardDao.addReply(boardReplyDto);
+	}
+
+	/* 해당 게시글에 속한 댓글 불러오기 */
+	@Override
+	public List<BoardReplyDto> getReply(int boardNum) throws Exception {
+		return boardDao.getReply(boardNum);
+	}
+
+	/* 댓글 작성 시, 해당 게시글 댓글 카운트 증가 */
+	@Override
+	public void commentCountUp(int boardNum) throws Exception {
+		boardDao.commentCountUp(boardNum);
 	}
 
 }

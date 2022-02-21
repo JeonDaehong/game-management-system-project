@@ -325,46 +325,54 @@
                     <div class="nk-blog-grid">
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- START: Post -->
-                                <div class="nk-blog-post">
-                                    <a href="blog-article.html" class="nk-post-img">
-                                        <img src="${contextPath }/resources/assets/images/post-5-mid.jpg" alt="He made his passenger captain of one">
-                                        <span class="nk-post-comments-count">13</span>
-                                    </a>
-                                    <div class="nk-gap"></div>
-                                    <h2 class="nk-post-title h4"><a href="blog-article.html">He made his passenger captain of one</a></h2>
-                                    <div class="nk-post-by">
-                                        <img src="${contextPath }/resources/assets/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Wolfenstein</a> in Jul 23, 2018
-                                    </div>
-                                    <div class="nk-gap"></div>
-                                    <div class="nk-post-text">
-                                        <p>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door...</p>
-                                    </div>
-                                    <div class="nk-gap"></div>
-                                    <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                                </div>
-                                <!-- END: Post -->
-                            </div>
-                            <div class="col-md-6">
-                                <!-- START: Post -->
-                                <div class="nk-blog-post">
-                                    <a href="blog-article.html" class="nk-post-img">
-                                        <img src="${contextPath }/resources/assets/images/post-6-mid.jpg" alt="At first, for some time, I was not able to answer">
-                                        <span class="nk-post-comments-count">0</span>
-                                    </a>
-                                    <div class="nk-gap"></div>
-                                    <h2 class="nk-post-title h4"><a href="blog-article.html">At first, for some time, I was not able to answer</a></h2>
-                                    <div class="nk-post-by">
-                                        <img src="${contextPath }/resources/assets/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Wolfenstein</a> in Jul 3, 2018
-                                    </div>
-                                    <div class="nk-gap"></div>
-                                    <div class="nk-post-text">
-                                        <p>This little wandering journey, without settled place of abode, had been so unpleasant to me, that my own house, as I called it to myself, was a perfect settlement to me compared to that...</p>
-                                    </div>
-                                    <div class="nk-gap"></div>
-                                    <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                                </div>
-                                <!-- END: Post -->
+                            	<c:choose>
+                            		<c:when test="${empty boardList }">
+                            			<div class="nk-blog-post">
+		                                    <a href="blog-article.html" class="nk-post-img">
+		                                        <img src="${contextPath }/resources/assets/images/post-4-mid-square.jpg" alt="Image">
+		                                        <span class="nk-post-comments-count">13</span>
+		                                    </a>
+		                                    <div class="nk-gap"></div>
+		                                    <h2 class="nk-post-title h4"><a href="blog-article.html">자유게시판에 글이 없어, 화면 크기를 보호하기 위해 임시로 만들어졌습니다.</a></h2>
+		                                    <div class="nk-post-by">
+		                                        <img src="${contextPath }/resources/assets/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Wolfenstein</a> in Jul 23, 2018
+		                                    </div>
+		                                    <div class="nk-gap"></div>
+		                                    <div class="nk-post-text">
+		                                        <p>자유게시판에 글이 없어, 화면 크기를 보호하기 위해 임시로 만들어졌습니다.....</p>
+		                                    </div>
+		                                    <div class="nk-gap"></div>
+		                                    <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+		                                </div>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<c:forEach var="boardDto" items="${boardList }" begin="0" end="${endBoard }">
+                            			<!-- START: Post -->
+		                                <div class="nk-blog-post">
+		                                    <a href="${contextPath }/boards/boardInfo?num=${boardDto.num}" class="nk-post-img">
+		                                        <img src="${contextPath }/boardThumbnails?goodsFileName=${boardDto.fileName}" alt="Image">
+		                                        <span class="nk-post-comments-count">${boardDto.commentCount }</span>
+		                                    </a>
+		                                    <div class="nk-gap"></div>
+		                                    <h2 class="nk-post-title h4"><a href="${contextPath }/boards/boardInfo?num=${boardDto.num}">${boardDto.subject }</a></h2>
+		                                    <div class="nk-post-by">
+		                                        by <span style="color: pink;">${boardDto.writer }</span> in <span style="color: yellow;"><fmt:formatDate value="${boardDto.regDate }" pattern="yyyy-MM-dd"/></span> / 조회수 : ${boardDto.readCount }
+		                                    </div>
+		                                    <div class="nk-gap"></div>
+		                                    <div class="nk-post-text">
+		                                        <p>${boardDto.cutContent }</p>
+		                                    </div>
+		                                    <div class="nk-gap"></div>
+		                                    <a href="${contextPath }/boards/boardInfo?num=${boardDto.num}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+		                                </div>
+		                                <!-- END: Post -->
+		                               	 	<c:if test="${endBoard eq 1}">
+			                                	</div>
+	                            				<div class="col-md-6">
+		                                	</c:if>
+		                                </c:forEach>
+                            		</c:otherwise>
+                            	</c:choose>
                             </div>
                         </div>
                     </div>

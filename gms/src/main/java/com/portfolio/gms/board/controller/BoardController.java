@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.gms.board.dto.BoardDto;
+import com.portfolio.gms.board.dto.BoardReplyDto;
 import com.portfolio.gms.board.service.BoardService;
 import com.portfolio.gms.imageBoard.dto.ImageBoardDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
@@ -145,18 +146,26 @@ public class BoardController {
 	}
 	
 	
-	// 게시글 클릭 시 해당 게시글로 이동
+	/* 게시글 클릭 시, 해당 게시글로 이동 */
 	@RequestMapping(value="/boardInfo", method=RequestMethod.GET)
 	public ModelAndView boardInfo(@RequestParam("num") int num) throws Exception {
 		
 		ModelAndView mv = new ModelAndView("boards/boardInfo");
 		
-		// 조회수 Up
+		/* 조회수 증가 */
 		boardService.readCountUpdate(num);
 		
+		
+		/* 해당 게시글 관련 Dto 불러오기 */
 		mv.addObject("boardDto", boardService.boardInfo(num));
 		
-		// Side Bar - 인기 이미지
+		
+		/* 해당 게시글의 댓글 불러오기 */
+		List<BoardReplyDto> replyList = boardService.getReply(num);
+		mv.addObject("replyList", replyList);
+		
+		
+		/* Side Bar : 인기 이미지*/
 		List<ImageBoardDto> popularImgList =  imageBoardService.popularImgList();
 		
 		int endPopularImg = 0;
@@ -240,4 +249,31 @@ public class BoardController {
 		
 		return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
 	}
+	
+	
+	
+	/* 댓글 입력 컨트롤러 */
+	@RequestMapping(value="/addReply", method=RequestMethod.POST)
+	public ResponseEntity<Object> addReply(@ModelAttribute BoardReplyDto boardReplyDto, HttpServletRequest request) throws Exception {
+		
+		/* 해당 게시글 댓글 카운트 증가 */
+		boardService.commentCountUp(boardReplyDto.getBoardNum());
+		
+		/* 댓글 Insert */
+		boardService.addReply(boardReplyDto);
+		
+		String body = "<script>";
+			   body += "alert('댓글이 정상적으로 입력 되었습니다.');";
+			   body += "location.href='" + request.getContextPath() + "/boards/boardInfo?num=" + boardReplyDto.getBoardNum() + "';";
+			   body += "</script>";
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+		
+	}
+	
+	
+	
 }

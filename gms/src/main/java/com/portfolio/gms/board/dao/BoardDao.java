@@ -3,6 +3,7 @@ package com.portfolio.gms.board.dao;
 import java.util.List;
 
 import com.portfolio.gms.board.dto.BoardDto;
+import com.portfolio.gms.board.dto.BoardReplyDto;
 
 public interface BoardDao {
 
@@ -21,4 +22,10 @@ public interface BoardDao {
 	public void boardDeletefromMember(String writer) throws Exception;
 	
 	public List<String> boardImageList(String writer) throws Exception;
+	
+	public void addReply(BoardReplyDto boardReplyDto) throws Exception;
+	
+	public List<BoardReplyDto> getReply(int boardNum) throws Exception;
+	
+	public void commentCountUp(int boardNum) throws Exception;
 }

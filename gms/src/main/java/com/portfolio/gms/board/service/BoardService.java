@@ -3,6 +3,7 @@ package com.portfolio.gms.board.service;
 import java.util.List;
 
 import com.portfolio.gms.board.dto.BoardDto;
+import com.portfolio.gms.board.dto.BoardReplyDto;
 
 public interface BoardService {
 
@@ -22,4 +23,9 @@ public interface BoardService {
 	
 	public void boardImageDeleteFromMember(String writer) throws Exception;
 	
+	public void addReply(BoardReplyDto boardReplyDto) throws Exception;
+
+	public List<BoardReplyDto> getReply(int boardNum) throws Exception;
+
+	public void commentCountUp(int boardNum) throws Exception;
 }

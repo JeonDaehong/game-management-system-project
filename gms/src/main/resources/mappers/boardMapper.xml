@@ -86,5 +86,15 @@
 		WHERE
 				WRITER = #{writer}
 	</delete>
+	
+	<!-- 댓글 작성 시, 댓글 카운트 증가 -->
+	<update id="commentCountUp" parameterType="int">
+		UPDATE
+				T_BOARD
+		SET
+				COMMENT_COUNT = COMMENT_COUNT + 1
+		WHERE
+				NUM = #{boardNum}
+	</update>
 
 </mapper>

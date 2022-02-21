@@ -14,6 +14,7 @@
 		<typeAlias type="com.portfolio.gms.imageBoard.dto.ImageBoardDto" alias="ImageBoardDto"/>          
 		<typeAlias type="com.portfolio.gms.imageBoard.dto.ImageSuggestionDto" alias="ImageSuggestionDto"/>          
 		<typeAlias type="com.portfolio.gms.board.dto.BoardDto" alias="BoardDto"/>          
+		<typeAlias type="com.portfolio.gms.board.dto.BoardReplyDto" alias="BoardReplyDto"/>          
     </typeAliases>
 
 </configuration>

@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.gms.admin.notice.dto.AdminNoticeDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
+import com.portfolio.gms.board.dto.BoardDto;
+import com.portfolio.gms.board.service.BoardService;
 import com.portfolio.gms.imageBoard.dto.ImageBoardDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
 
@@ -21,6 +23,9 @@ public class MainController {
 	
 	@Autowired
 	private ImageBoardService imageBoardService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping(value="/" , method=RequestMethod.GET)
 	public ModelAndView home() throws Exception {
@@ -64,6 +69,7 @@ public class MainController {
 
 		}
 		
+		
 		// 최신 이미지
 		List<ImageBoardDto> imgList =  imageBoardService.imgList();
 		
@@ -82,6 +88,7 @@ public class MainController {
 		mv.addObject("endImg", endImg);
 		mv.addObject("imgList", imgList);
 		
+		
 		// 인기 이미지
 		List<ImageBoardDto> popularImgList =  imageBoardService.popularImgList();
 		
@@ -99,6 +106,39 @@ public class MainController {
 				
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
+		
+		
+		// 자유 게시판
+		List<BoardDto> boardList = boardService.boardList();
+		
+		int endBoard = 0;
+		
+		if (boardList != null) {
+			
+			if (boardList.size() > 0) {
+				for (BoardDto boardDto : boardList) {
+					String cutContent = "";
+					if (boardDto.getContent().length() > 100) {
+						cutContent = boardDto.getContent().substring(0, 100);
+						cutContent += ". . .";
+						boardDto.setCutContent(cutContent);
+					} else {
+						cutContent = boardDto.getContent().substring(0, boardDto.getContent().length());
+						boardDto.setCutContent(cutContent);
+					}
+				}
+				
+				if (boardList.size() > 1) {
+					endBoard = 1;
+				} else {
+					endBoard = noticeList.size();
+				}
+			}
+			
+		}
+		
+		mv.addObject("boardList", boardList);
+		mv.addObject("endBoard", endBoard);
 		
 		return mv;
 	}

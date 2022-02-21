@@ -12,6 +12,20 @@
 		location.href = '${contextPath}/members/login';
 	</script>
 </c:if>
+<script>
+	function replyCheck() {
+		
+		var reply = document.getElementById('reply');
+		if (reply.value == ""){
+			alert("댓글은 한 자 이상 반드시 입력해야 합니다.");
+			reply.focus();
+			return false;
+		}
+		
+		return true;
+	}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -57,59 +71,56 @@
                                     <div class="nk-blockquote-author"><span>Game Management System 1.0</span></div>
                                 </blockquote>
                                 <div class="nk-gap"></div>
-                                <img class="float-left mt-0" src="assets/images/post-inner-img.jpg" alt="">
                                 <div class="nk-gap"></div>
                                 <div class="nk-gap"></div>
                             </div>
                             <!-- END: Post Text -->
                             <!-- START: Comments -->
                             <div id="comments"></div>
-                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">${boardDto.commentCount }</span> Comments</span></h3>
+                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">${boardDto.commentCount }개의 </span> 댓글 </span></h3>
                             <div class="nk-gap"></div>
                             <div class="nk-comments">
-                                <!-- START: Comment -->
-                                <div class="nk-comment">
-                                    <div class="nk-comment-meta">
-                                        <img src="assets/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Witch Murder</a> in 20 September, 2018 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
-                                    </div>
-                                    <div class="nk-comment-text">
-                                        <p>This sounded nonsense to Alice, so she said nothing, but set off at once toward the Red Queen. To her surprise, she lost sight of her in a moment, and found herself walking in at the front-door again.</p>
-                                    </div>
-                                    <!-- START: Comment -->
-                                    <div class="nk-comment">
-                                        <div class="nk-comment-meta">
-                                            <img src="assets/images/avatar-1.jpg" alt="Hitman" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Hitman</a> in 20 September, 2018 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
-                                        </div>
-                                        <div class="nk-comment-text">
-                                            <p>To her surprise, she lost sight of her in a moment, and found herself walking in at the front-door again.</p>
-                                        </div>
-                                    </div>
-                                    <!-- END: Comment -->
-                                </div>
-                                <!-- END: Comment -->
-                                <!-- START: Comment -->
-                                <div class="nk-comment">
-                                    <div class="nk-comment-meta">
-                                        <img src="assets/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Wolfenstein</a> in 21 September, 2018 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Reply</a>
-                                    </div>
-                                    <div class="nk-comment-text">
-                                        <p>The sight of the tumblers restored Bob Sawyer to a degree of equanimity which he had not possessed since his interview with his landlady. His face brightened up, and he began to feel quite convivial.</p>
-                                    </div>
-                                </div>
-                                <!-- END: Comment -->
+                                <c:choose>
+                                	<c:when test="${empty replyList}">
+                                		<div class="nk-comment">
+		                                    <div class="nk-comment-text">
+		                                        <p> 현재 등록 된 댓글이 없습니다. 첫 댓글의 주인공이 되어보세요 !</p>
+		                                    </div>
+		                                </div>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<c:forEach var="replyDto" items="${replyList }">
+			                                <!-- START: Comment -->
+			                                <div class="nk-comment">
+			                                    <div class="nk-comment-meta">
+			                                        <img src="${contextPath }/resources/assets/images/profile.jpeg" alt="Image" class="rounded-circle" width="35"> by <span style="color: pink;">${replyDto.writer}</span> in <span style="color: yellow;"><fmt:formatDate value="${replyDto.regDate }" pattern="yyyy-MM-dd"/></span> 
+		                                    		<c:if test="${replyDto.writer eq sessionScope.loginId or sessionScope.loginId eq 'admin' }">
+		                                    			&nbsp;&nbsp;&nbsp;<input type="button" value="댓글삭제" class="nk-btn nk-btn-rounded nk-btn-color-main-1">
+		                                    		</c:if>
+			                                    </div>
+			                                    <div class="nk-comment-text">
+			                                        <p>${replyDto.content }</p>
+			                                    </div>
+			                                </div>
+			                                <!-- END: Comment -->
+		                                </c:forEach>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                             <!-- END: Comments -->
                             <!-- START: Reply -->
                             <div class="nk-gap-2"></div>
-                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Leave</span> a Reply</span></h3>
+                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">댓글</span> 작성</span></h3>
                             <div class="nk-reply">
-                                <form action="#" class="nk-form" novalidate="novalidate">
+                                <form action="${contextPath }/boards/addReply" method="post" class="nk-form" onclick="return replyCheck()">
                                     <div class="nk-gap-1"></div>
-                                    <textarea class="form-control required" name="message" rows="5" placeholder="Message *" aria-required="true"></textarea>
+                                    <textarea class="form-control required" name="content" rows="5" maxlength="200" placeholder="최대 200자까지 작성 가능." aria-required="true"></textarea>
                                     <div class="nk-gap-1"></div>
                                     <div class="nk-form-response-success"></div>
                                     <div class="nk-form-response-error"></div>
-                                    <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
+                                    <input type="hidden" name="writer" value="${sessionScope.loginId }">
+                                    <input type="hidden" name="boardNum" value="${boardDto.num }">
+                                    <input type="submit" id="reply" class="nk-btn nk-btn-rounded nk-btn-color-main-1" value="댓글 작성">
                                 </form>
                             </div>
                             <!-- END: Reply -->
