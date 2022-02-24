@@ -176,6 +176,15 @@
 					                                        </a>
 					                                        <div class="nk-gallery-item-description">
 					                                            <h4>${imgDto.subject }</h4> ${imgDto.content }
+					                                            <br><br>
+					                                            <form action="${contextPath }/imageBoard/imageDelete" method="post" enctype="multipart/form-data">
+						                                            <p>
+						                                            	<input type="hidden" name="memberId" value="${sessionScope.loginId }">
+						                                            	<input type="hidden" name="fileName" value="${imgDto.fileName }">
+						                                            	<input type="submit" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;
+						                                            	<input type="button" value="추천하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageSuggestion?memberId=${sessionScope.loginId }&fileName=${imgDto.fileName }'">
+						                                            </p>
+					                                        	</form>
 					                                        </div>
 					                                    </div>
 					                                </div>

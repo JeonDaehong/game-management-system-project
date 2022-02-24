@@ -109,7 +109,7 @@ public class MainController {
 		
 		
 		// 자유 게시판
-		List<BoardDto> boardList = boardService.boardList();
+		List<BoardDto> boardList = boardService.mainPageBoardList();
 		
 		int endBoard = 0;
 		

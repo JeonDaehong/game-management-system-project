@@ -77,7 +77,7 @@
                             <!-- END: Post Text -->
                             <!-- START: Comments -->
                             <div id="comments"></div>
-                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">${boardDto.commentCount }개의 </span> 댓글 </span></h3>
+                            <h3 class="nk-decorated-h-2"><span><span class="text-main-1">${boardDto.commentCount }개의 </span> 최신 댓글 </span></h3>
                             <div class="nk-gap"></div>
                             <div class="nk-comments">
                                 <c:choose>
@@ -93,9 +93,9 @@
 			                                <!-- START: Comment -->
 			                                <div class="nk-comment">
 			                                    <div class="nk-comment-meta">
-			                                        <img src="${contextPath }/resources/assets/images/profile.jpeg" alt="Image" class="rounded-circle" width="35"> by <span style="color: pink;">${replyDto.writer}</span> in <span style="color: yellow;"><fmt:formatDate value="${replyDto.regDate }" pattern="yyyy-MM-dd"/></span> 
+			                                        <img src="${contextPath }/resources/assets/images/profile.jpeg" alt="Image" class="rounded-circle" width="35"> by <span style="color: pink;">${replyDto.writer}</span> in <span style="color: yellow;"><fmt:formatDate value="${replyDto.regDate }" pattern="yyyy-MM-dd (HH:mm:ss)"/></span> 
 		                                    		<c:if test="${replyDto.writer eq sessionScope.loginId or sessionScope.loginId eq 'admin' }">
-		                                    			&nbsp;&nbsp;&nbsp;<input type="button" value="댓글삭제" class="nk-btn nk-btn-rounded nk-btn-color-main-1">
+		                                    			&nbsp;&nbsp;&nbsp;<input type="button" value="댓글삭제" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/boards/deleteReply?num=${replyDto.num }&boardNum=${replyDto.boardNum }'">
 		                                    		</c:if>
 			                                    </div>
 			                                    <div class="nk-comment-text">
@@ -106,6 +106,21 @@
 		                                </c:forEach>
                                 	</c:otherwise>
                                 </c:choose>
+                                <div class="nk-pagination nk-pagination-center">
+		                        <nav>
+		                        	<c:if test="${totalBoardCount gt 0 }">
+		                       			<c:if test="${startPage gt 10 }">
+		                         			<a href="${contextPath }/boards/boardInfo?num=${boardDto.num }&currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}" > &lt; &nbsp; Previous</a>
+		                       			</c:if>
+		                       			<c:forEach var="i" begin="${startPage}" end="${endPage }" >
+		                         			<a href="${contextPath }/boards/boardInfo?num=${boardDto.num }&currentPageNumber=${i}&onePageViewCount=${onePageViewCount}" <c:if test="${currentPageNumber eq i }">class="nk-pagination-current"</c:if> >${i}</a>
+		                         		</c:forEach>
+		                       			<c:if test="${endPage le totalBoardCount && endPage ge 10}"> 
+		                         			<a href="${contextPath }/boards/boardInfo?num=${boardDto.num }&currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}" >Next &nbsp; &gt;</a>
+		                       			</c:if>
+		                        	</c:if>
+		                        </nav>
+		                    </div>
                             </div>
                             <!-- END: Comments -->
                             <!-- START: Reply -->
@@ -208,6 +223,15 @@
 					                                        </a>
 					                                        <div class="nk-gallery-item-description">
 					                                            <h4>${imgDto.subject }</h4> ${imgDto.content }
+				                                            	<br><br>
+					                                            <form action="${contextPath }/imageBoard/imageDelete" method="post" enctype="multipart/form-data">
+						                                            <p>
+						                                            	<input type="hidden" name="memberId" value="${sessionScope.loginId }">
+						                                            	<input type="hidden" name="fileName" value="${imgDto.fileName }">
+						                                            	<input type="submit" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;
+						                                            	<input type="button" value="추천하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageSuggestion?memberId=${sessionScope.loginId }&fileName=${imgDto.fileName }'">
+						                                            </p>
+					                                        	</form>
 					                                        </div>
 					                                    </div>
 					                                </div>

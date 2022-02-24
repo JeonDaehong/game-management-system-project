@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminMemberMapper">
+	
+	<!-- 회원가입 한 사람들의 리스트를 불러오는 쿼리문 -->
+	<select id="memberList" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				T_SHOPPING_MEMBER
+	</select>
+	
+	<!-- 회원가입 한 사람들의 리스트를 옵션에따라 다르게 정렬하여 불러오는 쿼리문 -->
+	<select id="memberListOption" resultType="MemberDto" parameterType="String">
+		SELECT
+				*
+		FROM
+				T_SHOPPING_MEMBER
+		ORDER BY
+				<choose>
+					<when test='option.equals("memberId")'>
+						MEMBER_ID ASC
+					</when>
+					<when test='option.equals("memberName")'>
+						MEMBER_NAME ASC
+					</when>
+					<when test='option.equals("joinDate")'>
+						JOIN_DATE ASC
+					</when>
+					<otherwise>
+						DELETE_ACCOUNT DESC
+					</otherwise>
+				</choose>
+	</select>
+	
+</mapper>

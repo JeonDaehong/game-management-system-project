@@ -87,7 +87,6 @@ public class AdminNoticeController {
 		mv.addObject("currentPageNumber" , currentPageNumber);
 		
 		// 게시글 목록에 보여지는 글 내용
-		
 		for (AdminNoticeDto noticeDto : noticeList) {
 			String cutContent = "";
 			if (noticeDto.getContent().length() > 150) {
@@ -99,6 +98,8 @@ public class AdminNoticeController {
 				noticeDto.setCutContent(cutContent);
 			}
 		}
+
+		mv.addObject("noticeList", noticeList);
 		
 		// Side Bar - 인기 이미지
 		List<ImageBoardDto> popularImgList =  imageBoardService.popularImgList();
@@ -118,7 +119,6 @@ public class AdminNoticeController {
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
 		
-		mv.addObject("noticeList", noticeList);
 		return mv;
 	}
 

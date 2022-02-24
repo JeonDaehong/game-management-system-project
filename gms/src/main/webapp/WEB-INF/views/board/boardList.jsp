@@ -87,13 +87,13 @@
 		                        <nav>
 		                        	<c:if test="${totalBoardCount gt 0 }">
 		                       			<c:if test="${startPage gt 10 }">
-		                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}" > &lt; &nbsp; Previous</a>
+		                         			<a href="${contextPath }/boards/boardList?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}" > &lt; &nbsp; Previous</a>
 		                       			</c:if>
 		                       			<c:forEach var="i" begin="${startPage}" end="${endPage }" >
-		                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${i}&onePageViewCount=${onePageViewCount}" <c:if test="${currentPageNumber eq i }">class="nk-pagination-current"</c:if> >${i}</a>
+		                         			<a href="${contextPath }/boards/boardList?currentPageNumber=${i}&onePageViewCount=${onePageViewCount}" <c:if test="${currentPageNumber eq i }">class="nk-pagination-current"</c:if> >${i}</a>
 		                         		</c:forEach>
 		                       			<c:if test="${endPage le totalBoardCount && endPage ge 10}"> 
-		                         			<a href="${contextPath }/adminNotice/noticeList?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}" >Next &nbsp; &gt;</a>
+		                         			<a href="${contextPath }/boards/boardList?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}" >Next &nbsp; &gt;</a>
 		                       			</c:if>
 		                        	</c:if>
 		                        </nav>
@@ -183,6 +183,15 @@
 					                                        </a>
 					                                        <div class="nk-gallery-item-description">
 					                                            <h4>${imgDto.subject }</h4> ${imgDto.content }
+					                                            <br><br>
+					                                            <form action="${contextPath }/imageBoard/imageDelete" method="post" enctype="multipart/form-data">
+						                                            <p>
+						                                            	<input type="hidden" name="memberId" value="${sessionScope.loginId }">
+						                                            	<input type="hidden" name="fileName" value="${imgDto.fileName }">
+						                                            	<input type="submit" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;
+						                                            	<input type="button" value="추천하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageSuggestion?memberId=${sessionScope.loginId }&fileName=${imgDto.fileName }'">
+						                                            </p>
+					                                        	</form>
 					                                        </div>
 					                                    </div>
 					                                </div>

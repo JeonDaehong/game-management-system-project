@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
+<c:if test="${sessionScope.loginId ne 'admin' }">
+	<script>
+		alert('ADMIN만 접근 가능한 페이지입니다.');
+		location.href = '${contextPath}/main/main';
+	</script>
+</c:if>
 <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
 <script>
 

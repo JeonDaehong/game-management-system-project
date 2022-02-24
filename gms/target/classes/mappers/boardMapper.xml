@@ -3,7 +3,26 @@
 
 <mapper namespace="boardMapper">
 
-	<select id="boardList" resultType="BoardDto">
+	<!-- 게시글의 개수를 반환하는 쿼리 -->
+	<select id="getAllBoardCount" resultType="int">
+		SELECT 
+				COUNT(*) 
+		FROM 
+				T_BOARD
+	</select>
+
+	<select id="boardList" parameterType="hashmap" resultType="BoardDto">
+		SELECT
+				*
+		FROM
+				T_BOARD
+		ORDER BY
+				NUM DESC
+		LIMIT
+        		#{startBoardIdx}, #{onePageViewCount}
+	</select>
+	
+	<select id="mainPageBoardList" resultType="BoardDto">
 		SELECT
 				*
 		FROM
@@ -93,6 +112,16 @@
 				T_BOARD
 		SET
 				COMMENT_COUNT = COMMENT_COUNT + 1
+		WHERE
+				NUM = #{boardNum}
+	</update>
+	
+	<!-- 댓글 * 계정 삭제 시, 댓글 카운트 감소 -->
+	<update id="commentCountDown" parameterType="int">
+		UPDATE
+				T_BOARD
+		SET
+				COMMENT_COUNT = COMMENT_COUNT - 1
 		WHERE
 				NUM = #{boardNum}
 	</update>

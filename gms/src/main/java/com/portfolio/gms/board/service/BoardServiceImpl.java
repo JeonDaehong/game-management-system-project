@@ -1,6 +1,7 @@
 package com.portfolio.gms.board.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,23 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao boardDao;
 	
+	/* 게시글의 갯수를 반환 (페이징) */
+	@Override
+	public int getAllBoardCount() throws Exception {
+		return boardDao.getAllBoardCount();
+	}
 	
 	@Override
-	public List<BoardDto> boardList() throws Exception {
-		return boardDao.boardList();
+	public List<BoardDto> boardList(HashMap<String, Object> map) throws Exception {
+		return boardDao.boardList(map);
 	}
-
+	
+	/* Main 페이지에 보이는 자유게시글 리스트 반환 */
+	@Override
+	public List<BoardDto> mainPageBoardList() throws Exception {
+		return boardDao.mainPageBoardList();
+	}
+	
 	@Override
 	public void addBoard(BoardDto boardDto) throws Exception {
 		boardDao.addBoard(boardDto);
@@ -80,8 +92,8 @@ public class BoardServiceImpl implements BoardService {
 
 	/* 해당 게시글에 속한 댓글 불러오기 */
 	@Override
-	public List<BoardReplyDto> getReply(int boardNum) throws Exception {
-		return boardDao.getReply(boardNum);
+	public List<BoardReplyDto> getReply(HashMap<String, Object> map) throws Exception {
+		return boardDao.getReply(map);
 	}
 
 	/* 댓글 작성 시, 해당 게시글 댓글 카운트 증가 */
@@ -89,5 +101,51 @@ public class BoardServiceImpl implements BoardService {
 	public void commentCountUp(int boardNum) throws Exception {
 		boardDao.commentCountUp(boardNum);
 	}
+
+	/* 댓글 삭제 */
+	@Override
+	public void deleteReply(int num) throws Exception {
+		boardDao.deleteReply(num);
+	}
+
+	/* 댓글 작성 시, 해당 게시글 댓글 카운트 감소 */
+	@Override
+	public void commentCountDown(int boardNum) throws Exception {
+		boardDao.commentCountDown(boardNum);
+	}
+
+	/* 게시글 삭제 시, 해당 게시글에 포함 된 댓글들 삭제 */
+	@Override
+	public void deleteReplyforBoard(int boardNum) throws Exception {
+		boardDao.deleteReplyforBoard(boardNum);
+	}
+
+	/* 계정 삭제 시, 해당 아이디의 댓글들 전부 삭제 */
+	@Override
+	public void deleteReplyforMember(String writer) throws Exception {
+		boardDao.deleteReplyforMember(writer);
+	}
+
+	/*
+		계정 삭제 시, 해당 아이디의 댓글들이 삭제되면서
+		그 댓글들을 보유한 게시글의 댓글 카운트 감소
+	*/
+	@Override
+	public void commentCountDownAll(String writer) throws Exception {
+		
+		List<Integer> boardNumList = boardDao.deleteReplyCount(writer);
+		
+		if (boardNumList.size() > 0) {
+			for (int boardNum : boardNumList) {
+				boardDao.commentCountDown(boardNum);
+			}
+		}
+	}
+
+	@Override
+	public int getReplyCount(int boardNum) throws Exception {
+		return boardDao.getReplyCount(boardNum);
+	}
+
 
 }

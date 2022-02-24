@@ -3,6 +3,16 @@
 
 <mapper namespace="boardReplyMapper">
 
+	<!-- 댓글 갯수 반환 쿼리문 -->
+	<select id="getReplyCount" parameterType="int" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM
+				T_BOARD_REPLY
+		WHERE
+				BOARD_NUM = #{boardNum}
+	</select>
+
 	<!-- 댓글 입력 쿼리문 -->
 	<insert id="addReply" parameterType="BoardReplyDto">
 		INSERT INTO
@@ -18,7 +28,7 @@
 	
 	
 	<!-- 해당 게시글에 있는 댓글 불러오는 쿼리문 -->
-	<select id="getReply" parameterType="int" resultType="BoardReplyDto">
+	<select id="getReply" parameterType="hashmap" resultType="BoardReplyDto">
 		SELECT
 				*
 		FROM
@@ -26,7 +36,46 @@
 		WHERE
 				BOARD_NUM = #{boardNum}
 		ORDER BY
-				NUM ASC
+				NUM DESC
+		LIMIT
+	            #{startBoardIdx}, #{onePageViewCount}
+	</select>
+	
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM
+				T_BOARD_REPLY
+		WHERE
+				NUM = #{num}
+	</delete>
+	
+	
+	<!-- 게시글 삭제 시, 해당 게시글의 댓글들 삭제 -->
+	<delete id="deleteReplyforBoard" parameterType="int">
+		DELETE FROM
+				T_BOARD_REPLY
+		WHERE
+				BOARD_NUM = #{boardNum}
+	</delete>
+
+	<!-- 계정 삭제 시, 해당 계정과 관련 된 게시물 고유 번호 반환 -->
+	<select id="deleteReplyCount" parameterType="String" resultType="int">
+		SELECT
+				BOARD_NUM
+		FROM
+				T_BOARD_REPLY
+		WHERE
+				WRITER = #{writer}
 	</select>
 
+	<!-- 계정 삭제 시, 해당 계정과 관련 된 댓글들 삭제 -->
+	<delete id="deleteReplyforMember" parameterType="String">
+		DELETE FROM
+				T_BOARD_REPLY
+		WHERE
+				WRITER = #{writer}
+	</delete>
+	
+	
 </mapper>

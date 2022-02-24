@@ -103,19 +103,19 @@
                 </a>
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
                     <li class=" nk-drop-item">
-                        <a href="elements.html"> GAME </a>
+                        <a href="${contextPath }/goods/goodsList"> GAME </a>
                         <ul class="dropdown">
                             <li>
-                                <a href="elements.html"> 모든 게임 </a>
+                                <a href="${contextPath }/goods/goodsList"> 모든 게임 </a>
                             </li>
                             <li class=" nk-drop-item">
-                                <a href="forum.html"> 게임 카테고리 </a>
+                                <a href="#"> 게임 카테고리 </a>
                                 <ul class="dropdown">
                                     <li>
                                         <a href="forum.html"> PC GAME </a>
                                     </li>
                                     <li>
-                                        <a href="forum-topics.html"> PS4 GAME </a>
+                                        <a href="forum-topics.html"> PS5 GAME </a>
                                     </li>
                                     <li>
                                         <a href="forum-single-topic.html"> XBOX GAME </a>
@@ -151,7 +151,7 @@
 		                            </li>
 		                            <c:if test="${sessionScope.loginId eq 'admin' }">
 		                            	<li>
-		                            		<a href="#"> Admin : 회원 명단 조회  </a>
+		                            		<a href="${contextPath }/adminMember/memberList"> Admin : 회원 명단 조회  </a>
 		                            	</li>
 		                            	<li>
 		                            		<a href="#"> Admin : 공지사항 작성  </a>

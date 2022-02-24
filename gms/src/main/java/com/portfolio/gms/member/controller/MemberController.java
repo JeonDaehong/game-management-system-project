@@ -232,6 +232,12 @@ public class MemberController {
 		boardService.boardImageDeleteFromMember(memberId);
 		imageBoardService.imageDeleteFromMember(memberId);
 		
+		// 해당 아이디의 댓글을 삭제 할 시, 게시글들의 댓글 카운트 감소
+		boardService.commentCountDownAll(memberId);
+		
+		// 해당 아이디의 댓글들 삭제
+		boardService.deleteReplyforMember(memberId);
+		
 		// 해당 아이디의 게시글들 삭제
 		boardService.boardDeletefromMember(memberId);
 		imageBoardService.imgDeleteFromMember(memberId);

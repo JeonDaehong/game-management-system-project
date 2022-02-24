@@ -85,7 +85,7 @@
                             <img src="${contextPath }/resources/assets/images/icon-gamepad.svg" alt="">
                         </div>
                         <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="#">PS4</a></h3>
+                            <h3 class="nk-feature-title"><a href="#">PS5</a></h3>
                             <h4 class="nk-feature-title text-main-1"><a href="#">View Games</a></h4>
                         </div>
                     </div>
@@ -387,7 +387,6 @@
             -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
-                                <div class="nk-gap"></div>
                                 <!-- START: Action Tab -->
                                 <c:choose>
                                 	<c:when test="${empty noticeList }">
@@ -419,9 +418,6 @@
 	                                </c:otherwise>
                                 </c:choose>
                                 <!-- END: Action Tab -->
-                                <div align="center">
-                                	<input type="button" value="공지사항 더보기 +" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath }/adminNotice/noticeList'">
-                                </div>
                                 <div class="nk-gap"></div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
@@ -651,6 +647,15 @@
 			                                        </a>
 			                                        <div class="nk-gallery-item-description">
 			                                            <h4>${imgDto.subject }</h4> ${imgDto.content }
+			                                        	<br><br>
+			                                            <form action="${contextPath }/imageBoard/imageDelete" method="post" enctype="multipart/form-data">
+				                                            <p>
+				                                            	<input type="hidden" name="memberId" value="${sessionScope.loginId }">
+				                                            	<input type="hidden" name="fileName" value="${imgDto.fileName }">
+				                                            	<input type="submit" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;
+				                                            	<input type="button" value="추천하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageSuggestion?memberId=${sessionScope.loginId }&fileName=${imgDto.fileName }'">
+				                                            </p>
+			                                        	</form>
 			                                        </div>
 			                                    </div>
 			                                </div>
@@ -659,9 +664,6 @@
                         	</c:choose>
                         </div>
                         <br>
-                        <div align="center">
-                              	<input type="button" value="이미지 더보기 +" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath }/imageBoard/imageBoardList'">
-                            </div>
                     </div>
                     <!-- END: Latest Pictures -->
                     <!-- START: Best Selling -->
@@ -877,6 +879,15 @@
 					                                        </a>
 					                                        <div class="nk-gallery-item-description">
 					                                            <h4>${imgDto.subject }</h4> ${imgDto.content }
+					                                            <br><br>
+					                                            <form action="${contextPath }/imageBoard/imageDelete" method="post" enctype="multipart/form-data">
+						                                            <p>
+						                                            	<input type="hidden" name="memberId" value="${sessionScope.loginId }">
+						                                            	<input type="hidden" name="fileName" value="${imgDto.fileName }">
+						                                            	<input type="submit" value="삭제하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1"> &nbsp;
+						                                            	<input type="button" value="추천하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/imageBoard/imageSuggestion?memberId=${sessionScope.loginId }&fileName=${imgDto.fileName }'">
+						                                            </p>
+					                                        	</form>
 					                                        </div>
 					                                    </div>
 					                                </div>
