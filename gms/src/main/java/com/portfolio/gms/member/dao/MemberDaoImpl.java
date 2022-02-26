@@ -14,6 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
 	@Override
 	public MemberDto overlapped(String memberId) throws Exception {
 		return sqlSession.selectOne("memberMapper.overlapped", memberId);

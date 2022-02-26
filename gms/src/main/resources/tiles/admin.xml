@@ -28,4 +28,14 @@
  		<put-attribute name="title" value="Game Management System 1.0" />
  	</definition>
  	
+ 	<definition name="adminGoods/goodsRegistration" extends="adminLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/admin/goods/goodsRegistration.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
+ 	<definition name="adminGoods/goodsUpdate" extends="adminLayout">
+ 		<put-attribute name="content" value="/WEB-INF/views/admin/goods/goodsUpdate.jsp" />
+ 		<put-attribute name="title" value="Game Management System 1.0" />
+ 	</definition>
+ 	
  </tiles-definitions>

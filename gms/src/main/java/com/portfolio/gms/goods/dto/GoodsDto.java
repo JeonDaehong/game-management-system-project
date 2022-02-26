@@ -8,22 +8,25 @@ import org.springframework.stereotype.Component;
 public class GoodsDto {
 
 	/*
-		num		 	 : 고유번호
-		goodsName	 : 상품 이름
-		goodsType 	 : 상품 타입 (PC, PS5, XBOX)
-		goodsGenre 	 : 게임 장르
-		price 		 : 가격
-		discountRate : 할인시 할인률
-		creCompany 	 : 제작사
-		country 	 : 국내게임, 해외게임 여부
-		remainCount  : 재고
-		content	 	 : 상품 설명
-		cutContent 	 : Main Page에 보일 상품 설명
-		buyCount 	 : 구매량
-		score 		 : 평점
-		creDate 	 : 상품 등록 날짜
-		fileName 	 : 이미지 파일 이름
-		scoreCount 	 : 평점 참여 인원 카운트
+		num		 	   : 고유번호
+		goodsName	   : 상품 이름
+		goodsType 	   : 상품 타입 (PC, PS5, XBOX)
+		goodsGenre 	   : 게임 장르
+		price 		   : 가격
+		discountRate   : 할인시 할인률
+		creCompany 	   : 제작사
+		country 	   : 국내게임, 해외게임 여부
+		remainCount    : 재고
+		content	 	   : 상품 설명
+		cutContent 	   : Main Page에 보일 상품 설명
+		buyCount 	   : 구매량
+		score 		   : 평점
+		creDate 	   : 상품 등록 날짜
+		fileName 	   : 첫 번째 이미지 파일 이름
+		secondFileName : 두 번째 이미지 파일 이름
+		thirdFileName  : 세 번째 이미지 파일 이름
+		fourthFileName : 네 번째 이미지 파일 이름
+		scoreCount 	   : 평점 참여 인원 카운트
 	*/
 	private int num;
 	private String goodsName;
@@ -40,6 +43,9 @@ public class GoodsDto {
 	private int score;
 	private Date creDate;
 	private String fileName;
+	private String secondFileName;
+	private String thirdFileName;
+	private String fourthFileName;
 	private int scoreCount;
 	
 	/* Getter & Setter */
@@ -139,4 +145,23 @@ public class GoodsDto {
 	public void setScoreCount(int scoreCount) {
 		this.scoreCount = scoreCount;
 	}
+	public String getSecondFileName() {
+		return secondFileName;
+	}
+	public void setSecondFileName(String secondFileName) {
+		this.secondFileName = secondFileName;
+	}
+	public String getThirdFileName() {
+		return thirdFileName;
+	}
+	public void setThirdFileName(String thirdFileName) {
+		this.thirdFileName = thirdFileName;
+	}
+	public String getFourthFileName() {
+		return fourthFileName;
+	}
+	public void setFourthFileName(String fourthFileName) {
+		this.fourthFileName = fourthFileName;
+	}
+	
 }

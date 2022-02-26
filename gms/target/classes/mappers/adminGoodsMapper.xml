@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminGoodsMapper">
+
+	<!-- 게임(상품) 추가하는 쿼리문 -->
+	<insert id="goodsRegistration" parameterType="GoodsDto">
+		INSERT INTO
+				T_ADMIN_GOODS
+		VALUES (
+				NULL,
+				#{goodsName},
+				#{goodsType},
+				#{goodsGenre},
+				#{price},
+				#{discountRate},
+				#{creCompany},
+				#{country},
+				#{remainCount},
+				#{content},
+				NULL,
+				0,
+				0,
+				NOW(),
+				#{fileName},
+				#{secondFileName},
+				#{thirdFileName},
+				#{fourthFileName},
+				0
+			)
+	</insert>
+	
+	
+	<!-- 게임(상품) 정보 받아오는 쿼리문 -->
+	<select id="getGoodsInfo" resultType="GoodsDto" parameterType="int">
+		SELECT
+				*
+		FROM
+				T_ADMIN_GOODS
+		WHERE
+				NUM = #{num}
+	</select>
+	
+	
+	<!-- 게임(상품) 정보 수정하는 쿼리문 -->
+	<update id="goodsUpdate" parameterType="GoodsDto">
+		UPDATE
+				T_ADMIN_GOODS
+		SET
+				GOODS_NAME = #{goodsName},
+				GOODS_TYPE = #{goodsType},
+				GOODS_GENRE = #{goodsGenre},
+				PRICE = #{price},
+				DISCOUNT_RATE = #{discountRate},
+				CRE_COMPANY = #{creCompany},
+				COUNTRY = #{country},
+				REMAIN_COUNT = #{remainCount},
+				CONTENT = #{content}
+		WHERE
+				NUM = #{num}
+	</update>
+	
+	
+	<!-- 게임(상품)을 삭제하는 쿼리문 -->
+	<delete id="goodsDelete" parameterType="int">
+		DELETE FROM
+				T_ADMIN_GOODS
+		WHERE
+				NUM = #{num}
+	</delete>
+
+</mapper>

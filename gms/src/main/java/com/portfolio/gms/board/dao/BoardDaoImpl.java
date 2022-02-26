@@ -118,7 +118,7 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList("boardReplyMapper.deleteReplyCount", writer);
 	}
 
-	/* 댓글 갯수 반환 쿼리문 */
+	/* 댓글 갯수 반환 */
 	@Override
 	public int getReplyCount(int boardNum) throws Exception {
 		return sqlSession.selectOne("boardReplyMapper.getReplyCount", boardNum);

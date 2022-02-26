@@ -154,10 +154,10 @@
 		                            		<a href="${contextPath }/adminMember/memberList"> Admin : 회원 명단 조회  </a>
 		                            	</li>
 		                            	<li>
-		                            		<a href="#"> Admin : 공지사항 작성  </a>
+		                            		<a href="${contextPath }/adminNotice/noticeWriter"> Admin : 공지사항 작성  </a>
 		                            	</li>
 		                            	<li>
-		                            		<a href="#"> Admin : 상품 등록  </a>
+		                            		<a href="${contextPath }/adminGoods/goodsRegistration"> Admin : 상품 등록  </a>
 		                            	</li>
 		                            </c:if>
                         		</ul>
