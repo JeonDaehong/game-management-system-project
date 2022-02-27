@@ -112,13 +112,13 @@
                                 <a href="#"> 게임 카테고리 </a>
                                 <ul class="dropdown">
                                     <li>
-                                        <a href="forum.html"> PC GAME </a>
+                                        <a href="${contextPath }/goods/goodsList?type=pc"> PC GAME </a>
                                     </li>
                                     <li>
-                                        <a href="forum-topics.html"> PS5 GAME </a>
+                                        <a href="${contextPath }/goods/goodsList?type=ps5"> PS5 GAME </a>
                                     </li>
                                     <li>
-                                        <a href="forum-single-topic.html"> XBOX GAME </a>
+                                        <a href="${contextPath }/goods/goodsList?type=xbox"> XBOX GAME </a>
                                     </li>
                                 </ul>
                             </li>

@@ -3,6 +3,228 @@
 
 <mapper namespace="goodsMapper">
 
+	<!-- 게임(상품)의 개수를 반환하는 쿼리 -->
+	<select id="getAllGoodsCount" parameterType="hashmap" resultType="int">
+		<choose>
+			<when test='type.equals("total")'> 									
+				<choose>
+					<when test='searchKeyword.equals("")'>						
+						<choose>
+							<when test='genre.equals("total")'>
+								SELECT 
+										COUNT(*)
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										PRICE BETWEEN #{minNum} AND #{maxNum}
+							</when>
+							<otherwise>
+								SELECT 
+										COUNT(*) 
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</otherwise>
+						</choose>
+					</when>
+					<otherwise>		
+						<choose>									
+							<when test='genre.equals("total")'>
+								SELECT 
+										COUNT(*) 
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</when>
+							<otherwise>
+								SELECT 
+										COUNT(*) 
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</otherwise>
+						</choose>		
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				<choose>
+					<when test='searchKeyword.equals("")'>						
+						<choose>
+							<when test='genre.equals("total")'>
+								SELECT 
+										COUNT(*)
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_TYPE = #{type} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</when>
+							<otherwise>
+								SELECT 
+										COUNT(*) 
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_TYPE = #{type} AND GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</otherwise>
+						</choose>
+					</when>
+					<otherwise>
+						<choose>										
+							<when test='genre.equals("total")'>
+								SELECT 
+										COUNT(*) 
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND GOODS_TYPE = #{type} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</when>
+							<otherwise>
+								SELECT 
+										COUNT(*) 
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND GOODS_TYPE = #{type} AND GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+							</otherwise>
+						</choose>
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<!-- 게임(상품)을 최신 순으로 10개씩 가져다주는 쿼리문 -->
+	<select id="goodsList" parameterType="hashmap" resultType="GoodsDto">
+		<choose>
+			<when test='type.equals("total")'> 									
+				<choose>
+					<when test='searchKeyword.equals("")'>						
+						<choose>
+							<when test='genre.equals("total")'>
+								SELECT
+										*
+								FROM
+										T_ADMIN_GOODS
+								WHERE
+										PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</when>
+							<otherwise>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</otherwise>
+						</choose>
+					</when>
+					<otherwise>		
+						<choose>									
+							<when test='genre.equals("total")'>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</when>
+							<otherwise>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</otherwise>
+						</choose>		
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				<choose>
+					<when test='searchKeyword.equals("")'>						
+						<choose>
+							<when test='genre.equals("total")'>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_TYPE = #{type} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</when>
+							<otherwise>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_TYPE = #{type} AND GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</otherwise>
+						</choose>
+					</when>
+					<otherwise>
+						<choose>										
+							<when test='genre.equals("total")'>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND GOODS_TYPE = #{type} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</when>
+							<otherwise>
+								SELECT 
+										*
+								FROM 
+										T_ADMIN_GOODS
+								WHERE
+										GOODS_NAME LIKE CONCAT('%',#{searchKeyword},'%') AND GOODS_TYPE = #{type} AND GOODS_GENRE = #{genre} AND PRICE BETWEEN #{minNum} AND #{maxNum}
+								ORDER BY
+										NUM DESC
+								LIMIT
+						        		#{startBoardIdx}, #{onePageViewCount}
+							</otherwise>
+						</choose>
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</select>
+	
+
 	<!-- 게임(삼품)을 최신 순으로 가져다주는 기본 리스트 반환 쿼리문 -->
 	<select id="basicGoodsList" resultType="GoodsDto">
 		SELECT
@@ -12,7 +234,7 @@
 		ORDER BY
 				NUM DESC
 	</select>
-	
+
 	
 	<!-- 게임(상품)을 인기 순으로 가져다주는 리스트 반환 쿼리문 -->
 	<select id="popularGoodsList" resultType="GoodsDto">
@@ -23,6 +245,18 @@
 		ORDER BY
 				SCORE DESC
 	</select>
+	
+	
+	<!-- 게임(상품)을 할인률 순으로 가져다주는 리스트 반환 쿼리문 -->
+	<select id="discountGoodsList" resultType="GoodsDto">
+		SELECT
+				*
+		FROM
+				T_ADMIN_GOODS
+		ORDER BY
+				DISCOUNT_RATE DESC
+	</select>
+	
 	
 	<!-- 게임(상품) 정보를 반환해주는 쿼리문 -->
 	<select id="getGoodsInfo" resultType="GoodsDto" parameterType="int">

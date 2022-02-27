@@ -6,6 +6,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+<script>
+
+	$().ready(function(){
+		
+		$("#getSearchBoard").click(function(){
+		
+			var searchKeyword = $("#searchKeyword").val();
+			var url = "${contextPath}/goods/goodsList?";
+				url += "searchKeyword="+searchKeyword;
+		
+			if (searchKeyword == "") {
+				alert('검색어를 입력해주시기 바랍니다.');
+			} else {
+				location.href=url;
+			}
+		});
+		
+		
+		$("#getSideSearchBoard").click(function(){
+			
+			var sideSearchKeyword = $("#sideSearchKeyword").val();
+			var url = "${contextPath}/goods/goodsList?";
+				url += "searchKeyword="+sideSearchKeyword;
+		
+			if (sideSearchKeyword == "") {
+				alert('검색어를 입력해주시기 바랍니다.');
+			} else {
+				location.href=url;
+			}
+		});
+		
+	});
+
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title><tiles:insertAttribute name="title" /></title>
@@ -104,9 +139,10 @@
                 </button>
                 <h4 class="mb-0">Search</h4>
                 <div class="nk-gap-1"></div>
-                <form action="#" class="nk-form nk-form-style-1">
-                    <input type="text" value="" name="search" class="form-control" placeholder="검색어를 입력해주세요..." autofocus>
-                </form>
+                    <input type="text" name="searchKeyword" id="searchKeyword" class="form-control" placeholder="검색어를 입력해주세요..." autofocus>
+                	<div align="right">
+          				<br><button class="nk-btn nk-btn-color-main-1" id="getSearchBoard"><span class="ion-search"></span></button>
+          			</div>
             </div>
         </div>
     </div>

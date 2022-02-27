@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.portfolio.gms.admin.notice.dto.AdminNoticeDto;
 import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
+import com.portfolio.gms.goods.dto.GoodsDto;
+import com.portfolio.gms.goods.service.GoodsService;
 import com.portfolio.gms.imageBoard.dto.ImageBoardDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
 
@@ -32,6 +34,10 @@ public class AdminNoticeController {
 	
 	@Autowired
 	private ImageBoardService imageBoardService;
+	
+	@Autowired
+	private GoodsService goodsService;
+	
 	
 	// 공지사항 게시판 불러오기
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
@@ -119,6 +125,24 @@ public class AdminNoticeController {
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
 		
+		
+		/* 사이드 바 - 인기 게임 리스트 */
+		List<GoodsDto> sidePopularGoodsList = goodsService.popularGoodsList();
+		
+		int endSidePopularGoods = 0;
+		
+		if (sidePopularGoodsList != null) {
+				
+			if (sidePopularGoodsList.size() > 2) {
+				endSidePopularGoods = 2;
+			} else {
+				endSidePopularGoods = sidePopularGoodsList.size();
+			}
+		}
+			
+		mv.addObject("endSidePopularGoods", endSidePopularGoods);
+		mv.addObject("sidePopularGoodsList", sidePopularGoodsList);
+		
 		return mv;
 	}
 
@@ -169,6 +193,24 @@ public class AdminNoticeController {
 				
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
+		
+		
+		/* 사이드 바 - 인기 게임 리스트 */
+		List<GoodsDto> sidePopularGoodsList = goodsService.popularGoodsList();
+		
+		int endSidePopularGoods = 0;
+		
+		if (sidePopularGoodsList != null) {
+				
+			if (sidePopularGoodsList.size() > 2) {
+				endSidePopularGoods = 2;
+			} else {
+				endSidePopularGoods = sidePopularGoodsList.size();
+			}
+		}
+			
+		mv.addObject("endSidePopularGoods", endSidePopularGoods);
+		mv.addObject("sidePopularGoodsList", sidePopularGoodsList);
 		
 		return mv;
 	}

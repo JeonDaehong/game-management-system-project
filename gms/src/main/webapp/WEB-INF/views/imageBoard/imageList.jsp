@@ -116,12 +116,10 @@
                         <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
                         <div class="nk-widget">
                             <div class="nk-widget-content">
-                                <form action="#" class="nk-form nk-form-style-1" novalidate="novalidate">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" maxlength="20" placeholder="검색어를 입력해주세요...">
-                                        <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
-                                    </div>
-                                </form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="sideSearchKeyword" maxlength="20" placeholder="검색어를 입력해주세요...">
+                                    <button class="nk-btn nk-btn-color-main-1" id="getSideSearchBoard"><span class="ion-search"></span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="nk-widget nk-widget-highlighted">
@@ -133,27 +131,28 @@
                         <div class="nk-widget nk-widget-highlighted">
                             <h4 class="nk-widget-title"><span><span class="text-main-1">Top 3</span> Game</span></h4>
                             <div class="nk-widget-content">
-                                <div class="nk-widget-post">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="${contextPath }/resources/assets/images/post-1-sm.jpg" alt="">
-                                    </a>
-                                    <h3 class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></h3>
-                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
-                                </div>
-                                <div class="nk-widget-post">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="${contextPath }/resources/assets/images/post-2-sm.jpg" alt="">
-                                    </a>
-                                    <h3 class="nk-post-title"><a href="blog-article.html">Grab your sword and fight the Horde</a></h3>
-                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 5, 2018</div>
-                                </div>
-                                <div class="nk-widget-post">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="${contextPath }/resources/assets/images/post-3-sm.jpg" alt="">
-                                    </a>
-                                    <h3 class="nk-post-title"><a href="blog-article.html">We found a witch! May we burn her?</a></h3>
-                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Aug 27, 2018</div>
-                                </div>
+                            	<c:choose>
+                            		<c:when test="${empty sidePopularGoodsList }">
+                            			<div class="nk-widget-post">
+		                                    <a href="blog-article.html" class="nk-post-image">
+		                                        <img src="${contextPath }/resources/assets/images/post-1-sm.jpg" alt="">
+		                                    </a>
+		                                    <h3 class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></h3>
+		                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
+		                                </div>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<c:forEach var="sidePopularGoodsDto" items="${sidePopularGoodsList }" begin="0" end="${endSidePopularGoods }">
+	                            			<div class="nk-widget-post">
+			                                    <a href="blog-article.html" class="nk-post-image">
+			                                        <img src="${contextPath }/smaillThumbnails?goodsFileName=${sidePopularGoodsDto.fileName}" alt="">
+			                                    </a>
+			                                    <h3 class="nk-post-title"><a href="blog-article.html">${sidePopularGoodsDto.goodsName }</a></h3>
+			                                    <div class="nk-post-date"><span class="fa fa-calendar"></span><fmt:formatDate value="${sidePopularGoodsDto.creDate }" pattern="yyyy-MM-dd"/></div>
+			                                </div>
+		                                </c:forEach>
+                            		</c:otherwise>
+                            	</c:choose>
                             </div>
                         </div>
                         <div class="nk-widget nk-widget-highlighted">

@@ -1,5 +1,6 @@
 package com.portfolio.gms.goods.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.portfolio.gms.goods.dto.GoodsDto;
@@ -11,4 +12,10 @@ public interface GoodsDao {
 	public GoodsDto getGoodsInfo(int num) throws Exception;
 	
 	public List<GoodsDto> popularGoodsList() throws Exception;
+	
+	public List<GoodsDto> discountGoodsList() throws Exception;
+	
+	public int getAllGoodsCount(HashMap<String, Object> map) throws Exception;
+	
+	public List<GoodsDto> goodsList(HashMap<String,Object> map) throws Exception;
 }

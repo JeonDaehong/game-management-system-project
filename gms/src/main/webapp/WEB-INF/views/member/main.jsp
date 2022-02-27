@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 <c:if test='${deleteIdCheck eq true}'>
 	<script>
 		$().ready(function(){
@@ -22,47 +23,30 @@
         <div class="container">
             <!-- START: Image Slider -->
             <div class="nk-image-slider" data-autoplay="8000">
-                <div class="nk-image-slider-item">
-                    <img src="${contextPath }/resources/assets/images/LostArkImg.png" alt="LostArkImg.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/LostArkImg.png">
-                    <div class="nk-image-slider-content">
-                        <h3 class="h4">로스트 아크</h3>
-                        <p class="text-white">스마일게이트에서 만든 신작 쿼터뷰 MMORPG로 총 6개의 클래스와 클래스별로 전직 가능한 직업군이 별도로 존재하며 레이드, 채집, 생활 등 다양한 콘텐츠를 가지고 있다...</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
-                    </div>
-                </div>
-                <div class="nk-image-slider-item">
-                    <img src="${contextPath }/resources/assets/images/NiaGame.png" alt="NiaGame.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/NiaGame.png">
-                    <div class="nk-image-slider-content">
-                        <h3 class="h4">니어: 오토마타</h3>
-                        <p class="text-white">무대는 우주인이 조종하는 '기계생명체'의 압도적인 전력 앞에 인류가 달로 쫓겨난 먼 미래. 플레이어는 안드로이드 부대 「요르하」 소속의 「2B」가 되어 지구탈환을 위한 싸움에 몸을 던지게 됩니다...</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
-                    </div>
-                </div>
-                <div class="nk-image-slider-item">
-                    <img src="${contextPath }/resources/assets/images/BattleGround.png" alt="BattleGround.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/BattleGround.png">
-                	<div class="nk-image-slider-content">
-                        <h3 class="h4">배틀그라운드</h3>
-                        <p class="text-white">배틀그라운드는 PUBG 주식회사(前 블루홀 지노게임즈)에서 개발하고 크래프톤에서 발행한 서바이벌 슈터 게임이다.</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
-                    </div>
-                </div>
-                <div class="nk-image-slider-item">
-                    <img src="${contextPath }/resources/assets/images/GTA5.png" alt="GTA5.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/GTA5.png">
-                    <div class="nk-image-slider-content">
-                        <h3 class="h4">GTA5</h3>
-                        <p class="text-white">로스 산토스는 찬란한 햇빛을 받으며 거대하게 뻗은 대도시입니다. 이곳에는 감동적인 인간 승리를 이뤄낸 사람들과 수많은 아이돌 스타, 퇴물이 되어가는 유명인사 등, 한때는 서구 세계의 부러움을 한몸에 받았던 사람들이 경제 불황과 싸구려 리얼리티 TV 시대에 살아남으려 발버둥치고 있습니다.</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
-                    </div>
-                </div>
-                <div class="nk-image-slider-item">
-                    <img src="${contextPath }/resources/assets/images/HerosStorm.png" alt="HerosStorm.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/HerosStorm.png">
-                    <div class="nk-image-slider-content">
-                        <h3 class="h4">히어로즈 오브 더 스톰</h3>
-                        <p class="text-white">히어로즈 오브 더 스톰(Heroes of the Storm,히오스)는 블리자드 엔터테인먼트가 개발한 RTS ( Real - Time Strategy, 실시간 전략 게임 )이다.</p>
-                        <p class="text-white">블리자드 엔터테인먼트 게임들인 워크래프트, 디아블로, 스타크래프트, 오버워치, 블리자드 고전 게임에 등장하는 영웅들이 함께 나오는 게임이다...</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
-                    </div>
-                </div>
+            	<c:choose>
+            		<c:when test="${empty basicGoodsList }">
+            			<div class="nk-image-slider-item">
+		                    <img src="${contextPath }/resources/assets/images/LostArkImg.png" alt="LostArkImg.png" class="nk-image-slider-img" data-thumb="${contextPath }/resources/assets/images/LostArkImg.png">
+		                    <div class="nk-image-slider-content">
+		                        <h3 class="h4">로스트 아크</h3>
+		                        <p class="text-white">스마일게이트에서 만든 신작 쿼터뷰 MMORPG로 총 6개의 클래스와 클래스별로 전직 가능한 직업군이 별도로 존재하며 레이드, 채집, 생활 등 다양한 콘텐츠를 가지고 있다...</p>
+		                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read More</a>
+		                    </div>
+		                </div>
+            		</c:when>
+            		<c:otherwise>
+            			<c:forEach var="basicGoodsDto" items="${basicGoodsList }" begin="0" end="${endBasicGoods }">
+            				<div class="nk-image-slider-item">
+			                    <img src="${contextPath }/boardThumbnails?goodsFileName=${basicGoodsDto.thirdFileName}" alt="Img" class="nk-image-slider-img" data-thumb="${contextPath }/boardThumbnails?goodsFileName=${basicGoodsDto.thirdFileName}">
+			                    <div class="nk-image-slider-content">
+			                        <h3 class="h4">${basicGoodsDto.goodsName }</h3>
+			                        <p class="text-white">${basicGoodsDto.cutContent }</p>
+			                        <a href="${contextPath }/goods/goodsInfo?num=${basicGoodsDto.num }" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">구매하기</a>
+			                    </div>
+			                </div>
+            			</c:forEach>
+            		</c:otherwise>
+            	</c:choose>
             </div>
             <!-- END: Image Slider -->
             <!-- START: Categories -->
@@ -74,8 +58,8 @@
                             <img src="${contextPath }/resources/assets/images/icon-mouse.svg" alt="">
                         </div>
                         <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="#">PC</a></h3>
-                            <h4 class="nk-feature-title text-main-1"><a href="#">View Games</a></h4>
+                            <h3 class="nk-feature-title"><a href="${contextPath }/goods/goodsList?type=pc">PC</a></h3>
+                            <h4 class="nk-feature-title text-main-1"><a href="${contextPath }/goods/goodsList?type=pc">View Games</a></h4>
                         </div>
                     </div>
                 </div>
@@ -85,8 +69,8 @@
                             <img src="${contextPath }/resources/assets/images/icon-gamepad.svg" alt="">
                         </div>
                         <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="#">PS5</a></h3>
-                            <h4 class="nk-feature-title text-main-1"><a href="#">View Games</a></h4>
+                            <h3 class="nk-feature-title"><a href="${contextPath }/goods/goodsList?type=ps5">PS5</a></h3>
+                            <h4 class="nk-feature-title text-main-1"><a href="${contextPath }/goods/goodsList?type=ps5">View Games</a></h4>
                         </div>
                     </div>
                 </div>
@@ -96,8 +80,8 @@
                             <img src="${contextPath }/resources/assets/images/icon-gamepad-2.svg" alt="">
                         </div>
                         <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="#">Xbox</a></h3>
-                            <h4 class="nk-feature-title text-main-1"><a href="#">View Games</a></h4>
+                            <h3 class="nk-feature-title"><a href="${contextPath }/goods/goodsList?type=xbox">Xbox</a></h3>
+                            <h4 class="nk-feature-title text-main-1"><a href="${contextPath }/goods/goodsList?type=xbox">View Games</a></h4>
                         </div>
                     </div>
                 </div>
@@ -186,8 +170,8 @@
 					                                <div class="nk-news-box-item-text">
 					                                    <p>${basicGoodsDto.cutContent }</p>
 					                                </div>
-					                                <a href="blog-article.html" class="nk-news-box-item-url">Read More</a>
-					                                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span><fmt:formatDate value="${basicGoodsDto.creDate }" pattern="yyyy-MM-dd"/></div>
+					                                <a href="${contextPath }/goods/goodsInfo?num=${basicGoodsDto.num}" class="nk-news-box-item-url">Read More</a>
+					                                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> <fmt:formatDate value="${basicGoodsDto.creDate }" pattern="yyyy-MM-dd"/></div>
 					                            </div>
 				                            </c:forEach>
                         				</c:otherwise>
@@ -223,88 +207,56 @@
             <div class="nk-blog-grid">
                 <div class="row">
                     <div class="col-md-6 col-lg-3">
-                        <!-- START: Post -->
-                        <div class="nk-blog-post">
-                            <a href="blog-article.html" class="nk-post-img">
-                                <img src="${contextPath }/resources/assets/images/post-5-mid.jpg" alt="He made his passenger captain of one">
-                                <span class="nk-post-comments-count">13</span>
-                                <span class="nk-post-categories">
-                                    <span class="bg-main-5">Indie</span>
-                                </span>
-                            </a>
-                            <div class="nk-gap"></div>
-                            <h2 class="nk-post-title h4"><a href="blog-article.html">He made his passenger captain of one</a></h2>
-                            <div class="nk-post-text">
-                                <p>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door...</p>
-                            </div>
-                            <div class="nk-gap"></div>
-                            <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                            <div class="nk-post-date float-right"><span class="fa fa-calendar"></span> Jul 23, 2018</div>
-                        </div>
-                        <!-- END: Post -->
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <!-- START: Post -->
-                        <div class="nk-blog-post">
-                            <a href="blog-article.html" class="nk-post-img">
-                                <img src="${contextPath }/resources/assets/images/post-6-mid.jpg" alt="At first, for some time, I was not able to answer">
-                                <span class="nk-post-comments-count">0</span>
-                                <span class="nk-post-categories">
-                                    <span class="bg-main-5">Racing</span>
-                                </span>
-                            </a>
-                            <div class="nk-gap"></div>
-                            <h2 class="nk-post-title h4"><a href="blog-article.html">At first, for some time, I was not able to answer</a></h2>
-                            <div class="nk-post-text">
-                                <p>This little wandering journey, without settled place of abode, had been so unpleasant to me, that my own house, as I called it to myself, was a perfect settlement to me compared to that...</p>
-                            </div>
-                            <div class="nk-gap"></div>
-                            <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                            <div class="nk-post-date float-right"><span class="fa fa-calendar"></span> Jul 3, 2018</div>
-                        </div>
-                        <!-- END: Post -->
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <!-- START: Post -->
-                        <div class="nk-blog-post">
-                            <a href="blog-article.html" class="nk-post-img">
-                                <img src="${contextPath }/resources/assets/images/post-7-mid.jpg" alt="At length one of them called out in a clear">
-                                <span class="nk-post-comments-count">0</span>
-                                <span class="nk-post-categories">
-                                    <span class="bg-main-6">MOBA</span>
-                                </span>
-                            </a>
-                            <div class="nk-gap"></div>
-                            <h2 class="nk-post-title h4"><a href="blog-article.html">At length one of them called out in a clear</a></h2>
-                            <div class="nk-post-text">
-                                <p>TJust then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door...</p>
-                            </div>
-                            <div class="nk-gap"></div>
-                            <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                            <div class="nk-post-date float-right"><span class="fa fa-calendar"></span> Jul 3, 2018</div>
-                        </div>
-                        <!-- END: Post -->
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <!-- START: Post -->
-                        <div class="nk-blog-post">
-                            <a href="blog-article.html" class="nk-post-img">
-                                <img src="${contextPath }/resources/assets/images/post-8-mid.jpg" alt="For good, too though, in consequence">
-                                <span class="nk-post-comments-count">0</span>
-                                <span class="nk-post-categories">
-                                    <span class="bg-main-2">Adventure</span>
-                                </span>
-                            </a>
-                            <div class="nk-gap"></div>
-                            <h2 class="nk-post-title h4"><a href="blog-article.html">For good, too though, in consequence</a></h2>
-                            <div class="nk-post-text">
-                                <p>This little wandering journey, without settled place of abode, had been so unpleasant to me, that my own house, as I called it to myself, was a perfect settlement to me compared to that...</p>
-                            </div>
-                            <div class="nk-gap"></div>
-                            <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
-                            <div class="nk-post-date float-right"><span class="fa fa-calendar"></span> Jul 3, 2018</div>
-                        </div>
-                        <!-- END: Post -->
+                    	<c:choose>
+                    		<c:when test="${empty popularGoodsList }">
+                    			 <!-- START: Post -->
+                       			 <div class="nk-blog-post">
+		                            <a href="blog-article.html" class="nk-post-img">
+		                                <img src="${contextPath }/resources/assets/images/post-5-mid.jpg" alt="He made his passenger captain of one">
+		                                <span class="nk-post-comments-count">13</span>
+		                                <span class="nk-post-categories">
+		                                    <span class="bg-main-5">Indie</span>
+		                                </span>
+		                            </a>
+		                            <div class="nk-gap"></div>
+		                            <h2 class="nk-post-title h4"><a href="blog-article.html">He made his passenger captain of one</a></h2>
+		                            <div class="nk-post-text">
+		                                <p>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door...</p>
+		                            </div>
+		                            <div class="nk-gap"></div>
+		                            <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+		                            <div class="nk-post-date float-right"><span class="fa fa-calendar"></span> Jul 23, 2018</div>
+		                        </div>
+		                        <!-- END: Post -->
+			                    </div>
+			                    <div class="col-md-6 col-lg-3">
+                    		</c:when>
+                    		<c:otherwise>
+                    			<c:forEach var="popularGoodsDto" items="${popularGoodsList }" begin="0" end="${endPopularGoods }">
+	                    			<!-- START: Post -->
+	                       			 <div class="nk-blog-post">
+			                            <a href="${contextPath }/goods/goodsInfo?num=${popularGoodsDto.num}" class="nk-post-img">
+			                                <img src="${contextPath }/smaillThumbnails?goodsFileName=${popularGoodsDto.thirdFileName}" alt="img">
+			                                <span class="nk-post-comments-count">${popularGoodsDto.scoreCount }</span>
+			                                <span class="nk-post-categories">
+			                                    <span class="bg-main-5">${popularGoodsDto.goodsGenre }</span>
+			                                </span>
+			                            </a>
+			                            <div class="nk-gap"></div>
+			                            <h2 class="nk-post-title h4"><a href="blog-article.html">${popularGoodsDto.goodsName }</a></h2>
+			                            <div class="nk-post-text">
+			                                <p>${popularGoodsDto.cutContent }</p>
+			                            </div>
+			                            <div class="nk-gap"></div>
+			                            <a href="${contextPath }/goods/goodsInfo?num=${popularGoodsDto.num}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+			                            <div class="nk-post-date float-right"><span class="fa fa-calendar"></span><fmt:formatDate value="${popularGoodsDto.creDate }" pattern="yyyy-MM-dd"/></div>
+			                        </div>
+			                        <!-- END: Post -->
+				                    </div>
+				                    <div class="col-md-6 col-lg-3">
+			                    </c:forEach>
+                    		</c:otherwise>
+                    	</c:choose>
                     </div>
                 </div>
             </div>
@@ -664,130 +616,76 @@
                     <h3 class="nk-decorated-h-2"><span><span class="text-main-1">할인</span> 게임</span></h3>
                     <div class="nk-gap"></div>
                     <div class="row vertical-gap">
-                        <div class="col-md-6">
-                            <div class="nk-product-cat">
-                                <a class="nk-product-image" href="store-product.html">
-                                    <img src="${contextPath }/resources/assets/images/product-11-xs.jpg" alt="She gave my mother">
-                                </a>
-                                <div class="nk-product-cont">
-                                    <h3 class="nk-product-title h5"><a href="store-product.html">She gave my mother</a></h3>
-                                    <div class="nk-gap-1"></div>
-                                    <span class="nk-product-rating">
-                                        <span class="nk-product-rating-front" style="width: 60%;">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <span class="nk-product-rating-back">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </span>
-                                    </span>
-                                    <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 14.00</div>
-                                    <div class="nk-gap-1"></div>
-                                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="nk-product-cat">
-                                <a class="nk-product-image" href="store-product.html">
-                                    <img src="${contextPath }/resources/assets/images/product-12-xs.jpg" alt="A hundred thousand">
-                                </a>
-                                <div class="nk-product-cont">
-                                    <h3 class="nk-product-title h5"><a href="store-product.html">A hundred thousand</a></h3>
-                                    <div class="nk-gap-1"></div>
-                                    <span class="nk-product-rating">
-                                        <span class="nk-product-rating-front" style="width: 90%;">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <span class="nk-product-rating-back">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </span>
-                                    </span>
-                                    <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 20.00</div>
-                                    <div class="nk-gap-1"></div>
-                                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="nk-product-cat">
-                                <a class="nk-product-image" href="store-product.html">
-                                    <img src="${contextPath }/resources/assets/images/product-13-xs.jpg" alt="So saying he unbuckled">
-                                </a>
-                                <div class="nk-product-cont">
-                                    <h3 class="nk-product-title h5"><a href="store-product.html">So saying he unbuckled</a></h3>
-                                    <div class="nk-gap-1"></div>
-                                    <span class="nk-product-rating">
-                                        <span class="nk-product-rating-front" style="width: 100%;">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <span class="nk-product-rating-back">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </span>
-                                    </span>
-                                    <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 23.00</div>
-                                    <div class="nk-gap-1"></div>
-                                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="nk-product-cat">
-                                <a class="nk-product-image" href="store-product.html">
-                                    <img src="${contextPath }/resources/assets/images/product-14-xs.jpg" alt="However, I have reason">
-                                </a>
-                                <div class="nk-product-cont">
-                                    <h3 class="nk-product-title h5"><a href="store-product.html">However, I have reason</a></h3>
-                                    <div class="nk-gap-1"></div>
-                                    <span class="nk-product-rating">
-                                        <span class="nk-product-rating-front" style="width: 20%;">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <span class="nk-product-rating-back">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </span>
-                                    </span>
-                                    <div class="nk-gap-1"></div>
-                                    <div class="nk-product-price">€ 32.00</div>
-                                    <div class="nk-gap-1"></div>
-                                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
+                    	<c:choose>
+                    		<c:when test="${empty discountGoodsList }">
+                    			<div class="col-md-6">
+		                            <div class="nk-product-cat">
+		                                <a class="nk-product-image" href="store-product.html">
+		                                    <img src="${contextPath }/resources/assets/images/product-11-xs.jpg" alt="She gave my mother">
+		                                </a>
+		                                <div class="nk-product-cont">
+		                                    <h3 class="nk-product-title h5"><a href="store-product.html">She gave my mother</a></h3>
+		                                    <div class="nk-gap-1"></div>
+		                                    <span class="nk-product-rating">
+		                                        <span class="nk-product-rating-front" style="width: 60%;">
+		                                            <i class="fa fa-star"></i>
+		                                            <i class="fa fa-star"></i>
+		                                            <i class="fa fa-star"></i>
+		                                            <i class="fa fa-star"></i>
+		                                            <i class="fa fa-star"></i>
+		                                        </span>
+		                                        <span class="nk-product-rating-back">
+		                                            <i class="far fa-star"></i>
+		                                            <i class="far fa-star"></i>
+		                                            <i class="far fa-star"></i>
+		                                            <i class="far fa-star"></i>
+		                                            <i class="far fa-star"></i>
+		                                        </span>
+		                                    </span>
+		                                    <div class="nk-gap-1"></div>
+		                                    <div class="nk-product-price">€ 14.00</div>
+		                                    <div class="nk-gap-1"></div>
+		                                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Add to Cart</a>
+		                                </div>
+		                            </div>
+		                        </div>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<c:forEach var="discountGoodsDto" items="${discountGoodsList }" begin="0" end="${endDiscountGoods }">
+                    				<div class="col-md-6">
+			                            <div class="nk-product-cat">
+			                                <a class="nk-product-image" href="${contextPath }/goods/goodsInfo?num=${discountGoodsDto.num}">
+			                                    <img src="${contextPath }/smaillThumbnails?goodsFileName=${discountGoodsDto.fileName}" alt="Img">
+			                                </a>
+			                                <div class="nk-product-cont">
+			                                    <h3 class="nk-product-title h5"><a href="store-product.html">${discountGoodsDto.goodsName }</a></h3>
+			                                    <div class="nk-gap-1"></div>
+			                                    <span class="nk-product-rating">
+			                                        <span class="nk-product-rating-front" style="width: ${discountGoodsDto.score}%;">
+			                                            <i class="fa fa-star"></i>
+			                                            <i class="fa fa-star"></i>
+			                                            <i class="fa fa-star"></i>
+			                                            <i class="fa fa-star"></i>
+			                                            <i class="fa fa-star"></i>
+			                                        </span>
+			                                        <span class="nk-product-rating-back">
+			                                            <i class="far fa-star"></i>
+			                                            <i class="far fa-star"></i>
+			                                            <i class="far fa-star"></i>
+			                                            <i class="far fa-star"></i>
+			                                            <i class="far fa-star"></i>
+			                                        </span>
+			                                    </span>
+			                                    <div class="nk-gap-1"></div>
+			                                    <div class="nk-product-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${discountGoodsDto.price * ((100 - discountGoodsDto.discountRate) / 100)}"></fmt:formatNumber> 원 (${discountGoodsDto.discountRate }% 할인중)</div>
+			                                    <div class="nk-gap-1"></div>
+			                                    <a href="${contextPath }/goods/goodsInfo?num=${discountGoodsDto.num}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">구매하기</a>
+			                                </div>
+			                            </div>
+			                        </div>
+                    			</c:forEach>
+                    		</c:otherwise>
+                    	</c:choose>
                     </div>
                     <!-- END: Best Selling -->
                 </div>
@@ -803,12 +701,10 @@
                     <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
                         <div class="nk-widget">
                             <div class="nk-widget-content">
-                                <form action="#" class="nk-form nk-form-style-1" novalidate="novalidate">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" maxlength="20" placeholder="검색어를 입력해주세요...">
-                                        <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
-                                    </div>
-                                </form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="sideSearchKeyword" maxlength="20" placeholder="검색어를 입력해주세요...">
+                                    <button class="nk-btn nk-btn-color-main-1" id="getSideSearchBoard"><span class="ion-search"></span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="nk-widget nk-widget-highlighted">
@@ -820,27 +716,28 @@
                         <div class="nk-widget nk-widget-highlighted">
                             <h4 class="nk-widget-title"><span><span class="text-main-1">Top 3</span> Game</span></h4>
                             <div class="nk-widget-content">
-                                <div class="nk-widget-post">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="${contextPath }/resources/assets/images/post-1-sm.jpg" alt="">
-                                    </a>
-                                    <h3 class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></h3>
-                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
-                                </div>
-                                <div class="nk-widget-post">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="${contextPath }/resources/assets/images/post-2-sm.jpg" alt="">
-                                    </a>
-                                    <h3 class="nk-post-title"><a href="blog-article.html">Grab your sword and fight the Horde</a></h3>
-                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 5, 2018</div>
-                                </div>
-                                <div class="nk-widget-post">
-                                    <a href="blog-article.html" class="nk-post-image">
-                                        <img src="${contextPath }/resources/assets/images/post-3-sm.jpg" alt="">
-                                    </a>
-                                    <h3 class="nk-post-title"><a href="blog-article.html">We found a witch! May we burn her?</a></h3>
-                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Aug 27, 2018</div>
-                                </div>
+                            	<c:choose>
+                            		<c:when test="${empty sidePopularGoodsList }">
+                            			<div class="nk-widget-post">
+		                                    <a href="blog-article.html" class="nk-post-image">
+		                                        <img src="${contextPath }/resources/assets/images/post-1-sm.jpg" alt="">
+		                                    </a>
+		                                    <h3 class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></h3>
+		                                    <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
+		                                </div>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<c:forEach var="sidePopularGoodsDto" items="${sidePopularGoodsList }" begin="0" end="${endSidePopularGoods }">
+	                            			<div class="nk-widget-post">
+			                                    <a href="blog-article.html" class="nk-post-image">
+			                                        <img src="${contextPath }/smaillThumbnails?goodsFileName=${sidePopularGoodsDto.fileName}" alt="">
+			                                    </a>
+			                                    <h3 class="nk-post-title"><a href="blog-article.html">${sidePopularGoodsDto.goodsName }</a></h3>
+			                                    <div class="nk-post-date"><span class="fa fa-calendar"></span><fmt:formatDate value="${sidePopularGoodsDto.creDate }" pattern="yyyy-MM-dd"/></div>
+			                                </div>
+		                                </c:forEach>
+                            		</c:otherwise>
+                            	</c:choose>
                             </div>
                         </div>
                         <div class="nk-widget nk-widget-highlighted">

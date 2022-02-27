@@ -26,6 +26,8 @@ import com.portfolio.gms.admin.notice.dto.AdminNoticeDto;
 import com.portfolio.gms.board.dto.BoardDto;
 import com.portfolio.gms.board.dto.BoardReplyDto;
 import com.portfolio.gms.board.service.BoardService;
+import com.portfolio.gms.goods.dto.GoodsDto;
+import com.portfolio.gms.goods.service.GoodsService;
 import com.portfolio.gms.imageBoard.dto.ImageBoardDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
 
@@ -44,6 +46,10 @@ public class BoardController {
 	
 	@Autowired
 	private ImageBoardService imageBoardService;
+	
+	@Autowired
+	private GoodsService goodsService;
+	
 
 	// 게시판 리스트 불러오기
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
@@ -130,6 +136,24 @@ public class BoardController {
 				
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
+		
+		
+		/* 사이드 바 - 인기 게임 리스트 */
+		List<GoodsDto> sidePopularGoodsList = goodsService.popularGoodsList();
+		
+		int endSidePopularGoods = 0;
+		
+		if (sidePopularGoodsList != null) {
+				
+			if (sidePopularGoodsList.size() > 2) {
+				endSidePopularGoods = 2;
+			} else {
+				endSidePopularGoods = sidePopularGoodsList.size();
+			}
+		}
+			
+		mv.addObject("endSidePopularGoods", endSidePopularGoods);
+		mv.addObject("sidePopularGoodsList", sidePopularGoodsList);
 		
 		return mv;
 	}
@@ -273,6 +297,24 @@ public class BoardController {
 				
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
+		
+		
+		/* 사이드 바 - 인기 게임 리스트 */
+		List<GoodsDto> sidePopularGoodsList = goodsService.popularGoodsList();
+		
+		int endSidePopularGoods = 0;
+		
+		if (sidePopularGoodsList != null) {
+				
+			if (sidePopularGoodsList.size() > 2) {
+				endSidePopularGoods = 2;
+			} else {
+				endSidePopularGoods = sidePopularGoodsList.size();
+			}
+		}
+			
+		mv.addObject("endSidePopularGoods", endSidePopularGoods);
+		mv.addObject("sidePopularGoodsList", sidePopularGoodsList);
 		
 		return mv;
 	}

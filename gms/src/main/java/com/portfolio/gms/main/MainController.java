@@ -110,7 +110,7 @@ public class MainController {
 		mv.addObject("popularGoodsList", popularGoodsList);
 		
 		
-		// 공지사항
+		/* 공지사항 */
 		List<AdminNoticeDto> noticeList = adminNoticeService.mainPageNoticeList();
 		
 		int endNotice = 0;
@@ -143,7 +143,7 @@ public class MainController {
 		}
 		
 		
-		// 최신 이미지
+		/* 최신 이미지 */
 		List<ImageBoardDto> imgList =  imageBoardService.imgList();
 		
 		int endImg = 0;
@@ -162,7 +162,7 @@ public class MainController {
 		mv.addObject("imgList", imgList);
 		
 		
-		// 자유 게시판
+		/* 자유 게시판 */
 		List<BoardDto> boardList = boardService.mainPageBoardList();
 		
 		int endBoard = 0;
@@ -193,6 +193,25 @@ public class MainController {
 		
 		mv.addObject("boardList", boardList);
 		mv.addObject("endBoard", endBoard);
+		
+		
+		/* 할인 게임 */
+		List<GoodsDto> discountGoodsList = goodsService.discountGoodsList();
+		
+		int endDiscountGoods = 0;
+		
+		if (discountGoodsList != null) {
+				
+			if (discountGoodsList.size() > 3) {
+				endDiscountGoods = 3;
+			} else {
+				endDiscountGoods = discountGoodsList.size();
+			}
+		}
+			
+		mv.addObject("endDiscountGoods", endDiscountGoods);
+		mv.addObject("discountGoodsList", discountGoodsList);
+		
 		
 		
 		/* 사이드 바 - 인기 이미지 */
@@ -228,7 +247,6 @@ public class MainController {
 			}
 		}
 			
-		
 		mv.addObject("endSidePopularGoods", endSidePopularGoods);
 		mv.addObject("sidePopularGoodsList", sidePopularGoodsList);
 		

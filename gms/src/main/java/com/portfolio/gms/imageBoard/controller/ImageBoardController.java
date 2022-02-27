@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.portfolio.gms.goods.dto.GoodsDto;
+import com.portfolio.gms.goods.service.GoodsService;
 import com.portfolio.gms.imageBoard.dto.ImageBoardDto;
 import com.portfolio.gms.imageBoard.dto.ImageSuggestionDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
@@ -37,6 +39,10 @@ public class ImageBoardController {
 	
 	@Autowired
 	private ImageBoardService imageBoardService;
+	
+	@Autowired
+	private GoodsService goodsService;
+	
 
 	// 이미지 리스트 가져오기
 	@RequestMapping(value="/imageBoardList", method=RequestMethod.GET)
@@ -75,6 +81,24 @@ public class ImageBoardController {
 				
 		mv.addObject("endPopularImg", endPopularImg);
 		mv.addObject("popularImgList", popularImgList);
+		
+		
+		/* 사이드 바 - 인기 게임 리스트 */
+		List<GoodsDto> sidePopularGoodsList = goodsService.popularGoodsList();
+		
+		int endSidePopularGoods = 0;
+		
+		if (sidePopularGoodsList != null) {
+				
+			if (sidePopularGoodsList.size() > 2) {
+				endSidePopularGoods = 2;
+			} else {
+				endSidePopularGoods = sidePopularGoodsList.size();
+			}
+		}
+			
+		mv.addObject("endSidePopularGoods", endSidePopularGoods);
+		mv.addObject("sidePopularGoodsList", sidePopularGoodsList);
 		
 		return mv;
 	}
