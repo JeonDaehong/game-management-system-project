@@ -12,4 +12,6 @@ public interface AdminGoodsDao {
 	
 	public void goodsDelete(int num) throws Exception;
 	
+	public void deleteReplyforBoard(int goodsNum) throws Exception; 
+	
 }

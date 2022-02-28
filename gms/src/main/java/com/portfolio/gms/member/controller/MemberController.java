@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
 import com.portfolio.gms.board.service.BoardService;
+import com.portfolio.gms.goods.service.GoodsService;
 import com.portfolio.gms.imageBoard.dto.ImageSuggestionDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
 import com.portfolio.gms.member.dto.MemberDto;
@@ -42,6 +43,10 @@ public class MemberController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private GoodsService goodsService;
+	
 	
 	// 회원가입 화면으로 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
@@ -234,13 +239,16 @@ public class MemberController {
 		
 		// 해당 아이디의 댓글을 삭제 할 시, 게시글들의 댓글 카운트 감소
 		boardService.commentCountDownAll(memberId);
+		goodsService.commentCountDownAll(memberId);
 		
 		// 해당 아이디의 댓글들 삭제
 		boardService.deleteReplyforMember(memberId);
+		goodsService.deleteReplyforMember(memberId);
 		
 		// 해당 아이디의 게시글들 삭제
 		boardService.boardDeletefromMember(memberId);
 		imageBoardService.imgDeleteFromMember(memberId);
+		
 		
 		// 자동 로그아웃
 		HttpSession session = request.getSession();

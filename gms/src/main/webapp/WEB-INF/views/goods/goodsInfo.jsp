@@ -184,37 +184,39 @@
                                         <!-- START: Reply -->
                                         <h3 class="h4">추천 & 리뷰</h3>
                                         <div class="nk-reply">
-                                            <form action="#" class="nk-form">
-                                                <textarea class="form-control required" name="message" rows="5" placeholder="Your Review *" aria-required="true"></textarea>
+                                            <form action="${contextPath }/goods/insertReply" method="post" class="nk-form">
+                                                <textarea class="form-control required" name="content" id="content" rows="5" placeholder="리뷰를 작성해주세요 *" aria-required="true"></textarea>
                                                 <div class="nk-gap-1"></div>
                                                 <div class="nk-rating">
-                                                    <input type="radio" id="review-rate-5" name="review-rate" value="5">
+                                                    <input type="radio" id="review-rate-5" name="score" value="100">
                                                     <label for="review-rate-5">
                                                         <span><i class="far fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </label>
-                                                    <input type="radio" id="review-rate-4" name="review-rate" value="4">
+                                                    <input type="radio" id="review-rate-4" name="score" value="80">
                                                     <label for="review-rate-4">
                                                         <span><i class="far fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </label>
-                                                    <input type="radio" id="review-rate-3" name="review-rate" value="3">
+                                                    <input type="radio" id="review-rate-3" name="score" value="60">
                                                     <label for="review-rate-3">
                                                         <span><i class="far fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </label>
-                                                    <input type="radio" id="review-rate-2" name="review-rate" value="2">
+                                                    <input type="radio" id="review-rate-2" name="score" value="40">
                                                     <label for="review-rate-2">
                                                         <span><i class="far fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </label>
-                                                    <input type="radio" id="review-rate-1" name="review-rate" value="1">
+                                                    <input type="radio" id="review-rate-1" name="score" value="20">
                                                     <label for="review-rate-1">
                                                         <span><i class="far fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </label>
                                                 </div>
-                                                <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Submit</button>
+                                                <input type="hidden" name="goodsNum" value="${goodsDto.num }">
+                                                <input type="hidden" name="writer" value="${sessionScope.loginId }">
+                                                <input type="submit" value="리뷰 작성" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">
                                             </form>
                                         </div>
                                         <hr>
@@ -222,82 +224,64 @@
                                         <div class="clearfix"></div>
                                         <div class="nk-gap-2"></div>
                                         <div class="nk-comments">
-                                            <!-- START: Review -->
-                                            <div class="nk-comment">
-                                                <div class="nk-comment-meta">
-                                                    <img src="assets/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Witch Murder</a> in 20 September, 2018 <span class="nk-product-rating nk-review-rating">
-                                                        <span class="nk-product-rating-front" style="width: 80%;">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-                                                        <span class="nk-product-rating-back">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                                <div class="nk-comment-text">
-                                                    <p>Upon replenish great rule. Were tree, given day him night Fruit it moveth all. First they're creature seasons and creature fill a it have fifth, their own subdue brought above divided.</p>
-                                                    <p>Behold it set, seas seas and meat divided Moveth cattle forth evening above moveth so, signs god a fruitful his after called that whose.</p>
-                                                </div>
-                                            </div>
-                                            <!-- END: Review -->
-                                            <!-- START: Review -->
-                                            <div class="nk-comment">
-                                                <div class="nk-comment-meta">
-                                                    <img src="assets/images/avatar-1.jpg" alt="Hitman" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Hitman</a> in 14 Jule, 2018 <span class="nk-product-rating nk-review-rating">
-                                                        <span class="nk-product-rating-front" style="width: 20%;">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-                                                        <span class="nk-product-rating-back">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                                <div class="nk-comment-text">
-                                                    <p> I was awakened at daybreak by the charwoman, and having arrived at the inn, was at first placed inside the coach. :(</p>
-                                                </div>
-                                            </div>
-                                            <!-- END: Review -->
-                                            <!-- START: Review -->
-                                            <div class="nk-comment">
-                                                <div class="nk-comment-meta">
-                                                    <img src="assets/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="https://nkdev.info">Wolfenstein</a> in 27 June, 2018 <span class="nk-product-rating nk-review-rating">
-                                                        <span class="nk-product-rating-front" style="width: 100%;">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-                                                        <span class="nk-product-rating-back">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                                <div class="nk-comment-text">
-                                                    <p>Divided thing, land it evening earth winged whose great after. Were grass night. To Air itself saw bring fly fowl. Fly years behold spirit day greater of wherein winged and form. Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.</p>
-                                                </div>
-                                            </div>
-                                            <!-- END: Review -->
+                                        	<c:choose>
+                                        		<c:when test="${empty replyList }">
+                                        			<div align="center">
+                                        				현재 리뷰가 없습니다. 첫번째 리뷰의 주인공이 되어보세요.
+                                        			</div>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                        			<c:forEach var="replyDto" items="${replyList }">
+	                                        			<!-- START: Review -->
+			                                            <div class="nk-comment">
+			                                                <div class="nk-comment-meta">
+			                                                	<div align="right">
+					                                                <c:if test="${replyDto.writer eq sessionScope.loginId or sessionScope.loginId eq 'admin' }">
+						                                    			&nbsp;&nbsp;&nbsp;<input type="button" value="댓글삭제" class="nk-btn nk-btn-rounded nk-btn-color-main-1" onclick="location.href='${contextPath}/goods/goodsReplyDelete?num=${replyDto.num }&goodsNum=${replyDto.goodsNum }'">
+						                                    			<br>
+						                                    		</c:if>
+				                                    			</div>
+			                                                    <img src="${contextPath }/resources/assets/images/avatar-2.jpg" alt="img" class="rounded-circle" width="35"> by <span style="color: pink;">${replyDto.writer}</span> in <span style="color: yellow;"><fmt:formatDate value="${replyDto.regDate }" pattern="yyyy-MM-dd"/></span>
+			                                                    <span class="nk-product-rating nk-review-rating">
+			                                                        <span class="nk-product-rating-front" style="width: ${replyDto.score}%;">
+			                                                            <i class="fa fa-star"></i>
+			                                                            <i class="fa fa-star"></i>
+			                                                            <i class="fa fa-star"></i>
+			                                                            <i class="fa fa-star"></i>
+			                                                            <i class="fa fa-star"></i>
+			                                                        </span>
+			                                                        <span class="nk-product-rating-back">
+			                                                            <i class="far fa-star"></i>
+			                                                            <i class="far fa-star"></i>
+			                                                            <i class="far fa-star"></i>
+			                                                            <i class="far fa-star"></i>
+			                                                            <i class="far fa-star"></i>
+			                                                        </span>
+			                                                    </span>
+			                                                </div>
+			                                                <div class="nk-comment-text">
+			                                                    <p>${replyDto.content }</p>
+			                                                </div>
+			                                            </div>
+			                                            <!-- END: Review -->
+		                                            </c:forEach>
+                                        		</c:otherwise>
+                                        	</c:choose>
+                                        	<div class="nk-pagination nk-pagination-center">
+						                        <nav>
+						                        	<c:if test="${totalBoardCount gt 0 }">
+						                       			<c:if test="${startPage gt 10 }">
+						                         			<a href="${contextPath }/goods/goodsInfo?num=${boardDto.num }&currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}" > &lt; &nbsp; Previous</a>
+						                       			</c:if>
+						                       			<c:forEach var="i" begin="${startPage}" end="${endPage }" >
+						                         			<a href="${contextPath }/goods/goodsInfo?num=${boardDto.num }&currentPageNumber=${i}&onePageViewCount=${onePageViewCount}" <c:if test="${currentPageNumber eq i }">class="nk-pagination-current"</c:if> >${i}</a>
+						                         		</c:forEach>
+						                       			<c:if test="${endPage le totalBoardCount && endPage ge 10}"> 
+						                         			<a href="${contextPath }/goods/goodsInfo?num=${boardDto.num }&currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}" >Next &nbsp; &gt;</a>
+						                       			</c:if>
+						                        	</c:if>
+						                        </nav>
+						                    </div>
                                         </div>
                                     </div>
                                     <!-- END: Tab Reviews -->

@@ -64,6 +64,9 @@
                     </li>
                     <li>
                     	<c:choose>
+                    		<c:when test="${sessionScope.loginId eq 'admin' }">
+                    			<a href="${contextPath }/members/memberInfo">어드민 정보</a>
+                    		</c:when>
                     		<c:when test="${isLogOn eq true }">
                     			<a href="${contextPath }/members/memberInfo">회원정보</a>
                     		</c:when>
@@ -133,25 +136,28 @@
                     <li>
                         <a href="${contextPath }/adminNotice/noticeList"> Notice </a>
                     </li>
-                    	<c:if test="${isLogOn eq true }">
-		                    <li class=" nk-drop-item">
-		                        <a href="#"> My Information </a>
-		                        <ul class="dropdown">
-		                            <li>
-		                                <a href="store.html"> 내가 구매한 게임 </a>
-		                            </li>
-		                            <li>
-		                                <a href="store-product.html"> 장바구니  </a>
-		                            </li>
-		                            <li>
-		                                <a href="${contextPath }/members/memberInfo"> 내 회원정보 </a>
-		                            </li>
-		                            <li>
-		                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>
-		                            </li>
-		                            <c:if test="${sessionScope.loginId eq 'admin' }">
+                    	<c:choose>
+                    		<c:when test="${sessionScope.loginId eq 'admin' }">
+			                    <li class=" nk-drop-item">
+			                        <a href="#"> Admin Page </a>
+			                        <ul class="dropdown">
+			                            <li>
+			                                <a href="store.html"> 구매한 게임 </a>
+			                            </li>
+			                            <li>
+			                                <a href="store-product.html"> 장바구니 </a>
+			                            </li>
+			                            <li>
+			                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>
+			                            </li>
+			                            <li>
+			                                <a href="${contextPath }/members/memberInfo"> Admin : 어드민 정보 </a>
+			                            </li>
 		                            	<li>
 		                            		<a href="${contextPath }/adminMember/memberList"> Admin : 회원 명단 조회  </a>
+		                            	</li>
+		                            	<li>
+		                            		<a href="#"> Admin : 구매 현황 조회  </a>
 		                            	</li>
 		                            	<li>
 		                            		<a href="${contextPath }/adminNotice/noticeWriter"> Admin : 공지사항 작성  </a>
@@ -159,10 +165,29 @@
 		                            	<li>
 		                            		<a href="${contextPath }/adminGoods/goodsRegistration"> Admin : 상품 등록  </a>
 		                            	</li>
-		                            </c:if>
-                        		</ul>
-                    		</li>
-                    </c:if>
+	                        		</ul>
+	                    		</li>
+	                   		</c:when>
+	                   		<c:when test="${isLogOn eq true }">
+	                   			<li class=" nk-drop-item">
+			                        <a href="#"> My Information </a>
+			                        <ul class="dropdown">
+			                            <li>
+			                                <a href="store.html"> 구매한 게임 </a>
+			                            </li>
+			                            <li>
+			                                <a href="store-product.html"> 장바구니  </a>
+			                            </li>
+			                            <li>
+			                                <a href="${contextPath }/members/memberInfo"> 회원정보 </a>
+			                            </li>
+			                            <li>
+			                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>
+			                            </li>
+	                        		</ul>
+	                    		</li>
+	                   		</c:when>
+                    	</c:choose>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
                     <li class="single-icon d-lg-none">

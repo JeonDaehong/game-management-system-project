@@ -267,5 +267,30 @@
 		WHERE
 				NUM = #{num}
 	</select>
+	
+	
+	<!-- 리뷰작성 시, 점수와 리뷰인원 수 증가 -->
+	<update id="scorePlus" parameterType="hashmap">
+		UPDATE
+				T_ADMIN_GOODS
+		SET
+				SCORE = #{insertScore},
+				SCORE_ALL = (SCORE_ALL + #{insertScorePlus}),
+				SCORE_COUNT = (SCORE_COUNT + 1),
+				REVIEW_ALL = (REVIEW_ALL + 1)
+		WHERE
+				NUM = #{num}
+	</update>
+	
+	
+	<!-- 리뷰삭제 시, 리뷰인원 수 감소 -->
+	<update id="scoreMinus" parameterType="int">
+		UPDATE
+				T_ADMIN_GOODS
+		SET
+				SCORE_COUNT = (SCORE_COUNT - 1)
+		WHERE
+				NUM = #{num}
+	</update>
 
 </mapper>

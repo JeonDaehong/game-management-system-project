@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goodsReplyMapper">
+
+	<!-- 해당 게시글에 리뷰를 썼는지 체크하는 쿼리문 -->
+	<select id="replyCheck" resultType="GoodsReplyDto" parameterType="GoodsReplyDto">
+		SELECT
+				*
+		FROM
+				T_GOODS_REPLY
+		WHERE
+				WRITER = #{writer} AND GOODS_NUM = #{goodsNum}
+	</select>
+
+	<!-- 리뷰 갯수 반환 쿼리문 -->
+	<select id="getReplyCount" parameterType="int" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM
+				T_GOODS_REPLY
+		WHERE
+				GOODS_NUM = #{goodsNum}
+	</select>
+
+	<!-- 리뷰을 작성하는 쿼리문 -->
+	<insert id="insertReply" parameterType="GoodsReplyDto">
+		INSERT INTO
+				T_GOODS_REPLY
+		VALUES(
+				NULL,
+				#{goodsNum},
+				#{writer},
+				#{content},
+				NOW(),
+				#{score}
+			)
+	</insert>
+	
+	<!-- 해당 게시글에 있는 리뷰 불러오는 쿼리문 -->
+	<select id="getReply" parameterType="hashmap" resultType="GoodsReplyDto">
+		SELECT
+				*
+		FROM
+				T_GOODS_REPLY
+		WHERE
+				GOODS_NUM = #{goodsNum}
+		ORDER BY
+				NUM DESC
+		LIMIT
+	            #{startBoardIdx}, #{onePageViewCount}
+	</select>
+	
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM
+				T_GOODS_REPLY
+		WHERE
+				NUM = #{num}
+	</delete>
+	
+	
+	<!-- 게시글 삭제 시, 해당 게시글의 리뷰들 삭제 -->
+	<delete id="deleteReplyforBoard" parameterType="int">
+		DELETE FROM
+				T_GOODS_REPLY
+		WHERE
+				GOODS_NUM = #{goodsNum}
+	</delete>
+
+	<!-- 계정 삭제 시, 해당 계정과 관련 된 게시물 고유 번호 반환 -->
+	<select id="deleteReplyCount" parameterType="String" resultType="int">
+		SELECT
+				GOODS_NUM
+		FROM
+				T_GOODS_REPLY
+		WHERE
+				WRITER = #{writer}
+	</select>
+
+	<!-- 계정 삭제 시, 해당 계정과 관련 된 리뷰들 삭제 -->
+	<delete id="deleteReplyforMember" parameterType="String">
+		DELETE FROM
+				T_GOODS_REPLY
+		WHERE
+				WRITER = #{writer}
+	</delete>
+	
+</mapper>

@@ -146,6 +146,9 @@ public class AdminGoodsController {
 		
 		adminGoodsService.goodsDelete(num);
 		
+		/* 해당 게임(상품)의 리뷰댓글 DB에서 삭제 */
+		adminGoodsService.deleteReplyforBoard(num);
+		
 		/* 서버에서 파일 삭제 */
 		File f1 = new File(CURR_IMAGE_REPO_PATH + seperatorPath + fileName);
 		File f2 = new File(CURR_IMAGE_REPO_PATH + seperatorPath + secondFileName);

@@ -47,6 +47,8 @@ public class GoodsDto {
 	private String thirdFileName;
 	private String fourthFileName;
 	private int scoreCount;
+	private int scoreAll;
+	private int reviewAll;
 	
 	/* Getter & Setter */
 	public int getNum() {
@@ -162,6 +164,18 @@ public class GoodsDto {
 	}
 	public void setFourthFileName(String fourthFileName) {
 		this.fourthFileName = fourthFileName;
+	}
+	public int getScoreAll() {
+		return scoreAll;
+	}
+	public void setScoreAll(int scoreAll) {
+		this.scoreAll = scoreAll;
+	}
+	public int getReviewAll() {
+		return reviewAll;
+	}
+	public void setReviewAll(int reviewAll) {
+		this.reviewAll = reviewAll;
 	}
 	
 }

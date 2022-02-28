@@ -11,4 +11,6 @@ public interface AdminGoodsService {
 	public void goodsUpdate(GoodsDto goodsDto) throws Exception;
 	
 	public void goodsDelete(int num) throws Exception;
+	
+	public void deleteReplyforBoard(int goodsNum) throws Exception; 
 }

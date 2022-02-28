@@ -35,5 +35,11 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	public void goodsDelete(int num) throws Exception {
 		adminGoodsDao.goodsDelete(num);
 	}
+
+	/* 게시글 삭제 시, 해당 게시글의 리뷰들 삭제 */
+	@Override
+	public void deleteReplyforBoard(int goodsNum) throws Exception {
+		adminGoodsDao.deleteReplyforBoard(goodsNum);
+	}
 	
 }

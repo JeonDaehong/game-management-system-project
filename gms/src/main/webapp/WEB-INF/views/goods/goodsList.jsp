@@ -30,6 +30,20 @@
 			
 		});
 		
+		
+		$("#searchWordClick").click(function(){
+			
+			var searchWord = $("#searchWord").val();
+			var url = "${contextPath}/goods/goodsList?";
+				url += "searchKeyword="+searchWord;
+		
+			if (searchWord == "") {
+				alert('검색어를 입력해주시기 바랍니다.');
+			} else {
+				location.href=url;
+			}
+		});
+		
 	});
 
 </script>
@@ -110,13 +124,13 @@
 	                    <div class="col-md-4">
 	                        <select id="genre" class="form-control">
 	                            <option value="total">장르 선택</option>
-	                            <option value="rpg">RPG</option>
-	                            <option value="fps">FPS</option>
-	                            <option value="advencher">어드벤쳐</option>
-	                            <option value="rts">RTS</option>
-	                            <option value="fear">공포</option>
-	                            <option value="datingSimulation">연애 시뮬레이션</option>
-	                            <option value="etc">기타 장르</option>
+	                            <option value="rpg" <c:if test="${genre eq 'rpg' }">selected</c:if>>RPG</option>
+	                            <option value="fps" <c:if test="${genre eq 'fps' }">selected</c:if>>FPS</option>
+	                            <option value="advencher" <c:if test="${genre eq 'advencher' }">selected</c:if>>어드벤쳐</option>
+	                            <option value="rts" <c:if test="${genre eq 'rts' }">selected</c:if>>RTS</option>
+	                            <option value="fear" <c:if test="${genre eq 'fear' }">selected</c:if>>공포</option>
+	                            <option value="datingSimulation" <c:if test="${genre eq 'datingSimulation' }">selected</c:if>>연애 시뮬레이션</option>
+	                            <option value="etc" <c:if test="${genre eq 'etc' }">selected</c:if>>기타 장르</option>
 	                        </select>
 	                    </div>
 	                    <div class="col-md-8">
@@ -137,12 +151,10 @@
 	                </div>
 	            </div>
 	            <div class="col-lg-4">
-	                <form action="#" class="nk-form" novalidate="novalidate">
-	                    <div class="input-group">
-	                        <input type="text" class="form-control" placeholder="검색어를 입력해주세요 . . .">
-	                        <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
-	                    </div>
-	                </form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchWord" placeholder="검색어를 입력해주세요 . . .">
+                        <button class="nk-btn nk-btn-color-main-1" id="searchWordClick"><span class="ion-search"></span></button>
+                    </div>
 	            </div>
 	        </div>
 	        <!-- END: Products Filter -->
@@ -184,12 +196,13 @@
 				                            </span>
 				                        </span>
 				                        <div class="nk-gap-1"></div> ${goodsDto.cutContent } <div class="nk-gap-1"></div>
+				                        정상가: ${goodsDto.price} 원
 				                        <c:choose>
 				                        	<c:when test="${goodsDto.discountRate eq 0 }">
-				                        		<div class="nk-product-price">${goodsDto.price} 원</div>
+				                        		<div class="nk-product-price">현재가: ${goodsDto.price} 원</div>
 				                        	</c:when>
 				                        	<c:otherwise>
-				                        		<div class="nk-product-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price * ((100 - goodsDto.discountRate) / 100)}"></fmt:formatNumber> 원 (${goodsDto.discountRate }% 할인중)</div>
+				                        		<div class="nk-product-price">현재가: <fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price * ((100 - goodsDto.discountRate) / 100)}"></fmt:formatNumber> 원 (${goodsDto.discountRate }% 할인중)</div>
 				                        	</c:otherwise>
 				                        </c:choose>
 				                        <div class="nk-gap-1"></div>

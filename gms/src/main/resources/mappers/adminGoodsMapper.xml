@@ -26,6 +26,8 @@
 				#{secondFileName},
 				#{thirdFileName},
 				#{fourthFileName},
+				0,
+				0,
 				0
 			)
 	</insert>

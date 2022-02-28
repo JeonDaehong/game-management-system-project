@@ -36,4 +36,10 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 	public void goodsDelete(int num) throws Exception {
 		sqlSession.delete("adminGoodsMapper.goodsDelete", num);
 	}
+
+	/* 게시글 삭제 시, 해당 게시글의 리뷰들 삭제 */
+	@Override
+	public void deleteReplyforBoard(int goodsNum) throws Exception {
+		sqlSession.delete("goodsReplyMapper.deleteReplyforBoard", goodsNum);
+	}
 }
