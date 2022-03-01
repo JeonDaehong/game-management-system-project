@@ -38,4 +38,12 @@
 				MEMBER_ID = #{memberId}
 	</select>
 	
+	<!-- 카트에서 내용물 삭제 -->
+	<select id="cartDelete" parameterType="hashmap">
+		DELETE FROM
+				T_GOODS_CART
+		WHERE
+				MEMBER_ID = #{memberId} AND GOODS_NAME = #{goodsName}
+	</select>
+	
 </mapper>

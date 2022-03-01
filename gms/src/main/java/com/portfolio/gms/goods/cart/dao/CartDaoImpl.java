@@ -1,5 +1,6 @@
 package com.portfolio.gms.goods.cart.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,6 +31,12 @@ public class CartDaoImpl implements CartDao {
 	/* 카트 불러오기 */
 	public List<CartDto> cartList(String memberId) throws Exception {
 		return sqlSession.selectList("cartMapper.cartList", memberId);
+	}
+
+	/* 카트 내용 삭제 */
+	@Override
+	public void cartDelete(HashMap<String, Object> map) throws Exception {
+		sqlSession.delete("cartMapper.cartDelete", map);
 	}
 
 }

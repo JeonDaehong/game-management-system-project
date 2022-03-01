@@ -1,5 +1,7 @@
 package com.portfolio.gms.goods.cart.dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +15,14 @@ public class CartDto {
 	private boolean goodsExistence;
 	private int price;
 	
+	private List<CartDto> cartList;
+	
+	public List<CartDto> getCartList() {
+		return cartList;
+	}
+	public void setCartList(List<CartDto> cartList) {
+		this.cartList = cartList;
+	}
 	public int getNum() {
 		return num;
 	}

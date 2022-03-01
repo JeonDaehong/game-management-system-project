@@ -1,5 +1,7 @@
 package com.portfolio.gms.goods.cart.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +44,6 @@ public class CartController {
 			cartDto.setPrice(Math.round(price));
 		}
 		
-		
-		
 		String body = "";
 		
 		if (cartService.cartCheck(cartDto)) {
@@ -73,4 +73,25 @@ public class CartController {
 		return mv;
 	}
 	
+	
+	/* 카트에서 삭제 */
+	@RequestMapping(value="/cartDelete", method=RequestMethod.GET)
+	public ResponseEntity<Object> cartDelete(@RequestParam("memberId") String memberId, @RequestParam("goodsName") String goodsName, HttpServletRequest request) throws Exception {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("goodsName", goodsName);
+		cartService.cartDelete(map);
+		
+		String body = "<script>";
+			   body += "alert('카트에서 삭제하였습니다.');";
+			   body += "location.href='" + request.getContextPath() + "/cart/inCart?memberId=" + memberId + "';";
+			   body += "</script>";
+			   
+	    HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		return new ResponseEntity<Object>(body, headers, HttpStatus.OK);
+	}
+	
+		
 }

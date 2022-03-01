@@ -1,5 +1,6 @@
 package com.portfolio.gms.goods.cart.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,12 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartDto> cartList(String memberId) throws Exception {
 		return cartDao.cartList(memberId);
+	}
+
+	/* 카트 내용 삭제 */
+	@Override
+	public void cartDelete(HashMap<String, Object> map) throws Exception {
+		cartDao.cartDelete(map);
 	}
 
 }

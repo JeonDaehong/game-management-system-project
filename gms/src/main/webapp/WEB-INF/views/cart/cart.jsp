@@ -12,6 +12,24 @@
 		location.href = '${contextPath}/members/login';
 	</script>
 </c:if>
+<script>
+
+	var tempPrice = document.getElementById('${cartDto.num }price').value;
+	var count = document.getElementById('${cartDto.num }count').value;
+	var price = (tempPrice * count);
+	document.getElementById('${cartDto.num }total').innerHTML = price + ' 원';
+	document.getElementById('${cartDto.num }totalPrice').value = price;
+	
+	                         	
+	function countUpDown() {
+		var tempPrice = document.getElementById('${cartDto.num }price').value;
+		var count = document.getElementById('${cartDto.num }count').value;
+		var price = (tempPrice * count);
+		document.getElementById('${cartDto.num }total').innerHTML = price + ' 원';
+		document.getElementById('${cartDto.num }totalPrice').value = price;
+	}
+	
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -33,6 +51,7 @@
                 <div class="nk-store nk-store-cart">
                     <div class="table-responsive">
                         <!-- START: Products in Cart -->
+                        <form action="${contextPath }/order/goOrder" method="get">
                         <table class="table nk-store-cart-products">
                             <tbody>
                             	<c:choose>
@@ -44,7 +63,7 @@
                             			</tr>
                             		</c:when>
                             		<c:otherwise>
-                            			<c:forEach var="cartDto" items="${cartList }">
+                            			<c:forEach var="cartDto" items="${cartList }" varStatus="status">
                             				<tr>
 			                                    <td class="nk-product-cart-thumb">
 			                                        <img src="${contextPath }/gameListThumbnails?goodsFileName=${cartDto.filename}" alt="img" width="115">
@@ -55,6 +74,9 @@
 			                                        <h2 class="nk-post-title h4">
 			                                            ${cartDto.goodsName}
 			                                        </h2>
+			                                        <input type="hidden" name="cartList[${status.index }].memberId" value="${cartDto.memberId}">
+			                                        <input type="hidden" name="cartList[${status.index }].goodsName" value="${cartDto.goodsName }">
+			                                        <input type="hidden" name="cartList[${status.index }].filename" value="${cartDto.filename }">
 			                                    </td>
 			                                    <td class="nk-product-cart-price">
 			                                        <h5 class="h6">가격:</h5>
@@ -65,33 +87,18 @@
 			                                        <h5 class="h6">개수:</h5>
 			                                        <div class="nk-gap-1"></div>
 			                                        <div class="nk-form">
-			                                        	<input type="hidden" id="${cartDto.num }price" value="${cartDto.price}">
-			                                            <input type="number" id="${cartDto.num }number" name="isNumber" class="form-control" value="1" min="1" max="9" maxlength="1" onclick="countUpDown()">
+			                                        	<input type="hidden" id="${cartDto.num }price" name="cartList[${status.index }].price" value="${cartDto.price}">
+			                                            <input type="number" id="${cartDto.num }count" name="cartList[${status.index }].count" class="form-control" value="1" min="1" max="9" maxlength="1" onclick="countUpDown()">
 			                                        </div>
 			                                    </td>
 			                                    <td class="nk-product-cart-total">
 			                                        <h5 class="h6">총가격:</h5>
 			                                        <div class="nk-gap-1"></div>
 			                                        <strong><span id="${cartDto.num }total"></span></strong>
-			                                        <input type="hidden" id="${cartDto.num }totalPrice" value="0">
+			                                        <input type="hidden" id="${cartDto.num }totalPrice">
 			                                    </td>
 			                                    <td class="nk-product-cart-remove">
-			                                    	<a href="#"><span class="ion-android-close"></span></a>
-			                                    	<script>
-				                                    	var tempPrice = document.getElementById('${cartDto.num }price').value;
-														var count = document.getElementById('${cartDto.num }number').value;
-														var price = (tempPrice * count);
-														document.getElementById('${cartDto.num }total').innerHTML = price + ' 원';
-														document.getElementById('${cartDto.num }}totalPrice').value = price;
-			                                    	
-														function countUpDown() {
-															var tempPrice = document.getElementById('${cartDto.num }price').value;
-															var count = document.getElementById('${cartDto.num }number').value;
-															var price = (tempPrice * count);
-															document.getElementById('${cartDto.num }total').innerHTML = price + ' 원';
-															document.getElementById('${cartDto.num }}totalPrice').value = price;
-														}
-													</script>
+			                                    	<a href="${contextPath}/cart/cartDelete?memberId=${cartDto.memberId}&goodsName=${cartDto.goodsName}"><span class="ion-android-close"></span></a>
 			                                    </td>
 			                                </tr>
                             			</c:forEach>
@@ -99,19 +106,14 @@
                             	</c:choose>
                             </tbody>
                         </table>
+                        <c:if test="${!empty cartList }">
+	                    	<p><span id="totalPrice"></span></p>
+	                    	<input type="submit" value="일괄 구매하기" class="nk-btn nk-btn-rounded nk-btn-color-main-1 float-right" >
+                   		 </c:if>
                         <!-- END: Products in Cart -->
+                        </form>
                         </div>
                     </div>
-                    <c:if test="${!empty cartList }">
-                    	<p><span id="totalPrice"></span></p>
-                    	<form>
-                    	<input type="hidden" name="totalPrice" value="0">
-                    	<c:forEach var="cartDto" items="${cartList }">
-                    		<input type="hidden" name="goodsName" value="${cartDto.goodsName }">
-                    	</c:forEach>
-                    	<a class="nk-btn nk-btn-rounded nk-btn-color-main-1 float-right" href="store-checkout.html">일괄 구매하기</a>
-                   		</form>
-                    </c:if>
                     <div class="clearfix"></div>
                 </div>
             </div>
