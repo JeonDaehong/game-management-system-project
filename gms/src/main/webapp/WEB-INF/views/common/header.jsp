@@ -145,7 +145,7 @@
 			                                <a href="store.html"> 구매한 게임 </a>
 			                            </li>
 			                            <li>
-			                                <a href="store-product.html"> 장바구니 </a>
+			                                <a href="${contextPath }/cart/inCart?memberId=${sessionScope.loginId}"> 장바구니 </a>
 			                            </li>
 			                            <li>
 			                                <a href="${contextPath }/members/attendanceCheck?memberId=${sessionScope.loginId}"> 출석체크 이벤트 </a>
@@ -176,7 +176,7 @@
 			                                <a href="store.html"> 구매한 게임 </a>
 			                            </li>
 			                            <li>
-			                                <a href="store-product.html"> 장바구니  </a>
+			                                <a href="${contextPath }/cart/inCart?memberId=${sessionScope.loginId}"> 장바구니  </a>
 			                            </li>
 			                            <li>
 			                                <a href="${contextPath }/members/memberInfo"> 회원정보 </a>

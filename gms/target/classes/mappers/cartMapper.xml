@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cartMapper">
+
+	<!-- 장바구니에 같은 목록이 있는지 확인 -->
+	<select id="cartCheck" parameterType="CartDto" resultType="CartDto">
+		SELECT
+				*
+		FROM
+				T_GOODS_CART
+		WHERE
+				MEMBER_ID = #{memberId} AND GOODS_NAME = #{goodsName}
+	</select>
+	
+	<!-- 장바구니에 넣기 -->
+	<insert id="inCart" parameterType="CartDto">
+		INSERT INTO
+				T_GOODS_CART
+		VALUES (
+				NULL,
+				#{memberId},
+				#{goodsName},
+				#{filename},
+				1,
+				TRUE,
+				#{price}
+			)
+	</insert>
+	
+	<!-- 카트 목록 받아오기 -->
+	<select id="cartList" resultType="CartDto" parameterType="String">
+		SELECT
+				*
+		FROM
+				T_GOODS_CART
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+</mapper>

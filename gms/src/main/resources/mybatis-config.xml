@@ -17,6 +17,7 @@
 		<typeAlias type="com.portfolio.gms.board.dto.BoardReplyDto" alias="BoardReplyDto"/>          
 		<typeAlias type="com.portfolio.gms.goods.dto.GoodsDto" alias="GoodsDto"/>          
 		<typeAlias type="com.portfolio.gms.goods.dto.GoodsReplyDto" alias="GoodsReplyDto"/>          
+		<typeAlias type="com.portfolio.gms.goods.cart.dto.CartDto" alias="CartDto"/>          
     </typeAliases>
 
 </configuration>
