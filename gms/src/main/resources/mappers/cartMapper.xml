@@ -46,4 +46,14 @@
 				MEMBER_ID = #{memberId} AND GOODS_NAME = #{goodsName}
 	</select>
 	
+	<!-- 해당 상품이 구매 가능한지 반환 -->
+	<select id="cartExistence" parameterType="CartDto" resultType="boolean">
+		SELECT
+				GOODS_EXISTENCE
+		FROM
+				T_GOODS_CART
+		WHERE
+				MEMBER_ID = #{memberId} AND GOODS_NAME = #{goodsName}
+	</select>
+	
 </mapper>

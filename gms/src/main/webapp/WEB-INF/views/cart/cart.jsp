@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 <c:if test="${isLogOn ne true }">
 	<script>
 		alert('로그인 후에 열람하실 수 있습니다.');
@@ -13,21 +14,26 @@
 	</script>
 </c:if>
 <script>
-
-	var tempPrice = document.getElementById('${cartDto.num }price').value;
-	var count = document.getElementById('${cartDto.num }count').value;
-	var price = (tempPrice * count);
-	document.getElementById('${cartDto.num }total').innerHTML = price + ' 원';
-	document.getElementById('${cartDto.num }totalPrice').value = price;
 	
-	                         	
-	function countUpDown() {
-		var tempPrice = document.getElementById('${cartDto.num }price').value;
-		var count = document.getElementById('${cartDto.num }count').value;
+	$().ready(function(){
+		
+		var tempPrice = $("#${cartDto.num }price").val();
+		var count = $("#${cartDto.num }count").val();
 		var price = (tempPrice * count);
-		document.getElementById('${cartDto.num }total').innerHTML = price + ' 원';
-		document.getElementById('${cartDto.num }totalPrice').value = price;
-	}
+		$("#${cartDto.num }total").html = price + ' 원';
+		
+		$("#${cartDto.num }count").click(function(){
+		
+			var tempPrice = $("#${cartDto.num }price").val();
+			var count = $("#${cartDto.num }count").val();
+			var price = (tempPrice * count);
+			alert(tempPrice);
+			alert(count);
+			alert(price);
+			$("#${cartDto.num }total").html = price + ' 원';
+			
+		});
+	});
 	
 </script>
 <title>Insert title here</title>
@@ -88,7 +94,7 @@
 			                                        <div class="nk-gap-1"></div>
 			                                        <div class="nk-form">
 			                                        	<input type="hidden" id="${cartDto.num }price" name="cartList[${status.index }].price" value="${cartDto.price}">
-			                                            <input type="number" id="${cartDto.num }count" name="cartList[${status.index }].count" class="form-control" value="1" min="1" max="9" maxlength="1" onclick="countUpDown()">
+			                                            <input type="number" id="${cartDto.num }count" name="cartList[${status.index }].count" class="form-control" value="${cartDto.count }" min="1" max="9" maxlength="1">
 			                                        </div>
 			                                    </td>
 			                                    <td class="nk-product-cart-total">
