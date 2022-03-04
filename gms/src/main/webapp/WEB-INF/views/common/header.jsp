@@ -142,7 +142,7 @@
 			                        <a href="#"> Admin Page </a>
 			                        <ul class="dropdown">
 			                            <li>
-			                                <a href="store.html"> 구매한 게임 </a>
+			                                <a href="${contextPath }/order/myOrder?memberId=${sessionScope.loginId}"> 구매한 게임 </a>
 			                            </li>
 			                            <li>
 			                                <a href="${contextPath }/cart/inCart?memberId=${sessionScope.loginId}"> 장바구니 </a>
@@ -173,7 +173,7 @@
 			                        <a href="#"> My Information </a>
 			                        <ul class="dropdown">
 			                            <li>
-			                                <a href="store.html"> 구매한 게임 </a>
+			                                <a href="${contextPath }/order/myOrder?memberId=${sessionScope.loginId}"> 구매한 게임 </a>
 			                            </li>
 			                            <li>
 			                                <a href="${contextPath }/cart/inCart?memberId=${sessionScope.loginId}"> 장바구니  </a>

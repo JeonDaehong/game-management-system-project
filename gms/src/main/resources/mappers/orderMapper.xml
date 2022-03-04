@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orderMapper">
+	
+	<!-- 주문 등록 쿼리문 -->
+	<insert id="order" parameterType="GoodsOrderDto">
+		INSERT INTO
+				T_GOODS_ORDER
+		VALUES (
+				NULL,
+				NOW(),
+				#{memberId},
+				#{price},
+				#{goodsName},
+				#{sender},
+				#{recipient},
+				#{email},
+				#{hp},
+				#{zipcode},
+				#{roadAddress},
+				#{jibunAddress},
+				#{namujiAddress},
+				#{content},
+				#{situation}
+		)
+		
+	</insert>
+	
+	
+	<!-- 내가 주문한 상품 등록 쿼리문 -->
+	<select id="myOrders" parameterType="String" resultType="GoodsOrderDto">
+		SELECT
+				*
+		FROM
+				T_GOODS_ORDER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+
+</mapper>

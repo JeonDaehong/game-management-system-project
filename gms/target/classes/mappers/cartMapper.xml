@@ -38,6 +38,7 @@
 				MEMBER_ID = #{memberId}
 	</select>
 	
+	
 	<!-- 카트에서 내용물 삭제 -->
 	<select id="cartDelete" parameterType="hashmap">
 		DELETE FROM
@@ -46,14 +47,13 @@
 				MEMBER_ID = #{memberId} AND GOODS_NAME = #{goodsName}
 	</select>
 	
-	<!-- 해당 상품이 구매 가능한지 반환 -->
-	<select id="cartExistence" parameterType="CartDto" resultType="boolean">
-		SELECT
-				GOODS_EXISTENCE
-		FROM
+	
+	<!-- 회원 삭제 시, 해당 회원의 장바구니 삭제 -->
+	<select id="cartDeleteFromMember" parameterType="String">
+		DELETE FROM
 				T_GOODS_CART
 		WHERE
-				MEMBER_ID = #{memberId} AND GOODS_NAME = #{goodsName}
+				MEMBER_ID = #{memberId}
 	</select>
 	
 </mapper>

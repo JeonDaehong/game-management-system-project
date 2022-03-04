@@ -40,4 +40,10 @@ public class CartServiceImpl implements CartService {
 		cartDao.cartDelete(map);
 	}
 
+	/* 회원탈퇴 시 해당 회원의 장바구니 삭제 */
+	@Override
+	public void cartDeleteFromMember(String memberId) throws Exception {
+		cartDao.cartDeleteFromMember(memberId);
+	}
+
 }

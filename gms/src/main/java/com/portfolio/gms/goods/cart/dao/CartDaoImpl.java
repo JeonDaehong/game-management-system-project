@@ -39,4 +39,10 @@ public class CartDaoImpl implements CartDao {
 		sqlSession.delete("cartMapper.cartDelete", map);
 	}
 
+	/* 회원탈퇴 시 해당 회원의 장바구니 삭제 */
+	@Override
+	public void cartDeleteFromMember(String memberId) throws Exception {
+		sqlSession.delete("cartMapper.cartDeleteFromMember", memberId);
+	}
+
 }

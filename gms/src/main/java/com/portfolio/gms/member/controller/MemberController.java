@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.portfolio.gms.admin.notice.dto.NoticeSuggestionDto;
 import com.portfolio.gms.admin.notice.service.AdminNoticeService;
 import com.portfolio.gms.board.service.BoardService;
+import com.portfolio.gms.goods.cart.service.CartService;
 import com.portfolio.gms.goods.service.GoodsService;
 import com.portfolio.gms.imageBoard.dto.ImageSuggestionDto;
 import com.portfolio.gms.imageBoard.service.ImageBoardService;
@@ -46,6 +47,9 @@ public class MemberController {
 	
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	
 	// 회원가입 화면으로 이동
@@ -248,6 +252,9 @@ public class MemberController {
 		// 해당 아이디의 게시글들 삭제
 		boardService.boardDeletefromMember(memberId);
 		imageBoardService.imgDeleteFromMember(memberId);
+		
+		// 해당 아이디의 장바구니 삭제
+		cartService.cartDeleteFromMember(memberId);
 		
 		
 		// 자동 로그아웃

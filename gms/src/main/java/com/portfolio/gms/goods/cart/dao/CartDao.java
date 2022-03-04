@@ -14,4 +14,6 @@ public interface CartDao {
 	public List<CartDto> cartList(String memberId) throws Exception;
 	
 	public void cartDelete(HashMap<String, Object> map) throws Exception;
+	
+	public void cartDeleteFromMember(String memberId) throws Exception;
 }

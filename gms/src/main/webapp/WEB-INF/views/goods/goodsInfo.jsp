@@ -80,20 +80,23 @@
                                     </div>
                                     <!-- START: Add to Cart -->
                                     <div class="nk-gap-2"></div>
-                                    <form action="#" class="nk-product-addtocart">
+                                    <form action="${contextPath }/cart/inCart" method="post" class="nk-product-addtocart">
                                         <c:choose>
 				                        	<c:when test="${goodsDto.discountRate eq 0 }">
-				                        		<div class="nk-product-price">${goodsDto.price} 원</div>
+				                        		<div class="nk-product-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price}"/> 원</div>
 				                        	</c:when>
 				                        	<c:otherwise>
 				                        		<div class="nk-product-price"><fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price * ((100 - goodsDto.discountRate) / 100)}"></fmt:formatNumber> 원 (${goodsDto.discountRate }% 할인중)</div>
 				                        	</c:otherwise>
 				                        </c:choose>
                                         <div class="nk-gap-1"></div>
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" value="1" min="1" max="21">
-                                            <button class="nk-btn nk-btn-rounded nk-btn-color-main-1">구매하기</button>
-                                        </div>
+					                        <input type="hidden" name="price" value="${goodsDto.price}">
+					                        <input type="hidden" name="discountRate" value="${goodsDto.discountRate}">
+					                        <input type="hidden" name="fileName" value="${goodsDto.fileName}">
+					                        <input type="hidden" name="goodsName" value="${goodsDto.goodsName}">
+					                        <input type="hidden" name="memberId" value="${sessionScope.loginId}">
+					                        <input type="submit" value="장바구니 " size="7" class="nk-btn nk-btn-rounded nk-btn-color-main-1">
+                                        
                                     </form>
                                     <div class="nk-gap-3"></div>
                                     <!-- END: Add to Cart -->
@@ -101,7 +104,6 @@
                                     <div class="nk-product-meta">
                                         <div><strong>제작 회사</strong>: ${goodsDto.creCompany }</div>
                                         <div><strong>국가</strong>: ${goodsDto.country }</div>
-                                        <div><strong>남은 재고 수</strong>: ${goodsDto.remainCount } 개</div>
                                     </div>
                                     <!-- END: Meta -->
                                 </div>

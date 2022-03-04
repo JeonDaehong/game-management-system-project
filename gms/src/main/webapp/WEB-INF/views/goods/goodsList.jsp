@@ -199,10 +199,10 @@
 				                            </span>
 				                        </span>
 				                        <div class="nk-gap-1"></div> ${goodsDto.cutContent } <div class="nk-gap-1"></div>
-				                        정상가: ${goodsDto.price} 원
+				                        정상가: <fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price}"/> 원
 				                        <c:choose>
 				                        	<c:when test="${goodsDto.discountRate eq 0 }">
-				                        		<div class="nk-product-price" >현재가: ${goodsDto.price} 원</div>
+				                        		<div class="nk-product-price" >현재가: <fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price}"/> 원</div>
 				                        	</c:when>
 				                        	<c:otherwise>
 				                        		<div class="nk-product-price">현재가: <fmt:formatNumber type="number" maxFractionDigits="0" value="${goodsDto.price * ((100 - goodsDto.discountRate) / 100)}"></fmt:formatNumber> 원 (${goodsDto.discountRate }% 할인중)</div>
@@ -210,7 +210,7 @@
 				                        </c:choose>
 				                        <div class="nk-gap-1"></div>
 				                        <form action="${contextPath }/cart/inCart" method="post">
-				                        <a href="${contextPath }/goods/goodsInfo?num=${goodsDto.num}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">구매하기</a>
+				                        <a href="${contextPath }/goods/goodsInfo?num=${goodsDto.num}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">상품보기</a>
 					                        <input type="hidden" name="price" value="${goodsDto.price}">
 					                        <input type="hidden" name="discountRate" value="${goodsDto.discountRate}">
 					                        <input type="hidden" name="fileName" value="${goodsDto.fileName}">

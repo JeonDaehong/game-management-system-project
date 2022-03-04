@@ -294,14 +294,5 @@
 	</update>
 	
 	
-	<!-- 상품 갯수 반환 쿼리 -->
-	<select id="goodsCount" parameterType="String" resultType="int">
-		SELECT
-				REMAIN_COUNT
-		FROM
-				T_ADMIN_GOODS
-		WHERE
-				GOODS_NAME = #{goodsName}
-	</select>
 
 </mapper>
