@@ -91,6 +91,7 @@ public class GoodsOrderController {
 		
 		/* 주문 등록 */
 		GoodsOrderDto orderDto = new GoodsOrderDto();
+		orderDto.setOrderString(request.getParameter("cartString"));
 		orderDto.setMemberId(request.getParameter("memberId"));
 		orderDto.setPrice(Integer.parseInt(request.getParameter("totalPrice")));
 		orderDto.setGoodsName(goodsInfo[1] + " 등 " + goods.length + "개 상품");
@@ -103,11 +104,11 @@ public class GoodsOrderController {
 		orderDto.setRoadAddress(request.getParameter("roadAddress"));
 		orderDto.setNamujiAddress(request.getParameter("namujiAddress"));
 		if (request.getParameter("content") == "" || request.getParameter("content") == null) {
-			orderDto.setContent("남김 메시지가 없습니다.");
+			orderDto.setContent("남긴 메시지가 없습니다.");
 		} else {
 			orderDto.setContent(request.getParameter("content"));
 		}
-		orderDto.setSituation("배송 준비중");
+		orderDto.setSituation("preparing");
 		
 		goodsOrderService.order(orderDto);
 		
@@ -141,4 +142,31 @@ public class GoodsOrderController {
 		return mv;
 	}
 	
+	
+	/* 주문한 상품 상세 정보 보기 */
+	@RequestMapping(value="/myOrderInfo", method=RequestMethod.GET)
+	public ModelAndView myOrderInfo(@RequestParam("orderString") String orderString, @RequestParam("content") String content) throws Exception {
+		ModelAndView mv = new ModelAndView("order/myOrderInfo");
+		
+		String goods[] = orderString.split(",");
+		List<CartDto> orderList = new ArrayList<CartDto>();
+		
+		for (int i=0; i<goods.length; i++) {
+			CartDto cartDto = new CartDto();
+			String tempGoodsInfo[] = goods[i].split("/");
+			cartDto.setMemberId(tempGoodsInfo[0]);
+			cartDto.setGoodsName(tempGoodsInfo[1]);
+			cartDto.setPrice(Integer.parseInt(tempGoodsInfo[2]));
+			cartDto.setCount(Integer.parseInt(tempGoodsInfo[3]));
+			
+			orderList.add(cartDto);
+		}
+		
+		mv.addObject("orderList", orderList);
+		mv.addObject("content", content);
+		
+		return mv;
+	}
+	
 }
+

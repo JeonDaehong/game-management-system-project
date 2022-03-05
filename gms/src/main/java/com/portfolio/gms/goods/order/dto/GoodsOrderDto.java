@@ -9,6 +9,7 @@ public class GoodsOrderDto {
 
 	private int num;
 	private Date buyTime;
+	private String orderString;
 	private String memberId;
 	private int price;
 	private String goodsName;
@@ -23,6 +24,13 @@ public class GoodsOrderDto {
 	private String content;
 	private String situation;
 	
+	
+	public String getOrderString() {
+		return orderString;
+	}
+	public void setOrderString(String orderString) {
+		this.orderString = orderString;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

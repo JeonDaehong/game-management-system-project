@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminOrderMapper">
+	
+	<!-- 모든 주문 리스트 불러오기 -->
+	<select id="orderAll" resultType="GoodsOrderDto">
+		SELECT
+				*
+		FROM
+				T_GOODS_ORDER
+		ORDER BY
+				BUY_TIME DESC
+	</select>
+	
+	
+	<!-- 배송 상태 변경 -->
+	<update id="orderTypeChange" parameterType="hashmap">
+		UPDATE
+				T_GOODS_ORDER
+		SET
+				SITUATION = #{situationVlaue}
+		WHERE
+				NUM = #{num}
+	</update>
+
+</mapper>

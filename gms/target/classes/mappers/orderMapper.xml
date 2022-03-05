@@ -10,6 +10,7 @@
 		VALUES (
 				NULL,
 				NOW(),
+				#{orderString},
 				#{memberId},
 				#{price},
 				#{goodsName},
@@ -36,6 +37,8 @@
 				T_GOODS_ORDER
 		WHERE
 				MEMBER_ID = #{memberId}
+		ORDER BY
+				BUY_TIME DESC
 	</select>
 
 </mapper>

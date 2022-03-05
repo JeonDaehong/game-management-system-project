@@ -6,12 +6,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<c:if test="${isLogOn ne true }">
+<c:if test="${sessionScope.loginId ne 'admin' }">
 	<script>
-		alert('로그인 후에 열람하실 수 있습니다.');
-		location.href = '${contextPath}/members/login';
+		alert('ADMIN만 접근 가능한 페이지입니다.');
+		location.href = '${contextPath}/main/main';
 	</script>
 </c:if>
+<script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+<script>
+	
+	$().ready(function(){
+		
+		$('#changeSituation').change(function() {
+			
+			var situationVlaue = $(this).val();
+			var num = $('#thisNum').val();
+			
+			$.ajax({
+				type : 'GET',
+				url  : '${contextPath}/adminOrder/changeType',
+				data : {
+						"situationVlaue" : situationVlaue,
+						"num" 			 : num
+						},
+				success : function() {
+					alert('배송 상태를 변경하였습니다.');
+				}
+			});
+			
+		});
+		
+	});
+</script>
 <style>
 
 	td:first-child {
@@ -42,7 +68,7 @@
     	<ul class="nk-breadcrumbs">
 	        <li><a href="${contextPath }/main/main">Home</a></li>
 	        <li><span class="fa fa-angle-right"></span></li>
-	        <li><span>내 주문 목록</span></li>
+	        <li><span>전체 주문 목록</span></li>
     	</ul>
 	</div>
 		<br>
@@ -60,18 +86,21 @@
 				<th style="border-color: red;" align="center"> 주소</th>
 				<th style="border-color: red;" align="center"> 배송상태</th>
 			</tr>
-			<c:forEach var="myOrderDto" items="${myOrderList }">
+			<c:forEach var="myOrderDto" items="${orderList }">
 				<tr align="center">
 					<td style="border-color: red;"> <fmt:formatDate value="${myOrderDto.buyTime }" pattern="yy년 MM월 dd일 (HH:mm:ss)"/> </td>
 					<td style="border-color: red;"> ${myOrderDto.sender } </td>
 					<td style="border-color: red;"> ${myOrderDto.recipient } </td>
-					<td style="border-color: red;"> <a href="${contextPath }/order/myOrderInfo?orderString=${myOrderDto.orderString}&content=${myOrderDto.content}">${myOrderDto.goodsName }</a></td>
+					<td style="border-color: red;"> <a href="${contextPath }/adminOrder/orderInfo?orderString=${myOrderDto.orderString}&content=${myOrderDto.content}">${myOrderDto.goodsName }</a></td>
 					<td style="border-color: red;"> <fmt:formatNumber type="number" maxFractionDigits="0" value="${myOrderDto.price }"/> 원 </td>
 					<td style="border-color: red;"> ${myOrderDto.zipcode } : ${myOrderDto.namujiAddress } </td>
 					<td style="border-color: red;">
-						<c:if test="${myOrderDto.situation eq 'preparing'}">배송 준비중</c:if>
-						<c:if test="${myOrderDto.situation eq 'shipping'}">배송 중</c:if>
-						<c:if test="${myOrderDto.situation eq 'completed'}">배송 완료</c:if>
+						<select id="changeSituation">
+							<option value="preparing" <c:if test="${myOrderDto.situation eq 'preparing'}">selected</c:if>>배송 준비중</option>
+							<option value="shipping" <c:if test="${myOrderDto.situation eq 'shipping'}">selected</c:if>>배송 중</option>
+							<option value="completed" <c:if test="${myOrderDto.situation eq 'completed'}">selected</c:if>>배송 완료</option>
+						</select>
+						<input type="hidden" id="thisNum" value="${myOrderDto.num}">
 					</td>
 				</tr>
 			</c:forEach>

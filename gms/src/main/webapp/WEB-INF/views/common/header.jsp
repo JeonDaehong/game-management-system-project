@@ -157,7 +157,7 @@
 		                            		<a href="${contextPath }/adminMember/memberList"> Admin : 회원 명단 조회  </a>
 		                            	</li>
 		                            	<li>
-		                            		<a href="#"> Admin : 구매 현황 조회  </a>
+		                            		<a href="${contextPath }/adminOrder/orderAll"> Admin : 구매 현황 조회  </a>
 		                            	</li>
 		                            	<li>
 		                            		<a href="${contextPath }/adminNotice/noticeWriter"> Admin : 공지사항 작성  </a>
