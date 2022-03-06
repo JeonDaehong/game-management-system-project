@@ -22,6 +22,20 @@
 			return false;
 		}
 		
+		var contentValue = document.getElementById('content');
+		
+		if (contentValue.value == ""){
+			alert("내용은 반드시 입력해야 합니다.");
+			contentValue.focus();
+			return false;
+		}
+		
+		if (contentValue.value.length >= 2000) {
+			alert("내용은 2000자가 넘어가선 안됩니다.");
+			contentValue.focus();
+			return false;
+		}
+		
 		return true;
 		
 	}
@@ -70,7 +84,7 @@
 				<tr>
 					<td style="border-color: red;">공지 내용</td>
 					<td style="border-color: red;" align="center">
-						<textarea maxlength="2000" rows="10" cols="100" name="content" id="content" class="form-control" style="border-color: white;"></textarea>
+						<textarea maxlength="2000" rows="10" cols="100" name="content" id="content" class="form-control" style="border-color: white;">내용 : 최대 2000자</textarea>
 						<script>CKEDITOR.replace('content');</script>
 					</td>
 				</tr>

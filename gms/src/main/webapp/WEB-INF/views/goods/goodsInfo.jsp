@@ -136,8 +136,8 @@
                                                     <div class="nk-gap"></div>
                                                     <img src="${contextPath }/gameListThumbnails?goodsFileName=${goodsDto.fileName}" alt="img">
                                                     <div class="nk-product-pegi-cont">
-                                                        <strong class="text-white">게임명/타입: </strong>
-                                                        <div class="nk-gap"></div> ${goodsDto.goodsName }/${goodsDto.goodsType }
+                                                        <strong class="text-white">게임명 / 타입: </strong>
+                                                        <div class="nk-gap"></div> ${goodsDto.goodsName } / ${goodsDto.goodsType }
                                                     </div>
                                                     <div class="nk-gap"></div>
                                                 </div>
@@ -145,7 +145,15 @@
                                             <div class="col-md-3">
                                                 <div class="nk-gap"></div>
                                                 <strong class="text-white">장르:</strong>
-                                                <div class="nk-gap"></div> ${goodsDto.goodsGenre } <div class="nk-gap"></div>
+                                                <div class="nk-gap"></div> 
+                                                	<c:if test="${goodsDto.goodsGenre eq 'rpg' }">RPG</c:if>
+			                                   		<c:if test="${goodsDto.goodsGenre eq 'fps' }">FPS</c:if>
+			                                    	<c:if test="${goodsDto.goodsGenre eq 'advencher' }">어드벤쳐</c:if>
+			                                    	<c:if test="${goodsDto.goodsGenre eq 'rts' }">RTS</c:if>
+			                                    	<c:if test="${goodsDto.goodsGenre eq 'fear' }">공포</c:if>
+			                                    	<c:if test="${goodsDto.goodsGenre eq 'datingSimulation' }">연애</c:if>
+			                                    	<c:if test="${goodsDto.goodsGenre eq 'etc' }">기타</c:if> <br>
+                                                <div class="nk-gap"></div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="nk-gap"></div>
@@ -332,10 +340,10 @@
                             		<c:otherwise>
                             			<c:forEach var="sidePopularGoodsDto" items="${sidePopularGoodsList }" begin="0" end="${endSidePopularGoods }">
 	                            			<div class="nk-widget-post">
-			                                    <a href="blog-article.html" class="nk-post-image">
+			                                    <a href="${contextPath }/goods/goodsInfo?num=${sidePopularGoodsDto.num}" class="nk-post-image">
 			                                        <img src="${contextPath }/smaillThumbnails?goodsFileName=${sidePopularGoodsDto.fileName}" alt="">
 			                                    </a>
-			                                    <h3 class="nk-post-title"><a href="blog-article.html">${sidePopularGoodsDto.goodsName }</a></h3>
+			                                    <h3 class="nk-post-title"><a href="${contextPath }/goods/goodsInfo?num=${sidePopularGoodsDto.num}">${sidePopularGoodsDto.goodsName }</a></h3>
 			                                    <div class="nk-post-date"><span class="fa fa-calendar"></span><fmt:formatDate value="${sidePopularGoodsDto.creDate }" pattern="yyyy-MM-dd"/></div>
 			                                </div>
 		                                </c:forEach>

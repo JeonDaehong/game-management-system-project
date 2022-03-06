@@ -74,6 +74,7 @@
 					<td style="border-color: red;"> 이미지 </td>
 					<td style="border-color: red;" align="center">
 						<input id="fileName" name="fileName" type="file" />
+						(권장 : 900 x 750)
 					</td>
 				</tr>
 				<tr style="border-color: red;">

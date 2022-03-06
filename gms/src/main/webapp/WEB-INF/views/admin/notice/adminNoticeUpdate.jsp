@@ -16,6 +16,20 @@
 			return false;
 		}
 		
+		var contentValue = document.getElementById('content');
+		
+		if (contentValue.value == ""){
+			alert("내용은 반드시 입력해야 합니다.");
+			contentValue.focus();
+			return false;
+		}
+		
+		if (contentValue.value.length >= 2000) {
+			alert("내용은 2000자가 넘어가선 안됩니다.");
+			contentValue.focus();
+			return false;
+		}
+		
 		return true;
 		
 	}

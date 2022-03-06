@@ -60,21 +60,30 @@
 				<th style="border-color: red;" align="center"> 주소</th>
 				<th style="border-color: red;" align="center"> 배송상태</th>
 			</tr>
-			<c:forEach var="myOrderDto" items="${myOrderList }">
-				<tr align="center">
-					<td style="border-color: red;"> <fmt:formatDate value="${myOrderDto.buyTime }" pattern="yy년 MM월 dd일 (HH:mm:ss)"/> </td>
-					<td style="border-color: red;"> ${myOrderDto.sender } </td>
-					<td style="border-color: red;"> ${myOrderDto.recipient } </td>
-					<td style="border-color: red;"> <a href="${contextPath }/order/myOrderInfo?orderString=${myOrderDto.orderString}&content=${myOrderDto.content}">${myOrderDto.goodsName }</a></td>
-					<td style="border-color: red;"> <fmt:formatNumber type="number" maxFractionDigits="0" value="${myOrderDto.price }"/> 원 </td>
-					<td style="border-color: red;"> ${myOrderDto.zipcode } : ${myOrderDto.namujiAddress } </td>
-					<td style="border-color: red;">
-						<c:if test="${myOrderDto.situation eq 'preparing'}">배송 준비중</c:if>
-						<c:if test="${myOrderDto.situation eq 'shipping'}">배송 중</c:if>
-						<c:if test="${myOrderDto.situation eq 'completed'}">배송 완료</c:if>
-					</td>
-				</tr>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${empty myOrderList }">
+					<tr align="center">
+						<td colspan="7" style="border-color: red;"> 현재 주문한 상품이 없습니다. </td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="myOrderDto" items="${myOrderList }">
+						<tr align="center">
+							<td style="border-color: red;"> <fmt:formatDate value="${myOrderDto.buyTime }" pattern="yy년 MM월 dd일 (HH:mm:ss)"/> </td>
+							<td style="border-color: red;"> ${myOrderDto.sender } </td>
+							<td style="border-color: red;"> ${myOrderDto.recipient } </td>
+							<td style="border-color: red;"> <a href="${contextPath }/order/myOrderInfo?orderString=${myOrderDto.orderString}&content=${myOrderDto.content}">${myOrderDto.goodsName }</a></td>
+							<td style="border-color: red;"> <fmt:formatNumber type="number" maxFractionDigits="0" value="${myOrderDto.price }"/> 원 </td>
+							<td style="border-color: red;"> ${myOrderDto.zipcode } : ${myOrderDto.namujiAddress } </td>
+							<td style="border-color: red;">
+								<c:if test="${myOrderDto.situation eq 'preparing'}">배송 준비중</c:if>
+								<c:if test="${myOrderDto.situation eq 'shipping'}">배송 중</c:if>
+								<c:if test="${myOrderDto.situation eq 'completed'}">배송 완료</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</table>
 		<p align="center">
 			<br>

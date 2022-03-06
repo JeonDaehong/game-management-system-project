@@ -224,19 +224,19 @@
 							</td>
 						</tr>
 						<tr style="border-color: red;">
-							<td style="border-color: red;"> 상품 이미지 1 (권장 : 300 x 600)</td>
+							<td style="border-color: red;"> 상품 이미지 1 (권장 : 472 x 512)</td>
 							<td style="border-color: red;"><input name="fileName" id="fileName" type="file" /></td>
 						</tr>
 						<tr style="border-color: red;">
-							<td style="border-color: red;"> 상품 이미지 2 (권장 : 600 x 300)</td>
+							<td style="border-color: red;"> 상품 이미지 2 (권장 : 1000 x 450)</td>
 							<td style="border-color: red;"><input name="secondFileName" id="secondFileName" type="file" /></td>
 						</tr>
 						<tr style="border-color: red;">
-							<td style="border-color: red;"> 상품 이미지 3 (권장 : 600 x 300)</td>
+							<td style="border-color: red;"> 상품 이미지 3 (권장 : 1000 x 450)</td>
 							<td style="border-color: red;"><input name="thirdFileName" id="thirdFileName" type="file" /></td>
 						</tr>
 						<tr style="border-color: red;">
-							<td style="border-color: red;"> 상품 이미지 4 (권장 : 600 x 300)</td>
+							<td style="border-color: red;"> 상품 이미지 4 (권장 : 1000 x 450)</td>
 							<td style="border-color: red;"><input name="fourthFileName" id="fourthFileName" type="file" /></td>
 						</tr>
 					</table> 

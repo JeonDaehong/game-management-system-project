@@ -181,7 +181,13 @@
 				                    </a>
 				                    <div class="nk-product-cont">
 				                        <h3 class="nk-product-title h4"><a href="${contextPath }/goods/goodsInfo?num=${goodsDto.num}">${goodsDto.goodsName }</a></h3>
-				                        타입 : ${goodsDto.goodsType } / 장르 : ${goodsDto.goodsGenre } &nbsp;
+				                        타입 : ${goodsDto.goodsType } / 장르 :  <c:if test="${goodsDto.goodsGenre eq 'rpg' }">RPG</c:if>
+										                                   		<c:if test="${goodsDto.goodsGenre eq 'fps' }">FPS</c:if>
+										                                    	<c:if test="${goodsDto.goodsGenre eq 'advencher' }">어드벤쳐</c:if>
+										                                    	<c:if test="${goodsDto.goodsGenre eq 'rts' }">RTS</c:if>
+										                                    	<c:if test="${goodsDto.goodsGenre eq 'fear' }">공포</c:if>
+										                                    	<c:if test="${goodsDto.goodsGenre eq 'datingSimulation' }">연애</c:if>
+										                                    	<c:if test="${goodsDto.goodsGenre eq 'etc' }">기타</c:if> <br>
 				                        <span class="nk-product-rating">
 				                            <span class="nk-product-rating-front" style="width: ${goodsDto.score}%;">
 				                                <i class="fa fa-star"></i>
