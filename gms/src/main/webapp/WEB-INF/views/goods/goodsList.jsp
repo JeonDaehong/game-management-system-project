@@ -217,12 +217,14 @@
 				                        <div class="nk-gap-1"></div>
 				                        <form action="${contextPath }/cart/inCart" method="post">
 				                        <a href="${contextPath }/goods/goodsInfo?num=${goodsDto.num}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">상품보기</a>
-					                        <input type="hidden" name="price" value="${goodsDto.price}">
-					                        <input type="hidden" name="discountRate" value="${goodsDto.discountRate}">
-					                        <input type="hidden" name="fileName" value="${goodsDto.fileName}">
-					                        <input type="hidden" name="goodsName" value="${goodsDto.goodsName}">
-					                        <input type="hidden" name="memberId" value="${sessionScope.loginId}">
-					                        <input type="submit" value="장바구니" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
+					                        <c:if test="${isLogOn eq true  }">
+						                        <input type="hidden" name="price" value="${goodsDto.price}">
+						                        <input type="hidden" name="discountRate" value="${goodsDto.discountRate}">
+						                        <input type="hidden" name="fileName" value="${goodsDto.fileName}">
+						                        <input type="hidden" name="goodsName" value="${goodsDto.goodsName}">
+						                        <input type="hidden" name="memberId" value="${sessionScope.loginId}">
+						                        <input type="submit" value="장바구니" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
+				                    		</c:if>
 				                    	</form>
 				                    </div>
 				                </div>
