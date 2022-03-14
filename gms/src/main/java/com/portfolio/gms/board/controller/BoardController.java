@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.portfolio.gms.admin.notice.dto.AdminNoticeDto;
 import com.portfolio.gms.board.dto.BoardDto;
 import com.portfolio.gms.board.dto.BoardReplyDto;
 import com.portfolio.gms.board.service.BoardService;

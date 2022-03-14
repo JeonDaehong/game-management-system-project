@@ -87,7 +87,7 @@
 				<th style="border-color: red;" align="center"> 배송상태</th>
 			</tr>
 			<c:choose>
-				<c:when test="${empty myOrderList }">
+				<c:when test="${empty orderList }">
 					<tr align="center">
 						<td colspan="7" style="border-color: red;"> 현재 주문한 상품이 없습니다. </td>
 					</tr>

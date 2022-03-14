@@ -188,7 +188,7 @@
 							<td style="border-color: red;">
 								<select id="goodsGenre" name="goodsGenre" class="form-control" style="border-color: white;">
 									<option value="rpg">RPG</option>
-									<option value="fps">PS5</option>
+									<option value="fps">FPS</option>
 									<option value="advencher">어드벤쳐</option>
 									<option value="rts">RTS</option>
 									<option value="fear">공포</option>

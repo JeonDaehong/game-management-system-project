@@ -21,7 +21,11 @@
 	
 		// 이메일 뒷 부분 선택 시, 자동으로 바뀜
 		$("#select_email").change(function(){
-			$("#email2").val($("#select_email option:selected").val());
+			if ($("#select_email option:selected").val() == 'none') {
+				$("#email2").val('');
+			} else {
+				$("#email2").val($("#select_email option:selected").val());
+			}
 		});
 		
 		// 중복확인 버튼 클릭 시 중복 확인
