@@ -25,3 +25,4 @@
 * <img src="https://img.shields.io/badge/Mybatis-000000?style=flat&logo=Mybatis&logoColor=white"/>
 * <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat&logo=Amazon AWS&logoColor=white"/>
 * <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat&logo=Amazon EC2&logoColor=white"/>
+* <img src="https://img.shields.io/badge/Rinux-FCC624?style=flat&logo=Rinux&logoColor=white"/>
