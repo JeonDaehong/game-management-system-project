@@ -1,5 +1,5 @@
 ## 1. GMS 서버 구조도
-![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/eea64279-5fb7-49a2-9bcd-8a0f13b908c3)
+![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/d6b68a41-4d43-4279-9b84-300a95e80e23)
 
 ## 2. 도메인 주소
 ### http://www.digitalgms.co.kr/ ( 현재 가비아 기간 만료로 더이상 접근할 수 없음 )
