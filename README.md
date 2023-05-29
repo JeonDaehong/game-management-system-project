@@ -1,4 +1,4 @@
-# GameManagementSystem (GMS-Project)
+![header]GameManagementSystem (GMS-Project)
 
 ## 1. GMS 서버 구조도
 ![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/eea64279-5fb7-49a2-9bcd-8a0f13b908c3)
