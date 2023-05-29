@@ -27,3 +27,7 @@
 * <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat&logo=Amazon EC2&logoColor=white"/>
 * <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat&logo=Amazon RDS&logoColor=white"/>
 * <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=Linux&logoColor=white"/>
+
+## 6.DB ERD
+![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/9405fbbb-c3ea-4d26-8208-86861a3f4136)
+
