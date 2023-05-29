@@ -7,6 +7,9 @@
 ### http://www.digitalgms.co.kr/ ( 현재 가비아 기간 만료로 더이상 접근할 수 없음 )
 
 ## 3. 프로젝트 목표
+* 기본적인 쇼핑몰 구조의 CRUD 구현
+* 기본적인 게시판 구조의 CRUD 구현
+* 
 
 ## 4. 사용 기술 스택
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Java-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
