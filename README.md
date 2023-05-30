@@ -1,8 +1,10 @@
 ## 1. GMS 서버 구조도
 ![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/d6b68a41-4d43-4279-9b84-300a95e80e23)
 <br/><br/>
-## 2. 도메인 주소
-### http://www.digitalgms.co.kr/ ( 현재 가비아 기간 만료로 더이상 접근할 수 없음 )
+## 2. 도메인 주소 및 배포
+### 도메인 : http://www.digitalgms.co.kr/ ( 현재 가비아 기간 만료로 더이상 접근할 수 없음 )
+### AWS E2C : 배포
+### AWS RDS : 관계형 데이터베이스
 <br/><br/>
 ## 3. 프로젝트 개요
 * CRUD 서비스의 구현을 할 수 있는지 확인하기 위한 프로젝트
