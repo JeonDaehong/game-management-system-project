@@ -55,21 +55,6 @@
 5. 검수 - 통합 테스트 시나리오
 6. 구현 - Admin 메뉴얼 / Client 메뉴얼
 7. 완료 - 프로젝트 완료 소감
-<br/><br/>
-## 9. 프로젝트 결과 이미지
-![1](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/d1472b8f-0fdd-4b49-a552-293c6ae4bae5)
-![2](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/b95330bb-4f62-4b67-bce4-a89bb59ebf55)
-![4](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/96afcd80-4353-4008-80d7-4c949745fd5e)
-![6](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/3e3eb9cb-38bc-406a-b566-617bc6d27e40)
-![7](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/a5e91753-cc15-487e-a1c5-8b6e5e6f7d72)
-![9](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/ae749e3e-0ce0-45cd-8bfc-573fa77fd30f)
-![10](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/a159da6b-96d8-4859-a7d9-4034b6a0802c)
-![11](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/5cd70c1b-5715-4a9e-823c-77a13326cb7e)
-![12](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/560ac792-d117-465f-8f26-3406974cca37)
-![13](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/41d104b1-096e-49bf-a634-bd546ae16a8d)
-![14](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/9ec6548b-06f0-49bc-a59e-0fadb07f6302)
-![15](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/69c24fcd-280c-4f01-8fca-72ea5b5e4117)
-![16](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/ef225807-5bf5-4e24-9baa-ca62809aedf0)
 
 
 
