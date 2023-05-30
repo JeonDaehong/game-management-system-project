@@ -42,10 +42,10 @@
 * <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat&logo=Amazon RDS&logoColor=white"/>
 * <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=Linux&logoColor=white"/>
 <br/><br/>
-## 7.DB ERD
+## 7. DB ERD
 ![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/9405fbbb-c3ea-4d26-8208-86861a3f4136)
 <br/><br/>
-## 8.작성한 산출물
+## 8. 작성한 산출물
 1. 착수 - 프로젝트 계획서 / WBS
 2. 분석 - 현행 시장 조사
 3. 설계 - 테이블 정의서 / 클래스 정의서 / 메뉴 및 기능 정의서 / 메뉴 구성도 / 페이지 레이아웃 정의서 / 아키텍처 정의서 / ERD
@@ -54,7 +54,7 @@
 6. 구현 - Admin 메뉴얼 / Client 메뉴얼
 7. 완료 - 프로젝트 완료 소감
 <br/><br/>
-## 9. 프로젝트 완료 이미지
+## 9. 프로젝트 결과 이미지
 ![1](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/d1472b8f-0fdd-4b49-a552-293c6ae4bae5)
 ![2](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/b95330bb-4f62-4b67-bce4-a89bb59ebf55)
 ![4](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/96afcd80-4353-4008-80d7-4c949745fd5e)
