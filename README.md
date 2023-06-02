@@ -1,4 +1,4 @@
-## 0. 기간
+## 0. 개발 기간
 * 2022.02 ~ 2022.02 : 0년차 취업 준비
 ## 1. GMS 서버 구조도
 ![image](https://github.com/JeonDaehong/GameManagementSystem/assets/90895144/d6b68a41-4d43-4279-9b84-300a95e80e23)
